@@ -1,4 +1,6 @@
 # Require any additional compass plugins here.
+require 'yaml'
+YAML::ENGINE.yamler = 'syck'
 project_type = :stand_alone
 
 # Publishing paths
