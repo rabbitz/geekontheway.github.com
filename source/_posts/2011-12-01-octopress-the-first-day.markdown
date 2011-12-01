@@ -10,6 +10,7 @@ categories: octopress
 >First, I want to stress that Octopress is a blogging framework for hackers. You should be comfortable running shell commands and familiar with the basics of Git. If that sounds daunting, Octopress probably isn’t for you.
 
 ####Before You Begin
+
 >You’ll need to install Git and set up your Ruby environment. Octopress requires Ruby **1.9.2** wich you can easily install with RVM or rbenv.
 
 If `ruby --version` doesn’t say you’re using Ruby 1.9.2, you may want to revisit your RVM installation.
@@ -21,6 +22,7 @@ If `ruby --version` doesn’t say you’re using Ruby 1.9.2, you may want to rev
    If you use RVM, You'll be asked if you trust the .rvmrc file (say yes).
 
 ####Next, install dependencies.
+
    >$ bundle install
 
    Mostly,you will see
@@ -74,7 +76,7 @@ If `ruby --version` doesn’t say you’re using Ruby 1.9.2, you may want to rev
 
 	>$rake install
 
-	----------
+	
 	
 #Configuring Octopress
 
@@ -139,7 +141,7 @@ If `ruby --version` doesn’t say you’re using Ruby 1.9.2, you may want to rev
 
 	The Octopress layouts read these configurations and only include the javascript and html necessary for the enabled services.
 
-	----------
+	
 	
 #Blogging Basics
 
@@ -235,7 +237,7 @@ If `ruby --version` doesn’t say you’re using Ruby 1.9.2, you may want to rev
 
 	  Now that you’re setup with POW, you’ll just run rake watch and load up http://octopress.dev instead.
 
-	  ----------
+	  
 
 #Deploying to Github Pages
 
@@ -319,6 +321,6 @@ Next, you’ll need to visit your domain registrar or DNS host and add a record 
 
 Do not use a CNAME record with a top-level domain it can have adverse side effects on other services like email. Many DNS services will let you set a CNAME on a TLD, even though you shouldn’t. Remember that it may take up to a full day for DNS changes to propagate, so be patient.
 
-----------
+
 
 
