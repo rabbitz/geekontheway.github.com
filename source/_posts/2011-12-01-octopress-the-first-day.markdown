@@ -14,9 +14,9 @@ categories: octopress
 
 If `ruby --version` doesn’t say you’re using Ruby 1.9.2, you may want to revisit your RVM installation.
 
- >$git clone git://github.com/imathis/octopress.git octopress
-  >
-   >$cd octopress
+>$git clone git://github.com/imathis/octopress.git octopress
+>
+>$cd octopress
 
    If you use RVM, You'll be asked if you trust the .rvmrc file (say yes).
 
@@ -24,6 +24,7 @@ If `ruby --version` doesn’t say you’re using Ruby 1.9.2, you may want to rev
    >$ bundle install
 
    Mostly,you will see
+   
    <pre>
    Using rake (0.9.2) 
 	Installing RedCloth (4.2.8) with native extensions 
@@ -56,6 +57,7 @@ If `ruby --version` doesn’t say you’re using Ruby 1.9.2, you may want to rev
 	Using bundler (1.0.21) 
 	Your bundle is complete! Use `bundle show [gemname]` to see where a bundled gem is installed.
 	</pre>
+	
 	**Notes**:you may get error like:
 
 	<pre>
@@ -73,6 +75,7 @@ If `ruby --version` doesn’t say you’re using Ruby 1.9.2, you may want to rev
 	>$rake install
 
 	----------
+	
 #Configuring Octopress
 
 	Here’s a list of files for configuring Octopress.
@@ -137,6 +140,7 @@ If `ruby --version` doesn’t say you’re using Ruby 1.9.2, you may want to rev
 	The Octopress layouts read these configurations and only include the javascript and html necessary for the enabled services.
 
 	----------
+	
 #Blogging Basics
 
 	Octopress offers some rake tasks to create post and pages preloaded with metadata and according to Jekyll’s naming conventions.
@@ -156,6 +160,7 @@ If `ruby --version` doesn’t say you’re using Ruby 1.9.2, you may want to rev
 
 
 	> rake new_post["Zombie Ninjas Attack: A survivor's retrospective"]
+	
 
 	The filename will determine your url. With the default permalink settings the url would be something like `http://site.com/blog/2011/07/03/zombie-ninjas-attack-a-survivors-retrospective/index.html`
 
@@ -255,8 +260,7 @@ If `ruby --version` doesn’t say you’re using Ruby 1.9.2, you may want to rev
 	  [master (root-commit) 75592aa] Octopress init
 	   1 files changed, 1 insertions(+), 0 deletions(-)
 	 create mode 100644 index.html
-
-## Now you can deploy to http://geekontheway.github.com with `rake deploy` ##
+         ## Now you can deploy to http://geekontheway.github.com with `rake deploy` ##
 	 </pre>
 
 	 This will:
@@ -292,43 +296,29 @@ If `ruby --version` doesn’t say you’re using Ruby 1.9.2, you may want to rev
 	 octopress	git://github.com/imathis/octopress.git (fetch)
 	 octopress	git://github.com/imathis/octopress.git (push)
 	 origin	git@github.com:geekontheway/geekontheway.github.com.git (fetch)
-	origin	git@github.com:geekontheway/geekontheway.github.com.git (push)
+	 origin	git@github.com:geekontheway/geekontheway.github.com.git (push)
 
 	nasa@ubuntu:~/www/octopress$ git branch -a
 
 	* source
-	  remotes/octopress/HEAD -> octopress/master
-	    remotes/octopress/compass
-		  remotes/octopress/configuration
-		    remotes/octopress/edge
-			  remotes/octopress/generate_environment
-			    remotes/octopress/gh-pages
-				  remotes/octopress/master
-				    remotes/octopress/move_rakefile_configs
-					  remotes/octopress/post_names
-					    remotes/octopress/rake_minify_js
-						  remotes/octopress/refactor_code_highlight
-						    remotes/octopress/refactor_deployment
-							  remotes/octopress/refactor_js
-							    remotes/octopress/site
-								  remotes/octopress/site-deploy-test
-								    remotes/octopress/subdir
-									  remotes/octopress/thor
-									    remotes/origin/source
+ 
+        ...
 
-										</pre>
+        remotes/origin/source
+	</pre>
 
 ####Custom Domains
 
-										First you’ll need to create a file named CNAME in the source containing your domain name.
+First you’ll need to create a file named CNAME in the source containing your domain name.
 
+> echo 'your-domain.com' >> source/CNAME
 
-										> echo 'your-domain.com' >> source/CNAME
+From Github’s Pages guide:
 
-										From Github’s Pages guide:
+Next, you’ll need to visit your domain registrar or DNS host and add a record for your domain name. For a sub-domain like www.example.com you would simply create a CNAME record pointing at charlie.github.com. If you are using a top-level domain like example.com, you must use an A record pointing to 207.97.227.245.
 
-										Next, you’ll need to visit your domain registrar or DNS host and add a record for your domain name. For a sub-domain like www.example.com you would simply create a CNAME record pointing at charlie.github.com. If you are using a top-level domain like example.com, you must use an A record pointing to 207.97.227.245. Do not use a CNAME record with a top-level domain it can have adverse side effects on other services like email. Many DNS services will let you set a CNAME on a TLD, even though you shouldn’t. Remember that it may take up to a full day for DNS changes to propagate, so be patient.
+Do not use a CNAME record with a top-level domain it can have adverse side effects on other services like email. Many DNS services will let you set a CNAME on a TLD, even though you shouldn’t. Remember that it may take up to a full day for DNS changes to propagate, so be patient.
 
-										----------
+----------
 
 
