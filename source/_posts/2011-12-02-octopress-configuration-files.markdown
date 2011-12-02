@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "Octopress:configuration files"
+title: "Octopress: configuration files"
 date: 2011-12-02 07:44
 comments: true
-categories: 
+categories: octopress
 ---
 
 # _config.yml
@@ -161,7 +161,7 @@ $root = ::File.dirname(__FILE__)
 				  end
 
 				  end
-				  </pre>
+				 </pre>
 
 
 #Rakefile
