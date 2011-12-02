@@ -23,12 +23,11 @@ If `ruby --version` doesn’t say you’re using Ruby 1.9.2, you may want to rev
 
 ####Next, install dependencies.
 
-   >$ bundle install
+>$ bundle install
 
    Mostly,you will see
    
-   <pre>
-   Using rake (0.9.2) 
+<pre>Using rake (0.9.2) 
 	Installing RedCloth (4.2.8) with native extensions 
 	Installing posix-spawn (0.3.6) with native extensions 
 	Installing albino (1.3.3) 
@@ -57,24 +56,21 @@ If `ruby --version` doesn’t say you’re using Ruby 1.9.2, you may want to rev
 	Installing sinatra (1.2.6) 
 	Installing stringex (1.3.0) 
 	Using bundler (1.0.21) 
-	Your bundle is complete! Use `bundle show [gemname]` to see where a bundled gem is installed.
-	</pre>
+	Your bundle is complete! Use `bundle show [gemname]` to see where a bundled gem is installed.</pre>
 	
 	**Notes**:you may get error like:
 
-	<pre>
-	rake aborted!
+<pre>rake aborted!
 	You have already activated rake 0.9.2.2, but your Gemfile requires rake 0.9.2. Using bundle exec may solve this.
 
-	(See full trace by running task with --trace)
-	</pre>
+	(See full trace by running task with --trace)</pre>
 
 	As it to me,i just solve it by add `alias rake="bundle exec rake` to my **.bashrc**.
 
 ####Install the default Octopress theme.
 
 
-	>$rake install
+>$rake install
 
 	
 	
@@ -154,29 +150,27 @@ If `ruby --version` doesn’t say you’re using Ruby 1.9.2, you may want to rev
 	Octopress provides a rake task to create new blog posts with the right naming conventions, with sensible yaml metadata.
 
 
-	> rake new_post["title"]
+> rake new_post["title"]
 
 	new_post expects a naturally written title and strips out undesirable url characters when creating the filename. The default file extension for new posts is markdown but you can configure that in the Rakefile.
 
 	Example
 
 
-	> rake new_post["Zombie Ninjas Attack: A survivor's retrospective"]
+> rake new_post["Zombie Ninjas Attack: A survivor's retrospective"]
 	
 
 	The filename will determine your url. With the default permalink settings the url would be something like `http://site.com/blog/2011/07/03/zombie-ninjas-attack-a-survivors-retrospective/index.html`
 
 	Open a post in a text editor and you’ll see a block of ** yaml front matter** which tells Jekyll how to processes posts and pages.
 
-	<pre>
-	---
+<pre>---
 	layout: post
 	title: "Zombie Ninjas Attack: A survivor's retrospective"
 	date: 2011-07-03 5:59
 	comments: true
 	categories:
-	---
-	</pre>
+	---</pre>
 
 	Here you can **turn comments off and or categories** to your post. If you are working on a multi-author blog, you can add **author: Your Name** to the metadata for proper attribution on a post. If you are working on a draft, you can add  **published: false** to prevent it from being posted when you generate your blog.
 
@@ -184,56 +178,54 @@ If `ruby --version` doesn’t say you’re using Ruby 1.9.2, you may want to rev
 
 
 
-	>categories: Sass
+>categories: Sass
 
 	or
 
-	>categories: [CSS3, Sass, Media Queries]
+>categories: [CSS3, Sass, Media Queries]
 
 ####New Pages
 
 	You can add pages anywhere in your blog **source directory** and they’ll be parsed by Jekyll. The URL will correspond directly to the filepath, so about.markdown will become site.com/about.html. If you prefer the URL site.com/about/ you’ll want to create the page as about/index.markdown. Octopress has a rake task for creating new pages easily.
 
 
-	> rake new_page[super-awesome]
+> rake new_page[super-awesome]
 
 	 creates /source/super-awesome/index.markdown
 
 
-	 > rake new_page[super-awesome/page.html]
+> rake new_page[super-awesome/page.html]
 
 	  creates /source/super-awesome/page.html
 
 	  Like with the new post task, the default file extension is markdown but you can configure that in the Rakefile. A freshly generated page might look like this.
 
-	  <pre>
-	  ---
+<pre>---
 	  layout: page
 	  title: "Super Awesome"
 	  date: 2011-07-03 5:59
 	  comments: true
 	  sharing: true
 	  footer: true
-	  ---
-	  </pre>
+	  ---</pre>
 
 	  The title is derived from the filename so you’ll likely want to change that. This is very similar to the post yaml except it doesn’t include categories, and you can toggle sharing and comments or remove the footer altogether. If you don’t want to show a date on your page, just remove it from the yaml.
 
 ####Generate & Preview
 
 
-	  > rake generate   # Generates posts and pages into the public directory
-	  > 
-	  > rake watch      # Watches source/ and sass/ for changes and regenerates
-	  > 
-	  > rake preview    # Watches, and mounts a webserver at http://localhost:4000
+> rake generate   # Generates posts and pages into the public directory
+> 
+> rake watch      # Watches source/ and sass/ for changes and regenerates
+> 
+> rake preview    # Watches, and mounts a webserver at http://localhost:4000
 
 	  Using the rake preview server is nice, but If you’re a POW user, you can set up your Octopress site like this.
 
 
-	  > cd ~/.pow
+> cd ~/.pow
 
-	  > ln -s /path/to/octopress octopress
+> ln -s /path/to/octopress octopress
 
 	  Now that you’re setup with POW, you’ll just run rake watch and load up http://octopress.dev instead.
 
@@ -252,18 +244,16 @@ If `ruby --version` doesn’t say you’re using Ruby 1.9.2, you may want to rev
 	  As a result, you’ll want to **work on the source for your blog in the source branch and commit the generated content to the master branch.** Octopress has a configuration task that helps you set all this up.
 
 
-	  > $ rake setup_github_pages
+> $ rake setup_github_pages
 
-	  <pre>
-	  Enter the read/write url for your repository: git@github.com:geekontheway/geekontheway.github.com.git
+<pre>Enter the read/write url for your repository: git@github.com:geekontheway/geekontheway.github.com.git
 	  Added remote git@github.com:geekontheway/geekontheway.github.com.git as origin
 	  Set origin as default remoteMaster branch renamed to 'source' for committing your blog source files
 	  Initialized empty Git repository in /home/nasa/www/octopress/_deploy/.git/
 	  [master (root-commit) 75592aa] Octopress init
 	   1 files changed, 1 insertions(+), 0 deletions(-)
 	 create mode 100644 index.html
-         ## Now you can deploy to http://geekontheway.github.com with `rake deploy` ##
-	 </pre>
+         ## Now you can deploy to http://geekontheway.github.com with `rake deploy` ##</pre>
 
 	 This will:
 
@@ -276,24 +266,23 @@ If `ruby --version` doesn’t say you’re using Ruby 1.9.2, you may want to rev
 
 	 Next run:
 
-	 > rake generate
-	 > 
-	 > rake deploy
+> rake generate
+> 
+> rake deploy
 
 	 This will generate your blog, copy the generated files into _deploy/, add them to git, commit and push them up to the master branch. In a few seconds you should get an email from Github telling you that your commit has been received and will be published on your site.
 
 	 Don’t forget to commit the source for your blog.
 
-	 > git add .
-	 > 
-	 > git commit -m 'your message'
-	 > 
-	 > git push origin source
+> git add .
+> 
+> git commit -m 'your message'
+> 
+> git push origin source
 
 	 After all done ,your config may looks like:
 
-	 <pre>
-	 nasa@ubuntu:~/www/octopress$ git remote -v
+<pre>nasa@ubuntu:~/www/octopress$ git remote -v
 
 	 octopress	git://github.com/imathis/octopress.git (fetch)
 	 octopress	git://github.com/imathis/octopress.git (push)
@@ -306,8 +295,7 @@ If `ruby --version` doesn’t say you’re using Ruby 1.9.2, you may want to rev
  
         ...
 
-        remotes/origin/source
-	</pre>
+        remotes/origin/source</pre>
 
 ####Custom Domains
 
