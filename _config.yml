@@ -63,9 +63,9 @@ github_show_profile_link: true
 github_skip_forks: true
 
 # Twitter
-twitter_user:
+twitter_user: geekzh
 twitter_tweet_count: 4
-twitter_show_replies: false
+twitter_show_replies: true
 twitter_follow_button: true
 twitter_show_follower_count: false
 twitter_tweet_button: true
@@ -88,11 +88,11 @@ delicious_user:
 delicious_count: 3
 
 # Disqus Comments
-disqus_short_name:
+disqus_short_name: geekzh
 disqus_show_comment_count: false
 
 # Google Analytics
-google_analytics_tracking_id:
+google_analytics_tracking_id: UA-27438087-1
 
 # Facebook Like
 facebook_like: false
