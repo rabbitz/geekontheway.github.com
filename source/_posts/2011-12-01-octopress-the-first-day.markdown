@@ -26,7 +26,8 @@ If `ruby --version` doesn’t say you’re using Ruby 1.9.2, you may want to rev
 >$ bundle install
 
    Mostly,you will see
-   
+
+
 <pre>Using rake (0.9.2) 
 	Installing RedCloth (4.2.8) with native extensions 
 	Installing posix-spawn (0.3.6) with native extensions 
@@ -58,12 +59,15 @@ If `ruby --version` doesn’t say you’re using Ruby 1.9.2, you may want to rev
 	Using bundler (1.0.21) 
 	Your bundle is complete! Use `bundle show [gemname]` to see where a bundled gem is installed.</pre>
 	
-	**Notes**:you may get error like:
+
+**Notes**:you may get error like:
+
 
 <pre>rake aborted!
 	You have already activated rake 0.9.2.2, but your Gemfile requires rake 0.9.2. Using bundle exec may solve this.
 
 	(See full trace by running task with --trace)</pre>
+
 
 	As it to me,i just solve it by add `alias rake="bundle exec rake` to my **.bashrc**.
 
@@ -164,6 +168,7 @@ If `ruby --version` doesn’t say you’re using Ruby 1.9.2, you may want to rev
 
 	Open a post in a text editor and you’ll see a block of ** yaml front matter** which tells Jekyll how to processes posts and pages.
 
+
 <pre>---
 	layout: post
 	title: "Zombie Ninjas Attack: A survivor's retrospective"
@@ -171,6 +176,7 @@ If `ruby --version` doesn’t say you’re using Ruby 1.9.2, you may want to rev
 	comments: true
 	categories:
 	---</pre>
+
 
 	Here you can **turn comments off and or categories** to your post. If you are working on a multi-author blog, you can add **author: Your Name** to the metadata for proper attribution on a post. If you are working on a draft, you can add  **published: false** to prevent it from being posted when you generate your blog.
 
@@ -200,6 +206,7 @@ If `ruby --version` doesn’t say you’re using Ruby 1.9.2, you may want to rev
 
 	  Like with the new post task, the default file extension is markdown but you can configure that in the Rakefile. A freshly generated page might look like this.
 
+
 <pre>---
 	  layout: page
 	  title: "Super Awesome"
@@ -208,6 +215,7 @@ If `ruby --version` doesn’t say you’re using Ruby 1.9.2, you may want to rev
 	  sharing: true
 	  footer: true
 	  ---</pre>
+
 
 	  The title is derived from the filename so you’ll likely want to change that. This is very similar to the post yaml except it doesn’t include categories, and you can toggle sharing and comments or remove the footer altogether. If you don’t want to show a date on your page, just remove it from the yaml.
 
@@ -246,6 +254,7 @@ If `ruby --version` doesn’t say you’re using Ruby 1.9.2, you may want to rev
 
 > $ rake setup_github_pages
 
+
 <pre>Enter the read/write url for your repository: git@github.com:geekontheway/geekontheway.github.com.git
 	  Added remote git@github.com:geekontheway/geekontheway.github.com.git as origin
 	  Set origin as default remoteMaster branch renamed to 'source' for committing your blog source files
@@ -254,6 +263,7 @@ If `ruby --version` doesn’t say you’re using Ruby 1.9.2, you may want to rev
 	   1 files changed, 1 insertions(+), 0 deletions(-)
 	 create mode 100644 index.html
          ## Now you can deploy to http://geekontheway.github.com with `rake deploy` ##</pre>
+
 
 	 This will:
 
@@ -282,7 +292,8 @@ If `ruby --version` doesn’t say you’re using Ruby 1.9.2, you may want to rev
 
 	 After all done ,your config may looks like:
 
-<pre>nasa@ubuntu:~/www/octopress$ git remote -v
+
+	 <pre>nasa@ubuntu:~/www/octopress$ git remote -v
 
 	 octopress	git://github.com/imathis/octopress.git (fetch)
 	 octopress	git://github.com/imathis/octopress.git (push)
@@ -296,6 +307,7 @@ If `ruby --version` doesn’t say you’re using Ruby 1.9.2, you may want to rev
         ...
 
         remotes/origin/source</pre>
+
 
 ####Custom Domains
 
