@@ -13,10 +13,10 @@
 
 ###after your changes:
 
--`rake generate`
--`rake deploy`
--`git add .`
--`git commit -m 'msg'`
--`git push origin source`
+- `rake generate`
+- `rake deploy`
+- `git add .`
+- `git commit -m 'msg'`
+- `git push origin source`
 
 Then send me a pull request.
