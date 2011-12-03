@@ -5,13 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Blog Archive - Geekontheway</title>
+  <title>Octopress: Codeblock - Geekontheway</title>
   <meta name="author" content="Bill Zh">
 
   
-  <meta name="description" content="Blog Archive 2011 Octopress: Blockquote
-Dec 03 2011 posted in octopress Octopress: Codeblock
-Dec 03 2011 posted in octopress Octopress: &hellip;">
+  <meta name="description" content="With this plugin you can write blocks of code directly in your posts and optionally add titles and links. Syntax Start and end must be in one couple &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -20,7 +18,7 @@ Dec 03 2011 posted in octopress Octopress: &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://geekontheway.github.com/blog/archives">
+  <link rel="canonical" href="http://geekontheway.github.com/blog/2011/12/03/octopress-codeblock">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -75,78 +73,156 @@ Dec 03 2011 posted in octopress Octopress: &hellip;">
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Blog Archive</h1>
+    
+      <h1 class="entry-title">Octopress: Codeblock</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-12-03T12:21:00+08:00" pubdate data-updated="true">Dec 3<span>rd</span>, 2011</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives">
 
 
+<div class="entry-content"><p>With this plugin you can write blocks of code directly in your posts and optionally add titles and links.</p>
 
-  
-  <h2>2011</h2>
+<h1>Syntax</h1>
 
-<article>
-  
-<h1><a href="/blog/2011/12/03/octopress-blockquote/">Octopress: Blockquote</a></h1>
-<time datetime="2011-12-03T12:48:00+08:00" pubdate><span class='month'>Dec</span> <span class='day'>03</span> <span class='year'>2011</span></time>
+<p>Start and end must be in <strong>one couple of brace percent</strong>,they will also works in HTML block.</p>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/octopress/'>octopress</a></span>
-</footer>
+<pre>
+ codeblock [title] [lang:language] [url] [link text] 
 
+ code snippet
 
-</article>
+ endcodeblock 
+</pre>
 
 
+<h1>Example</h1>
 
-<article>
-  
-<h1><a href="/blog/2011/12/03/octopress-codeblock/">Octopress: Codeblock</a></h1>
-<time datetime="2011-12-03T12:21:00+08:00" pubdate><span class='month'>Dec</span> <span class='day'>03</span> <span class='year'>2011</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/octopress/'>octopress</a></span>
-</footer>
+<pre>
+ codeblock
+Awesome code snippet
+ endcodeblock
+</pre>
 
 
-</article>
+<p>You can also add syntax highlighting like this.</p>
+
+<pre>
+ codeblock lang:objc
+[rectangle setX: 10 y: 10 width: 20 height: 20];
+ endcodeblock
+</pre>
 
 
+<p>Including a file extension in the title enables highlighting</p>
 
-<article>
-  
-<h1><a href="/blog/2011/12/02/octopress-configuration-files/">Octopress: Configuration files</a></h1>
-<time datetime="2011-12-02T07:44:00+08:00" pubdate><span class='month'>Dec</span> <span class='day'>02</span> <span class='year'>2011</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/octopress/'>octopress</a></span>
-</footer>
+<pre>
+ codeblock Time to be Awesome - awesome.rb
+puts "Awesome!" unless lame
+ endcodeblock
+</pre>
 
 
-</article>
+<p>Pygments supports many languages, but doesn’t recognize some file extensions. Add lang:your_language to force highlighting if the filename doesn’t work.</p>
+
+<pre>
+ codeblock Here's an example .rvmrc file. lang:ruby
+rvm ruby-1.8.6 # ZOMG, seriously? We still use this version?
+ endcodeblock
+</pre>
 
 
+<p>Add an optional URL to enable downloading or linking to source.</p>
 
-<article>
-  
-<h1><a href="/blog/2011/12/01/octopress-the-first-day/">Octopress: The first day</a></h1>
-<time datetime="2011-12-01T07:44:00+08:00" pubdate><span class='month'>Dec</span> <span class='day'>01</span> <span class='year'>2011</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/octopress/'>octopress</a></span>
-</footer>
+<pre>
+ codeblock Javascript Array Syntax lang:js http://j.mp/pPUUmW MDN Documentation
+var arr1 = new Array(arrayLength);
+var arr2 = new Array(element0, element1, ..., elementN);
+ endcodeblock
+</pre>
 
 
-</article>
-
+<p>The last argument link_text is optional. You may want to link to a source for download file, or documentation on some other site.</p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Bill Zh</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-12-03T12:21:00+08:00" pubdate data-updated="true">Dec 3<span>rd</span>, 2011</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/octopress/'>octopress</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://geekontheway.github.com/blog/2011/12/03/octopress-codeblock/" data-via="geekzh" data-counturl="http://geekontheway.github.com/blog/2011/12/03/octopress-codeblock/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2011/12/02/octopress-configuration-files/" title="Previous Post: Octopress: Configuration files">&laquo; Octopress: Configuration files</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2011/12/03/octopress-blockquote/" title="next Post: Octopress: Blockquote">Octopress: Blockquote &raquo;</a>
+      
+    </p>
+  </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -252,7 +328,10 @@ Dec 03 2011 posted in octopress Octopress: &hellip;">
       var disqus_shortname = 'geekzh';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://geekontheway.github.com/blog/2011/12/03/octopress-codeblock/';
+        var disqus_url = 'http://geekontheway.github.com/blog/2011/12/03/octopress-codeblock/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
