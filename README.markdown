@@ -8,8 +8,8 @@
                                                                                                                                 
 - `git checkout source`
 - `git branch -D master`
-- `bunle install`
-- `rake rake setup_github_pages`
+- `bundle install`
+- `rake setup_github_pages`
 
 ###after your changes:
 
