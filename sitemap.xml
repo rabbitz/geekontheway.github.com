@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
+    <url>
+        <loc>http://geekontheway.github.com/blog/2011/12/01/octopress-the-first-day/</loc>
+        <lastmod>2011-12-03T10:44:32+08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://geekontheway.github.com/blog/2011/12/02/octopress-configuration-files/</loc>
+        <lastmod>2011-12-03T11:47:49+08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://geekontheway.github.com/blog/archives/</loc>
+        <lastmod>2011-12-03T11:47:49+08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://geekontheway.github.com/</loc>
+        <lastmod>2011-12-03T11:47:49+08:00</lastmod>
+    </url>
+</urlset>

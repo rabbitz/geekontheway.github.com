@@ -1,112 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
 
-<!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <title>Geekontheway</title>
-  <meta name="author" content="Bill Zh">
-
-  
-  <meta name="description" content="_config.yml # ----------------------- #
-# Main Configs #
-# ----------------------- # url: http://geekontheway.github.com
-title: Geekontheway subtitle &hellip;">
-  
-
-  <!-- http://t.co/dKP3o1e -->
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  
-  <link rel="canonical" href="http://geekontheway.github.com">
-  <link href="/favicon.png" rel="icon">
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="/javascripts/ender.js"></script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="/atom.xml" rel="alternate" title="Geekontheway" type="application/atom+xml">
-  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-
-  
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-27438087-1']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-  </script>
-
-
-</head>
-
-<body   >
-  <header role="banner"><hgroup>
-  <h1><a href="/">Geekontheway</a></h1>
-  
-    <h2>Stay hungry Stay foolish</h2>
-  
-</hgroup>
-
-</header>
-  <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-  
-</ul>
-<form action="http://google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:geekontheway.github.com" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-<ul class="main-navigation">
-  <li><a href="/">Blog</a></li>
-  <li><a href="/blog/archives">Archives</a></li>
-</ul>
-
-</nav>
-  <div id="main">
-    <div id="content">
-      <div class="blog-index">
-  
-  
-  
-    <article>
-      
-  <header>
+  <title><![CDATA[Category: octopress | Geekontheway]]></title>
+  <link href="http://geekontheway.github.com/blog/categories/octopress/atom.xml" rel="self"/>
+  <link href="http://geekontheway.github.com/"/>
+  <updated>2011-12-03T11:48:38+08:00</updated>
+  <id>http://geekontheway.github.com/</id>
+  <author>
+    <name><![CDATA[Bill Zh]]></name>
     
-      <h1 class="entry-title"><a href="/blog/2011/12/02/octopress-configuration-files/">Octopress: Configuration Files</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
 
   
-
-
-<time datetime="2011-12-02T07:44:00+08:00" pubdate data-updated="true">Dec 2<span>nd</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1>_config.yml</h1>
+  <entry>
+    <title type="html"><![CDATA[Octopress: configuration files]]></title>
+    <link href="http://geekontheway.github.com/blog/2011/12/02/octopress-configuration-files/"/>
+    <updated>2011-12-02T07:44:00+08:00</updated>
+    <id>http://geekontheway.github.com/blog/2011/12/02/octopress-configuration-files</id>
+    <content type="html"><![CDATA[<h1>_config.yml</h1>
 
 <pre>
 # ----------------------- #
@@ -308,17 +220,17 @@ abort("rake aborted!") if ask("A theme is already installed, proceeding will ove
 theme = args.theme || 'classic'
 </code></pre>
 
-<p>  puts &#8220;## Copying &#8220;+theme+&#8221; theme into ./#{source_dir} and ./sass&#8221;</p>
+<p>  puts "## Copying "+theme+" theme into ./#{source_dir} and ./sass"</p>
 
 <pre><code>mkdir_p source_dir
 </code></pre>
 
-<p>  cp_r &#8220;#{themes_dir}/#{theme}/source/.&#8221;, source_dir</p>
+<p>  cp_r "#{themes_dir}/#{theme}/source/.", source_dir</p>
 
 <pre><code>mkdir_p "sass"
 </code></pre>
 
-<p>  cp_r &#8220;#{themes_dir}/#{theme}/sass/.&#8221;, &#8220;sass&#8221;</p>
+<p>  cp_r "#{themes_dir}/#{theme}/sass/.", "sass"</p>
 
 <pre><code>mkdir_p "#{source_dir}/#{posts_dir}"
 </code></pre>
@@ -332,37 +244,37 @@ theme = args.theme || 'classic'
 
 <h6>#</h6>
 
-<p>  desc &#8220;Generate jekyll site&#8221;
+<p>  desc "Generate jekyll site"
   task :generate do</p>
 
 <pre><code>raise "### You haven't set anything up yet. First run `rake install` to set up an Octopress theme." unless File.directory?(source_dir)
 </code></pre>
 
-<p>  puts &#8220;## Generating Site with Jekyll&#8221;</p>
+<p>  puts "## Generating Site with Jekyll"</p>
 
 <pre><code>system "compass compile --css-dir #{source_dir}/stylesheets"
 </code></pre>
 
-<p>  system &#8220;jekyll&#8221;
+<p>  system "jekyll"
   end</p>
 
-<p>  desc &#8220;Watch the site and regenerate when it changes&#8221;
+<p>  desc "Watch the site and regenerate when it changes"
   task :watch do</p>
 
 <pre><code>raise "### You haven't set anything up yet. First run `rake install` to set up an Octopress theme." unless File.directory?(source_dir)
 </code></pre>
 
-<p>  puts &#8220;Starting to watch source with Jekyll and Compass.&#8221;</p>
+<p>  puts "Starting to watch source with Jekyll and Compass."</p>
 
 <pre><code>system "compass compile --css-dir #{source_dir}/stylesheets" unless File.exist?("#{source_dir}/stylesheets/screen.css")
 </code></pre>
 
-<p>  jekyllPid = Process.spawn(&#8220;jekyll &#8211;auto&#8221;)</p>
+<p>  jekyllPid = Process.spawn("jekyll --auto")</p>
 
 <pre><code>compassPid = Process.spawn("compass watch")
 </code></pre>
 
-<p>  trap(&#8220;INT&#8221;) {</p>
+<p>  trap("INT") {</p>
 
 <pre><code>  [jekyllPid, compassPid].each { |pid| Process.kill(9, pid) rescue Errno::ESRCH }
   exit 0
@@ -372,23 +284,23 @@ theme = args.theme || 'classic'
 <p>  [jekyllPid, compassPid].each { |pid| Process.wait(pid) }
   end</p>
 
-<p>  desc &#8220;preview the site in a web browser&#8221;
+<p>  desc "preview the site in a web browser"
   task :preview do</p>
 
 <pre><code>raise "### You haven't set anything up yet. First run `rake install` to set up an Octopress theme." unless File.directory?(source_dir)
 </code></pre>
 
-<p>  puts &#8220;Starting to watch source with Jekyll and Compass. Starting Rack on port #{server_port}&#8221;</p>
+<p>  puts "Starting to watch source with Jekyll and Compass. Starting Rack on port #{server_port}"</p>
 
 <pre><code>system "compass compile --css-dir #{source_dir}/stylesheets" unless File.exist?("#{source_dir}/stylesheets/screen.css")
 </code></pre>
 
-<p>  jekyllPid = Process.spawn(&#8220;jekyll &#8211;auto&#8221;)</p>
+<p>  jekyllPid = Process.spawn("jekyll --auto")</p>
 
 <pre><code>compassPid = Process.spawn("compass watch")
 </code></pre>
 
-<p>  rackupPid = Process.spawn(&#8220;rackup &#8211;port #{server_port}&#8221;)</p>
+<p>  rackupPid = Process.spawn("rackup --port #{server_port}")</p>
 
 <pre><code>trap("INT") {
 [jekyllPid, compassPid, rackupPid].each { |pid| Process.kill(9, pid) rescue Errno::ESRCH }
@@ -400,15 +312,15 @@ exit 0
 <p>  [jekyllPid, compassPid, rackupPid].each { |pid| Process.wait(pid) }
   end</p>
 
-<h1>usage rake new_post[my-new-post] or rake new_post[&#8216;my new post&#8217;] or rake new_post (defaults to &#8220;new-post&#8221;)</h1>
+<h1>usage rake new_post[my-new-post] or rake new_post['my new post'] or rake new_post (defaults to "new-post")</h1>
 
-<p>  desc &#8220;Begin a new post in #{source_dir}/#{posts_dir}&#8221;
+<p>  desc "Begin a new post in #{source_dir}/#{posts_dir}"
   task :new_post, :title do |t, args|</p>
 
 <pre><code>raise "### You haven't set anything up yet. First run `rake install` to set up an Octopress theme." unless File.directory?(source_dir)
 </code></pre>
 
-<p>  mkdir_p &#8220;#{source_dir}/#{posts_dir}&#8221;</p>
+<p>  mkdir_p "#{source_dir}/#{posts_dir}"</p>
 
 <pre><code>args.with_defaults(:title =&gt; 'new-post')
 </code></pre>
@@ -428,7 +340,7 @@ exit 0
 <pre><code>puts "Creating new post: #{filename}"
 </code></pre>
 
-<p>  open(filename, &#8216;w&#8217;) do |post|</p>
+<p>  open(filename, 'w') do |post|</p>
 
 <pre><code>  post.puts "---"
   post.puts "layout: post"
@@ -442,11 +354,11 @@ end
 
 <p>end</p>
 
-<h1>usage rake new_page[my-new-page] or rake new_page[my-new-page.html] or rake new_page (defaults to &#8220;new-page.markdown&#8221;)</h1>
+<h1>usage rake new_page[my-new-page] or rake new_page[my-new-page.html] or rake new_page (defaults to "new-page.markdown")</h1>
 
-<p>desc &#8220;Create a new page in #{source_dir}/(filename)/index.#{new_page_ext}&#8221;
+<p>desc "Create a new page in #{source_dir}/(filename)/index.#{new_page_ext}"
 task :new_page, :filename do |t, args|
-  raise &#8220;### You haven&#8217;t set anything up yet. First run <code>rake install</code> to set up an Octopress theme.&#8221; unless File.directory?(source_dir)</p>
+  raise "### You haven't set anything up yet. First run <code>rake install</code> to set up an Octopress theme." unless File.directory?(source_dir)</p>
 
 <pre><code>args.with_defaults(:filename =&gt; 'new-page')
 </code></pre>
@@ -483,14 +395,14 @@ puts "Syntax error: #{args.filename} contains unsupported characters"
 
 <h1>usage rake isolate[my-post]</h1>
 
-<p>  desc &#8220;Move all other posts than the one currently being worked on to a temporary stash location (stash) so regenerating the site happens much quicker.&#8221;
+<p>  desc "Move all other posts than the one currently being worked on to a temporary stash location (stash) so regenerating the site happens much quicker."
   task :isolate, :filename do |t, args|</p>
 
 <pre><code>stash_dir = "#{source_dir}/#{stash_dir}"
 </code></pre>
 
 <p>  FileUtils.mkdir(stash_dir) unless File.exist?(stash_dir)
-  Dir.glob(&#8220;#{source_dir}/#{posts_dir}/<em>.</em>&#8221;) do |post|</p>
+  Dir.glob("#{source_dir}/#{posts_dir}/<em>.</em>") do |post|</p>
 
 <pre><code>  FileUtils.mv post, stash_dir unless post.include?(args.filename)
 </code></pre>
@@ -498,7 +410,7 @@ puts "Syntax error: #{args.filename} contains unsupported characters"
 <p>  end
   end</p>
 
-<p>  desc &#8220;Move all stashed posts back into the posts directory, ready for site generation.&#8221;
+<p>  desc "Move all stashed posts back into the posts directory, ready for site generation."
   task :integrate do</p>
 
 <pre><code>FileUtils.mv Dir.glob("#{source_dir}/#{stash_dir}/*.*"), "#{source_dir}/#{posts_dir}/"
@@ -506,71 +418,71 @@ puts "Syntax error: #{args.filename} contains unsupported characters"
 
 <p>end</p>
 
-<p>desc &#8220;Clean out caches: .pygments-cache, .gist-cache, .sass-cache&#8221;
+<p>desc "Clean out caches: .pygments-cache, .gist-cache, .sass-cache"
 task :clean do
-  rm_rf [&#8220;.pygments-cache/<strong>&#8221;, &#8220;.gist-cache/</strong>&#8221;, &#8220;.sass-cache/**&#8221;, &#8220;source/stylesheets/screen.css&#8221;]
+  rm_rf [".pygments-cache/<strong>", ".gist-cache/</strong>", ".sass-cache/**", "source/stylesheets/screen.css"]
   end</p>
 
-<p>  desc &#8220;Move sass to sass.old, install sass theme updates, replace sass/custom with sass.old/custom&#8221;
+<p>  desc "Move sass to sass.old, install sass theme updates, replace sass/custom with sass.old/custom"
   task :update_style, :theme do |t, args|</p>
 
 <pre><code>theme = args.theme || 'classic'
 </code></pre>
 
-<p>  if File.directory?(&#8220;sass.old&#8221;)</p>
+<p>  if File.directory?("sass.old")</p>
 
 <pre><code>  puts "removed existing sass.old directory"
   rm_r "sass.old", :secure=&gt;true
 end
 </code></pre>
 
-<p>  mv &#8220;sass&#8221;, &#8220;sass.old&#8221;</p>
+<p>  mv "sass", "sass.old"</p>
 
 <pre><code>puts "## Moved styles into sass.old/"
 </code></pre>
 
-<p>  cp_r &#8220;#{themes_dir}/&#8221;+theme+&#8221;/sass/&#8221;, &#8220;sass&#8221;</p>
+<p>  cp_r "#{themes_dir}/"+theme+"/sass/", "sass"</p>
 
 <pre><code>cp_r "sass.old/custom/.", "sass/custom"
 </code></pre>
 
-<p>  puts &#8220;## Updated Sass ##&#8221;
+<p>  puts "## Updated Sass ##"
   end</p>
 
-<p>  desc &#8220;Move source to source.old, install source theme updates, replace source/_includes/navigation.html with source.old&#8217;s navigation&#8221;
+<p>  desc "Move source to source.old, install source theme updates, replace source/_includes/navigation.html with source.old's navigation"
   task :update_source, :theme do |t, args|</p>
 
 <pre><code>theme = args.theme || 'classic'
 </code></pre>
 
-<p>  if File.directory?(&#8220;#{source_dir}.old&#8221;)</p>
+<p>  if File.directory?("#{source_dir}.old")</p>
 
 <pre><code>  puts "## Removed existing #{source_dir}.old directory"
   rm_r "#{source_dir}.old", :secure=&gt;true
 end
 </code></pre>
 
-<p>  mkdir &#8220;#{source_dir}.old&#8221;</p>
+<p>  mkdir "#{source_dir}.old"</p>
 
 <pre><code>cp_r "#{source_dir}/.", "#{source_dir}.old"
 </code></pre>
 
-<p>  puts &#8220;## Copied #{source_dir} into #{source_dir}.old/&#8221;</p>
+<p>  puts "## Copied #{source_dir} into #{source_dir}.old/"</p>
 
 <pre><code>cp_r "#{themes_dir}/"+theme+"/source/.", source_dir, :remove_destination=&gt;true
 </code></pre>
 
-<p>  cp_r &#8220;#{source_dir}.old/<em>includes/custom/.&#8221;, &#8220;#{source_dir}/</em>includes/custom/&#8221;, :remove_destination=>true</p>
+<p>  cp_r "#{source_dir}.old/<em>includes/custom/.", "#{source_dir}/</em>includes/custom/", :remove_destination=>true</p>
 
 <pre><code>cp "#{source_dir}.old/favicon.png", source_dir
 </code></pre>
 
-<p>  mv &#8220;#{source_dir}/index.html&#8221;, &#8220;#{blog_index_dir}&#8221;, :force=>true if blog_index_dir != source_dir</p>
+<p>  mv "#{source_dir}/index.html", "#{blog_index_dir}", :force=>true if blog_index_dir != source_dir</p>
 
 <pre><code>cp "#{source_dir}.old/index.html", source_dir if blog_index_dir != source_dir &amp;&amp; File.exists?("#{source_dir}.old/index.html")
 </code></pre>
 
-<p>  puts &#8220;## Updated #{source_dir} ##&#8221;
+<p>  puts "## Updated #{source_dir} ##"
   end</p>
 
 <h6>#</h6>
@@ -579,26 +491,26 @@ end
 
 <h6>#</h6>
 
-<p>  desc &#8220;Default deploy task&#8221;
+<p>  desc "Default deploy task"
   task :deploy do</p>
 
 <pre><code>Rake::Task[:copydot].invoke(source_dir, public_dir)
 </code></pre>
 
-<p>  Rake::Task[&#8220;#{deploy_default}&#8221;].execute
+<p>  Rake::Task["#{deploy_default}"].execute
   end</p>
 
-<p>  desc &#8220;Generate website and deploy&#8221;
+<p>  desc "Generate website and deploy"
   task :gen_deploy => [:integrate, :generate, :deploy] do
   end</p>
 
-<p>  desc &#8220;copy dot files for deployment&#8221;
+<p>  desc "copy dot files for deployment"
   task :copydot, :source, :dest do |t, args|</p>
 
 <pre><code>exclusions = [".", "..", ".DS_Store"]
 </code></pre>
 
-<p>  Dir[&#8220;#{args.source}/<em>*/.</em>&#8221;].each do |file|</p>
+<p>  Dir["#{args.source}/<em>*/.</em>"].each do |file|</p>
 
 <pre><code>  if !File.directory?(file) &amp;&amp; !exclusions.include?(File.basename(file))
   cp(file, file.gsub(/#{args.source}/, "#{args.dest}"));
@@ -608,29 +520,29 @@ end
 
 <p>end</p>
 
-<p>desc &#8220;Deploy website via rsync&#8221;
+<p>desc "Deploy website via rsync"
 task :rsync do
-  puts &#8220;## Deploying website via Rsync&#8221;</p>
+  puts "## Deploying website via Rsync"</p>
 
 <pre><code>ok_failed system("rsync -avze 'ssh -p #{ssh_port}' --delete #{public_dir}/ #{ssh_user}:#{document_root}")
 </code></pre>
 
 <p>end</p>
 
-<p>desc &#8220;deploy public directory to github pages&#8221;
+<p>desc "deploy public directory to github pages"
 multitask :push do
-  puts &#8220;## Deploying branch to Github Pages &#8221;</p>
+  puts "## Deploying branch to Github Pages "</p>
 
 <pre><code>(Dir["#{deploy_dir}/*"]).each { |f| rm_rf(f) }
 </code></pre>
 
 <p>  Rake::Task[:copydot].invoke(public_dir, deploy_dir)
-  puts &#8220;\n## copying #{public_dir} to #{deploy_dir}&#8221;</p>
+  puts "\n## copying #{public_dir} to #{deploy_dir}"</p>
 
 <pre><code>cp_r "#{public_dir}/.", deploy_dir
 </code></pre>
 
-<p>  cd &#8220;#{deploy_dir}&#8221; do</p>
+<p>  cd "#{deploy_dir}" do</p>
 
 <pre><code>  system "git add ."
   system "git add -u"
@@ -645,9 +557,9 @@ end
 
 <p>end</p>
 
-<p>desc &#8220;Update configurations to support publishing to root or sub directory&#8221;
+<p>desc "Update configurations to support publishing to root or sub directory"
 task :set_root_dir, :dir do |t, args|
-  puts &#8220;>>> !! Please provide a directory, eg. rake config_dir[publishing/subdirectory]&#8221; unless args.dir</p>
+  puts ">>> !! Please provide a directory, eg. rake config_dir[publishing/subdirectory]" unless args.dir</p>
 
 <pre><code>if args.dir
 if args.dir == "/"
@@ -683,14 +595,14 @@ puts "## Site's root directory is now '/#{dir.sub(/^\//, '')}' ##"
 <p>  end
   end</p>
 
-<p>  desc &#8220;Set up _deploy folder and deploy branch for Github Pages deployment&#8221;
+<p>  desc "Set up _deploy folder and deploy branch for Github Pages deployment"
 task :setup_github_pages do
-  repo_url = get_stdin(&#8220;Enter the read/write url for your repository: &#8220;)</p>
+  repo_url = get_stdin("Enter the read/write url for your repository: ")</p>
 
 <pre><code>user = repo_url.match(/:([^\/]+)/)[1]
 </code></pre>
 
-<p>  branch = (repo_url.match(/\/[\w-]+.github.com/).nil?) ? &#8216;gh-pages&#8217; : &#8216;master&#8217;</p>
+<p>  branch = (repo_url.match(/\/[\w-]+.github.com/).nil?) ? 'gh-pages' : 'master'</p>
 
 <pre><code>project = (branch == 'gh-pages') ? repo_url.match(/\/([^\.]+)/)[1] : ''
 </code></pre>
@@ -716,17 +628,17 @@ task :setup_github_pages do
 end
 </code></pre>
 
-<p>  url = &#8220;http://#{user}.github.com&#8221;</p>
+<p>  url = "http://#{user}.github.com"</p>
 
 <pre><code>url += "/#{project}" unless project == ''
 </code></pre>
 
-<p>  jekyll_config = IO.read(&#8216;_config.yml&#8217;)</p>
+<p>  jekyll_config = IO.read('_config.yml')</p>
 
 <pre><code>jekyll_config.sub!(/^url:.*$/, "url: #{url}")
 </code></pre>
 
-<p>  File.open(&#8216;_config.yml&#8217;, &#8216;w&#8217;) do |f|</p>
+<p>  File.open('_config.yml', 'w') do |f|</p>
 
 <pre><code>  f.write jekyll_config
 end
@@ -737,7 +649,7 @@ end
 <pre><code>mkdir deploy_dir
 </code></pre>
 
-<p>  cd &#8220;#{deploy_dir}&#8221; do</p>
+<p>  cd "#{deploy_dir}" do</p>
 
 <pre><code>  system "git init"
   system "echo 'My Octopress Page is coming soon &amp;hellip;' &gt; index.html"
@@ -754,7 +666,7 @@ File.open(__FILE__, 'w') do |f|
 end
 </code></pre>
 
-<p>  puts &#8220;\n&#8212;\n## Now you can deploy to #{url} with <code>rake deploy</code> ##&#8221;
+<p>  puts "\n---\n## Now you can deploy to #{url} with <code>rake deploy</code> ##"
   end</p>
 
 <p>  def ok_failed(condition)
@@ -794,51 +706,24 @@ answer = get_stdin(message)
 
 <p>end</p>
 
-<p>desc &#8220;list tasks&#8221;
+<p>desc "list tasks"
 task :list do
-  puts &#8220;Tasks: #{(Rake::Task.tasks - [Rake::Task[:list]]).join(&#8216;, &#8216;)}&#8221;</p>
+  puts "Tasks: #{(Rake::Task.tasks - [Rake::Task[:list]]).join(', ')}"</p>
 
 <pre><code>puts "(type rake -T for more detail)\n\n"
 </code></pre>
 
 <p>end
 </pre></p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/12/01/octopress-the-first-day/">Octopress: The First Day</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-12-01T07:44:00+08:00" pubdate data-updated="true">Dec 1<span>st</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1>Octopress Setup</h1>
+  <entry>
+    <title type="html"><![CDATA[Octopress: The first day]]></title>
+    <link href="http://geekontheway.github.com/blog/2011/12/01/octopress-the-first-day/"/>
+    <updated>2011-12-01T07:44:00+08:00</updated>
+    <id>http://geekontheway.github.com/blog/2011/12/01/octopress-the-first-day</id>
+    <content type="html"><![CDATA[<h1>Octopress Setup</h1>
 
 <blockquote><p>First, I want to stress that Octopress is a blogging framework for hackers. You should be comfortable running shell commands and familiar with the basics of Git. If that sounds daunting, Octopress probably isn’t for you.</p></blockquote>
 
@@ -852,7 +737,7 @@ task :list do
 
 <p>$cd octopress</p></blockquote>
 
-<p>   If you use RVM, You&#8217;ll be asked if you trust the .rvmrc file (say yes).</p>
+<p>   If you use RVM, You'll be asked if you trust the .rvmrc file (say yes).</p>
 
 <h4>Next, install dependencies.</h4>
 
@@ -986,14 +871,14 @@ The Octopress layouts read these configurations and only include the javascript 
 Octopress provides a rake task to create new blog posts with the right naming conventions, with sensible yaml metadata.
 </code></pre>
 
-<blockquote><p>rake new_post[&#8220;title&#8221;]</p></blockquote>
+<blockquote><p>rake new_post["title"]</p></blockquote>
 
 <pre><code>new_post expects a naturally written title and strips out undesirable url characters when creating the filename. The default file extension for new posts is markdown but you can configure that in the Rakefile.
 
 Example
 </code></pre>
 
-<blockquote><p>rake new_post[&#8220;Zombie Ninjas Attack: A survivor&#8217;s retrospective&#8221;]</p></blockquote>
+<blockquote><p>rake new_post["Zombie Ninjas Attack: A survivor's retrospective"]</p></blockquote>
 
 <pre><code>The filename will determine your url. With the default permalink settings the url would be something like `http://site.com/blog/2011/07/03/zombie-ninjas-attack-a-survivors-retrospective/index.html`
 
@@ -1117,7 +1002,7 @@ You can add a single category or multiple categories like this.
 
 <blockquote><p>git add .</p>
 
-<p>git commit -m &#8216;your message&#8217;</p>
+<p>git commit -m 'your message'</p>
 
 <p>git push origin source</p></blockquote>
 
@@ -1144,155 +1029,14 @@ nasa@ubuntu:~/www/octopress$ git branch -a
 
 <p>First you’ll need to create a file named CNAME in the source containing your domain name.</p>
 
-<blockquote><p>echo &#8216;your-domain.com&#8217; >> source/CNAME</p></blockquote>
+<blockquote><p>echo 'your-domain.com' >> source/CNAME</p></blockquote>
 
 <p>From Github’s Pages guide:</p>
 
 <p>Next, you’ll need to visit your domain registrar or DNS host and add a record for your domain name. For a sub-domain like www.example.com you would simply create a CNAME record pointing at charlie.github.com. If you are using a top-level domain like example.com, you must use an A record pointing to 207.97.227.245.</p>
 
 <p>Do not use a CNAME record with a top-level domain it can have adverse side effects on other services like email. Many DNS services will let you set a CNAME on a TLD, even though you shouldn’t. Remember that it may take up to a full day for DNS changes to propagate, so be patient.</p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
-</div>
-<aside class="sidebar">
-  
-    <section>
-  <h1>Recent Posts</h1>
-  <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/2011/12/02/octopress-configuration-files/">Octopress: configuration files</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2011/12/01/octopress-the-first-day/">Octopress: The first day</a>
-      </li>
-    
-  </ul>
-</section>
-
-<section>
-  <h1>Github Repos</h1>
-  <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
-  </ul>
-  
-  <a href="https://github.com/geekontheway">@geekontheway</a> on Github
-  
-  <script type="text/javascript">
-    $.domReady(function(){
-        if (!window.jXHR){
-            var jxhr = document.createElement('script');
-            jxhr.type = 'text/javascript';
-            jxhr.src = '/javascripts/libs/jXHR.js';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(jxhr, s);
-        }
-
-        github.showRepos({
-            user: 'geekontheway',
-            count: 0,
-            skip_forks: true,
-            target: '#gh_repos'
-        });
-    });
-  </script>
-  <script src="/javascripts/github.js" type="text/javascript"> </script>
-</section>
-
-
-<section>
-  <h1>Latest Tweets</h1>
-  <ul id="tweets">
-    <li class="loading">Status updating&#8230;</li>
-  </ul>
-  <script type="text/javascript">
-    $.domReady(function(){
-      getTwitterFeed("geekzh", 4, true);
-    });
-  </script>
-  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
-  
-    <a href="http://twitter.com/geekzh" class="twitter-follow-button" data-width="208px" data-show-count="false">Follow @geekzh</a>
-  
-</section>
-
-
-
-<section class="googleplus">
-  <h1>
-    <a href="https://plus.google.com/xiaoliang@networking.io?rel=author">
-      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
-      Google+
-    </a>
-  </h1>
-</section>
-
-
-
-  
-</aside>
-
-    </div>
-  </div>
-  <footer role="contentinfo"><p>
-  Copyright &copy; 2011 - Bill Zh -
-  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
-</p>
-
-</footer>
-  
-
-<script type="text/javascript">
-      var disqus_shortname = 'geekzh';
-      
-        
-        var disqus_script = 'count.js';
-      
-    (function () {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
-
-
-
-
-
-  <script type="text/javascript">
-    (function() {
-      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
-      script.src = 'https://apis.google.com/js/plusone.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
-    })();
-  </script>
-
-
-
-  <script type="text/javascript">
-    (function(){
-      var twitterWidgets = document.createElement('script');
-      twitterWidgets.type = 'text/javascript';
-      twitterWidgets.async = true;
-      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
-      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
-    })();
-  </script>
-
-
-
-
-
-</body>
-</html>
+</feed>
