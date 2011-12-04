@@ -89,7 +89,7 @@ sass
 
 - 当然，不要忘了更新项目 `git push origin source`
 
-> 特别的，如果你新建了博客或者克隆了博客，记得在source分支`rake setup_gh_pages`执行初始化，当然，你可能也需要`bundle install`
+> 特别的，如果你克隆了博客，记得在`git checkout source`，然后`rake setup_gh_pages`执行初始化，当然，你可能也需要`bundle install`
 >
 > 如果是新建的Repo ，记得
 
