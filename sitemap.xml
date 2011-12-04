@@ -6,7 +6,15 @@
     </url>
     <url>
         <loc>http://geekontheway.github.com/blog/2011/12/02/octopress-configuration-files/</loc>
-        <lastmod>2011-12-03T12:56:54+08:00</lastmod>
+        <lastmod>2011-12-04T11:41:36+08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://geekontheway.github.com/blog/2011/12/03/octopress-image-tag/</loc>
+        <lastmod>2011-12-04T11:41:36+08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://geekontheway.github.com/blog/2011/12/03/octopress-for-freshman/</loc>
+        <lastmod>2011-12-04T12:13:08+08:00</lastmod>
     </url>
     <url>
         <loc>http://geekontheway.github.com/blog/2011/12/03/octopress-codeblock/</loc>
@@ -18,10 +26,10 @@
     </url>
     <url>
         <loc>http://geekontheway.github.com/blog/archives/</loc>
-        <lastmod>2011-12-03T12:56:54+08:00</lastmod>
+        <lastmod>2011-12-04T12:13:08+08:00</lastmod>
     </url>
     <url>
         <loc>http://geekontheway.github.com/</loc>
-        <lastmod>2011-12-03T12:56:54+08:00</lastmod>
+        <lastmod>2011-12-04T12:13:08+08:00</lastmod>
     </url>
 </urlset>
