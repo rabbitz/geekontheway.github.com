@@ -111,4 +111,5 @@ $ git push origin master
 - 时常`git status`,`git log`避免误操作
 - 不要在github上直接编辑文件
 - 想清楚了再下手
+- github pages的 username 大小写敏感。如果用户名和username不一致的话,默认会生成这个Repo的project pages。
 
