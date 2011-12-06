@@ -9,31 +9,7 @@
   <meta name="author" content="Bill Zh">
 
   
-  <meta name="description" content="Octopress基于jekyll，刚开始使用起来也比较复杂： Octopress会有两个分支：source（编写博客）和master（生成好的博客），就像这样： 1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25 &hellip;">
+  <meta name="description" content="With this plugin you can write blocks of code directly in your posts and optionally add titles and links. Syntax Start and end must be in one couple &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -104,7 +80,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2011/12/03/octopress-for-freshman/">Octopress: 新手教程</a></h1>
+      <h1 class="entry-title"><a href="/blog/2011/12/03/octopress-codeblock/">Octopress: Codeblock</a></h1>
     
     
       <p class="meta">
@@ -120,175 +96,75 @@
   
 
 
-<time datetime="2011-12-03T09:16:00+08:00" pubdate data-updated="true">Dec 3<span>rd</span>, 2011</time>
+<time datetime="2011-12-03T12:21:00+08:00" pubdate data-updated="true">Dec 3<span>rd</span>, 2011</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>Octopress基于jekyll，刚开始使用起来也比较复杂：</p>
+  <div class="entry-content"><p>With this plugin you can write blocks of code directly in your posts and optionally add titles and links.</p>
 
-<blockquote><p>Octopress会有两个分支：source（编写博客）和master（生成好的博客），就像这样：</p></blockquote>
+<h1>Syntax</h1>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>git remote -v
-</span><span class='line'>
-</span><span class='line'>octopress git://github.com/imathis/octopress.git <span class="o">(</span>fetch<span class="o">)</span>
-</span><span class='line'>octopress git://github.com/imathis/octopress.git <span class="o">(</span>push<span class="o">)</span>
-</span><span class='line'>origin    git@github.com:geekontheway/geekontheway.github.com.git <span class="o">(</span>fetch<span class="o">)</span>
-</span><span class='line'>origin    git@github.com:geekontheway/geekontheway.github.com.git <span class="o">(</span>push<span class="o">)</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>git branch -a
-</span><span class='line'>
-</span><span class='line'>* <span class="nb">source</span>
-</span><span class='line'><span class="nb">  </span>remotes/octopress/HEAD -&gt; octopress/master
-</span><span class='line'>  remotes/octopress/compass
-</span><span class='line'>  remotes/octopress/configuration
-</span><span class='line'>  remotes/octopress/edge
-</span><span class='line'>  remotes/octopress/generate_environment
-</span><span class='line'>  remotes/octopress/gh-pages
-</span><span class='line'>  remotes/octopress/master
-</span><span class='line'>  remotes/octopress/move_rakefile_configs
-</span><span class='line'>  remotes/octopress/post_names
-</span><span class='line'>  remotes/octopress/rake_minify_js
-</span><span class='line'>  remotes/octopress/refactor_code_highlight
-</span><span class='line'>  remotes/octopress/refactor_deployment
-</span><span class='line'>  remotes/octopress/refactor_js
-</span><span class='line'>  remotes/octopress/site
-</span><span class='line'>  remotes/octopress/site-deploy-test
-</span><span class='line'>  remotes/octopress/subdir
-</span><span class='line'>  remotes/octopress/thor
-</span></code></pre></td></tr></table></div></figure>
+<p>Start and end must be in <strong>one couple of brace percent</strong>,they will also works in HTML block.</p>
+
+<pre>
+ codeblock [title] [lang:language] [url] [link text] 
+
+ code snippet
+
+ endcodeblock 
+</pre>
 
 
-<p>其中只有origin仓库和source分支是必须的，其余分支或仓库建议删掉。</p>
+<h1>Example</h1>
 
-<p>我们来看一下source分支都有什么：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>CHANGELOG.markdown  
-</span><span class='line'>config.ru   
-</span><span class='line'> _deploy  部署文件夹，在.gitignore中被设置了
-</span><span class='line'>.DS_Store 文件夹显示属性，在.gitignore中被设置了
-</span><span class='line'>Gemfile.lock  
-</span><span class='line'>.gitignore  
-</span><span class='line'>plugins  
-</span><span class='line'>.pygments-cache   
-</span><span class='line'>.rbenv-version Ruby版本有特殊要求 这个文件在.gitignore中被设置了   
-</span><span class='line'>.rvmrc   Ruby版本有特殊要求
-</span><span class='line'>.sass-cache  
-</span><span class='line'>source
-</span><span class='line'>config.rb           
-</span><span class='line'>_config.yml  
-</span><span class='line'>Gemfile  
-</span><span class='line'>.git          
-</span><span class='line'>.idea   Rubymine设置文件，在.gitignore中被设置了    
-</span><span class='line'>public  在.gitignore中被设置了  
-</span><span class='line'>Rakefile         
-</span><span class='line'>README.markdown  
-</span><span class='line'>sass    
-</span><span class='line'>.slugignore  
-</span><span class='line'>.themes</span></code></pre></td></tr></table></div></figure>
+<pre>
+ codeblock
+Awesome code snippet
+ endcodeblock
+</pre>
 
 
-<p>其中_deploy,source,public这三个文件夹很有趣：</p>
+<p>You can also add syntax highlighting like this.</p>
 
-<p><img src="http://p4.42qu.us/721/689/144049.jpg"></p>
-
-<ul>
-<li><p>如果你是和别人合作博客，或者自己同时在好几个电脑上写博客，每次开始之前，<code>git pull origin source</code>获得最新的文件,<code>rake generate</code>生成新的页面</p></li>
-<li><p>我们在source分支做了博客的发布，或者改变了博客的设置之后，<code>rake generate</code>生成网站</p></li>
-<li><p><code>rake watch</code>+pow 或者<code>rake review</code>+http://localhost:4000就可以看到我们所做的变化</p></li>
-<li><p>确认无误后，<code>rake deploy</code>文章就发布到了博客中</p></li>
-<li><p>当然，不要忘了更新项目 <code>git push origin source</code></p></li>
-</ul>
+<pre>
+ codeblock lang:objc
+[rectangle setX: 10 y: 10 width: 20 height: 20];
+ endcodeblock
+</pre>
 
 
-<blockquote><p>特别的，如果你克隆了博客，记得在<code>git checkout source</code>，然后<code>rake setup_gh_pages</code>执行初始化，当然，你可能也需要<code>bundle install</code></p>
+<p>Including a file extension in the title enables highlighting</p>
 
-<p>如果是新建的Repo ，记得</p></blockquote>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>mkdir yourrepo
-</span><span class='line'><span class="nv">$ </span><span class="nb">cd </span>yourrepo
-</span><span class='line'><span class="nv">$ </span>git init
-</span><span class='line'><span class="c"># 其实这这时如果你多新建一个index.html文件的话，github会为你生成一个jekyll博客。</span>
-</span><span class='line'><span class="nv">$ </span>touch README
-</span><span class='line'><span class="nv">$ </span>git add .
-</span><span class='line'><span class="nv">$ </span>git commit -m <span class="s1">&#39;first commit&#39;</span>
-</span><span class='line'><span class="nv">$ </span>git remote add origin git@github.com:username/yourname.github.com.git
-</span><span class='line'><span class="nv">$ </span>git push origin master
-</span></code></pre></td></tr></table></div></figure>
+<pre>
+ codeblock Time to be Awesome - awesome.rb
+puts "Awesome!" unless lame
+ endcodeblock
+</pre>
 
 
-<p>对于新手有几个提醒:</p>
+<p>Pygments supports many languages, but doesn’t recognize some file extensions. Add lang:your_language to force highlighting if the filename doesn’t work.</p>
 
-<ul>
-<li>时常<code>git status</code>,<code>git log</code>避免误操作</li>
-<li>不要在github上直接编辑文件</li>
-<li>想清楚了再下手</li>
-<li>github pages的 username 大小写敏感。如果用户名和username不一致的话,默认会生成这个Repo的project pages。</li>
-</ul>
+<pre>
+ codeblock Here's an example .rvmrc file. lang:ruby
+rvm ruby-1.8.6 # ZOMG, seriously? We still use this version?
+ endcodeblock
+</pre>
 
+
+<p>Add an optional URL to enable downloading or linking to source.</p>
+
+<pre>
+ codeblock Javascript Array Syntax lang:js http://j.mp/pPUUmW MDN Documentation
+var arr1 = new Array(arrayLength);
+var arr2 = new Array(element0, element1, ..., elementN);
+ endcodeblock
+</pre>
+
+
+<p>The last argument link_text is optional. You may want to link to a source for download file, or documentation on some other site.</p>
 </div>
   
   
@@ -311,6 +187,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2011/12/06/pei-zhi-nginxde-%5B%3F%5D-xie-si-kao/">配置nginx的一些思考</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2011/12/03/octopress-blockquote/">Octopress: Blockquote</a>

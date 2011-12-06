@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Geekontheway</title>
+  <title>配置nginx的一些思考 - Geekontheway</title>
   <meta name="author" content="Bill Zh">
 
   
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://geekontheway.github.com">
+  <link rel="canonical" href="http://geekontheway.github.com/blog/2011/12/06/pei-zhi-nginxde-%5B%3F%5D-xie-si-kao">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -72,15 +72,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2011/12/06/pei-zhi-nginxde-%5B%3F%5D-xie-si-kao/">配置nginx的一些思考</a></h1>
+      <h1 class="entry-title">配置nginx的一些思考</h1>
     
     
       <p class="meta">
@@ -103,7 +100,7 @@
   </header>
 
 
-  <div class="entry-content"><p>大二使用ubuntu的时候，了解了一些开机自动运行服务的命令和配置，不过一直没机会也没环境去操作。所以这几天配置服务器时候就麻烦了一些。为什么会麻烦呢？因为不好的习惯，国人喜欢百度，喜欢不加思索复制粘贴，goole上又全是英文，不一定每个人都英语好。其实就是一个很小的问题，百度上是一大堆重复的讲的不清不楚的，没有平台观念，版本观念的[不过确实有例外，CSDN上很多文章还是不错的，程序员的个人博客里的文章也都有思考在里面]，其实说回来，linux自身的版本过多，发行版中的一些设置也一直在变，从技术上讲是好事，可是给普通用户带来了学习的压力。</p>
+<div class="entry-content"><p>大二使用ubuntu的时候，了解了一些开机自动运行服务的命令和配置，不过一直没机会也没环境去操作。所以这几天配置服务器时候就麻烦了一些。为什么会麻烦呢？因为不好的习惯，国人喜欢百度，喜欢不加思索复制粘贴，goole上又全是英文，不一定每个人都英语好。其实就是一个很小的问题，百度上是一大堆重复的讲的不清不楚的，没有平台观念，版本观念的[不过确实有例外，CSDN上很多文章还是不错的，程序员的个人博客里的文章也都有思考在里面]，其实说回来，linux自身的版本过多，发行版中的一些设置也一直在变，从技术上讲是好事，可是给普通用户带来了学习的压力。</p>
 
 <p> 言归正传，Ubuntu现在使用sysv-rc-conf,Redhat系[redhat,centos,fedora]使用chkconfig。</p>
 
@@ -130,20 +127,67 @@
 
 
 </div>
+
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Bill Zh</span></span>
+
+      
+
+
+
+
+
+
+
+
   
 
 
-    </article>
+<time datetime="2011-12-06T19:02:00+08:00" pubdate data-updated="true">Dec 6<span>th</span>, 2011</time>
+      
+
+<span class="categories">
   
-  <div class="pagination">
+    <a class='category' href='/blog/categories/centos/'>Centos</a>, <a class='category' href='/blog/categories/nginx/'>Nginx</a>, <a class='category' href='/blog/categories/rails/'>Rails</a>, <a class='category' href='/blog/categories/redhat/'>Redhat</a>, <a class='category' href='/blog/categories/ubuntu/'>Ubuntu</a>
+  
+</span>
+
+
+    </p>
     
-      <a class="prev" href="/blog/page/2/">&larr; Older</a>
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://geekontheway.github.com/blog/2011/12/06/pei-zhi-nginxde-%5B%3F%5D-xie-si-kao/" data-via="geekzh" data-counturl="http://geekontheway.github.com/blog/2011/12/06/pei-zhi-nginxde-%5B%3F%5D-xie-si-kao/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
 </div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2011/12/03/octopress-blockquote/" title="Previous Post: Octopress: Blockquote">&laquo; Octopress: Blockquote</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
 <aside class="sidebar">
   
     <section>
@@ -184,7 +228,7 @@
 <section>
   <h1>Github Repos</h1>
   <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   
   <a href="https://github.com/geekontheway">@geekontheway</a> on Github
@@ -214,7 +258,7 @@
 <section>
   <h1>Latest Tweets</h1>
   <ul id="tweets">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   <script type="text/javascript">
     $.domReady(function(){
@@ -243,6 +287,7 @@
   
 </aside>
 
+
     </div>
   </div>
   <footer role="contentinfo"><p>
@@ -257,7 +302,10 @@
       var disqus_shortname = 'geekzh';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://geekontheway.github.com/blog/2011/12/06/pei-zhi-nginxde-%5B%3F%5D-xie-si-kao/';
+        var disqus_url = 'http://geekontheway.github.com/blog/2011/12/06/pei-zhi-nginxde-%5B%3F%5D-xie-si-kao/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
