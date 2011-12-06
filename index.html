@@ -80,7 +80,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2011/12/06/pei-zhi-nginxde-yi-xie-si-kao/">配置nginx的一些思考</a></h1>
+      <h1 class="entry-title"><a href="/blog/2011/12/06/nginxzi-qi-dong-she-zhi/">Nginx自启动设置</a></h1>
     
     
       <p class="meta">
@@ -96,7 +96,7 @@
   
 
 
-<time datetime="2011-12-06T19:02:00+08:00" pubdate data-updated="true">Dec 6<span>th</span>, 2011</time>
+<time datetime="2011-12-06T19:40:00+08:00" pubdate data-updated="true">Dec 6<span>th</span>, 2011</time>
         
       </p>
     
@@ -115,16 +115,16 @@
 
 <blockquote><p>Ubuntu</p></blockquote>
 
-<p>-1.在/etc/init.d中建立脚本nginx，添加脚本进去，chmod+x
--2.ubuntu：/usr/sbin/update-rc.d -f nginx defaults
--3.sysv-rc-conf 设定2345运行nginx</p>
+<p>-在/etc/init.d中建立脚本nginx，添加脚本进去，chmod+x
+-ubuntu：/usr/sbin/update-rc.d -f nginx defaults
+-sysv-rc-conf 设定2345运行nginx</p>
 
 <p><code>/etc/init.d/nginx start/stop/restart</code></p>
 
 <blockquote><p>RedHat</p></blockquote>
 
-<p>-1.在/etc/init.d中建立脚本nginx，添加脚本进去，chmod+x
--2./sbin/chkconfig nginx 2345 on</p>
+<p>-在/etc/init.d中建立脚本nginx，添加脚本进去，chmod+x
+-/sbin/chkconfig nginx 2345 on</p>
 
 <p><code>service nginx start/stop/restart</code></p>
 </div>
@@ -149,7 +149,7 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2011/12/06/pei-zhi-nginxde-yi-xie-si-kao/">配置nginx的一些思考</a>
+        <a href="/blog/2011/12/06/nginxzi-qi-dong-she-zhi/">nginx自启动设置</a>
       </li>
     
       <li class="post">
