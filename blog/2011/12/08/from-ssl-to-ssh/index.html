@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Geekontheway</title>
+  <title>从ssl说起 - Geekontheway</title>
   <meta name="author" content="Bill Zh">
 
   
-  <meta name="description" content="The blockquote plugin takes and author, source, title and quote, and outputs semantic HTML. Note that they also must start and end with brace and &hellip;">
+  <meta name="description" content="起因是昨天要部署公司的一个测试项目Emall到linode服务器，作为新手的我艰难的使用
+cap staging deploy:cold诸如此类的命令,结果一开始就报错，原因很简单，deploy.rb文件和~/config/deploy/staging.rb中的代码有错误， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://geekontheway.github.com/blog/page/4">
+  <link rel="canonical" href="http://geekontheway.github.com/blog/2011/12/08/from-ssl-to-ssh">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -72,15 +73,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2011/12/03/octopress-blockquote/">Octopress: Blockquote</a></h1>
+      <h1 class="entry-title">从ssl说起</h1>
     
     
       <p class="meta">
@@ -96,53 +94,140 @@
   
 
 
-<time datetime="2011-12-03T12:48:00+08:00" pubdate data-updated="true">Dec 3<span>rd</span>, 2011</time>
+<time datetime="2011-12-08T19:20:00+08:00" pubdate data-updated="true">Dec 8<span>th</span>, 2011</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>The blockquote plugin takes and <strong>author, source, title and quote, and outputs</strong> semantic HTML.</p>
+<div class="entry-content"><p>起因是昨天要部署公司的一个测试项目Emall到linode服务器，作为新手的我艰难的使用
+<code>cap staging deploy:cold</code>诸如此类的命令,结果一开始就报错，原因很简单，deploy.rb文件和~/config/deploy/staging.rb中的代码有错误，capistrano的机制改天得画出一个流程图来，不然老觉得难理解.错误：</p>
 
-<blockquote><p>Note that they also must start and end with brace and persent.</p></blockquote>
+<p> <img src="http://p4.42qu.us/721/820/149300.jpg"></p>
 
-<h1>Syntax</h1>
+<p> 查了下原因，官方这么描述：</p>
 
-<blockquote><p>blockquote [author[, source]] [link] [source_link_title]</p>
+<blockquote><p>Before deploying an app that uses Bundler, Add your Gemfile and Gemfile.lock to source control, but ignore the .bundle folder, which is specific to each machine.</p></blockquote>
 
-<p>Quote string</p>
-
-<p> endblockquote</p></blockquote>
-
-<p>You’ll notice there are two entries for source; one after author, and one after link. If you are citing from a printed work or a speech or something you cannot link to, use the first method Author&#8217;s Name, Cited Work. If you’re going to link to the work, omit the first source method, and add a source title after the link Author&#8217;s Name http://source.com Article title.</p>
-
-<h3>Examples</h3>
-
-<blockquote><p>Over the past 24 hours I&#8217;ve been reflecting on my life & I&#8217;ve realized only one thing. I need a medieval battle axe.</p><footer><strong>@allanbranch</strong><cite><a href='https://twitter.com/allanbranch/status/90766146063712256'>twitter.com/allanbranch/status/&hellip;</a></cite></footer></blockquote>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ echo ".bundle\n" >> .gitignore
+</span><span class='line'>$ git add Gemfile Gemfile.lock .gitignore
+</span><span class='line'>$ git commit -m "Add Bundler support"</span></code></pre></td></tr></table></div></figure>
 
 
+<p>然后在deploy.rb中加入<code>require "bundler/capistrano"</code>
+ <img src="http://p4.42qu.us/721/819/149299.jpg">
+数据没部署上去,<code>current/releases/shared/</code>这三个文件夹的结构得研究一下.</p>
+
+<p>报错提示：
+<img src="http://p4.42qu.us/721/821/149301.jpg"></p>
+
+<p>好像是rvm不能选择ruby版本的问题。[后来发了一个帖子关于Linode上RVM的奇怪问题，每次ssh登陆服务器后，发现rvm并未选择ruby版本，即使上次登陆的时候<code>rvm --default use ree</code>][http://ruby-china.org/topics/386],用了大家给的方法后,没找到合适答案后,折腾开始了:</p>
+
+<ul>
+<li><code>rvm uninstall ree</code>,<code>rvm install ree</code>报错了</li>
+<li><code>rm -rf /usr/local/rvm</code>,并取消了rvm有关的环境设置,下载了ree的源码，编译，安装passenger出错,大改是说
+<code>openssl lib installed no longer supports SSLv2</code>,老大注释了源码中sslv2相关的部分，ok了.然而Emall依然部署不上去,所以后来想了想,还是rebuild linode服务器吧。还是犹豫了一下,因为好久以来都是在上面部署的服务，很多服务还是处于一半的状况,没办法从头来吧.</li>
+<li>ssh到服务器，做最基本的配置：</li>
+</ul>
 
 
-<blockquote><p>Every interaction is both precious and an opportunity to delight.</p><footer><strong>Seth Godin</strong><cite><a href='http://sethgodin.typepad.com/seths_blog/2009/07/welcome-to-island-marketing.html'>Welcome to Island Marketing</a></cite></footer></blockquote>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Welcome to Ubuntu!
+</span><span class='line'> * Documentation:  https://help.ubuntu.com/
+</span><span class='line'>Last login: Wed Dec  7 21:24:41 2011 from 182.18.65.14
+</span><span class='line'>
+</span><span class='line'>root@li389-178:~# echo "log.networking.io" > /etc/hostname
+</span><span class='line'>root@li389-178:~# hostname -F /etc/hostname
+</span><span class='line'>
+</span><span class='line'>root@log:~# sudo dpkg-reconfigure tzdata
+</span><span class='line'>
+</span><span class='line'>Current default time zone: 'Asia/Chongqing'
+</span><span class='line'>Local time is now:      Thu Dec  8 10:28:55 CST 2011.
+</span><span class='line'>Universal Time is now:  Thu Dec  8 02:28:55 UTC 2011.</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>因为又要装很多服务，而且也会有很多配置,考虑到效率，选择使用chef。</li>
+<li>ok。今天的折腾就开始了，chef的文档太详细了！丰富到我在众多的流程转向If Else中不知方向&#8230;好吧,最后终于知道怎么新建一个node节点了，可是第一步<code>knife bootstrap host -u root -P passwd</code>就ssh keys出错了,应该是kes不匹配,修改了.ssh/known_hosts后ok了.</li>
+</ul>
 
 </div>
+
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Bill Zh</span></span>
+
+      
+
+
+
+
+
+
+
+
   
 
 
-    </article>
+<time datetime="2011-12-08T19:20:00+08:00" pubdate data-updated="true">Dec 8<span>th</span>, 2011</time>
+      
+
+<span class="categories">
   
-  <div class="pagination">
+    <a class='category' href='/blog/categories/rails-deploy-chef-ubuntu/'>Rails,Deploy,Chef,Ubuntu</a>
+  
+</span>
+
+
+    </p>
     
-      <a class="prev" href="/blog/page/5/">&larr; Older</a>
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-    <a class="next" href="/blog/page/3/">Newer &rarr;</a>
-    
-  </div>
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://geekontheway.github.com/blog/2011/12/08/from-ssl-to-ssh/" data-via="geekzh" data-counturl="http://geekontheway.github.com/blog/2011/12/08/from-ssl-to-ssh/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
 </div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2011/12/06/nginxzi-qi-dong-she-zhi/" title="Previous Post: nginx自启动设置">&laquo; nginx自启动设置</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
 <aside class="sidebar">
   
     <section>
@@ -191,7 +276,7 @@
 <section>
   <h1>Github Repos</h1>
   <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   
   <a href="https://github.com/geekontheway">@geekontheway</a> on Github
@@ -221,7 +306,7 @@
 <section>
   <h1>Latest Tweets</h1>
   <ul id="tweets">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   <script type="text/javascript">
     $.domReady(function(){
@@ -250,6 +335,7 @@
   
 </aside>
 
+
     </div>
   </div>
   <footer role="contentinfo"><p>
@@ -264,7 +350,10 @@
       var disqus_shortname = 'geekzh';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://geekontheway.github.com/blog/2011/12/08/from-ssl-to-ssh/';
+        var disqus_url = 'http://geekontheway.github.com/blog/2011/12/08/from-ssl-to-ssh/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
