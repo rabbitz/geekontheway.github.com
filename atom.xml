@@ -4,7 +4,7 @@
   <title><![CDATA[Geekontheway]]></title>
   <link href="http://geekontheway.github.com/atom.xml" rel="self"/>
   <link href="http://geekontheway.github.com/"/>
-  <updated>2011-12-08T20:28:41+08:00</updated>
+  <updated>2011-12-09T11:36:44+08:00</updated>
   <id>http://geekontheway.github.com/</id>
   <author>
     <name><![CDATA[Bill Zh]]></name>
@@ -36,8 +36,62 @@
 
 
 <p>然后在deploy.rb中加入<code>require "bundler/capistrano"</code>
- <img src="http://p4.42qu.us/721/819/149299.jpg">
-数据没部署上去,<code>current/releases/shared/</code>这三个文件夹的结构得研究一下.</p>
+ <img src="http://p4.42qu.us/721/819/149299.jpg"></p>
+
+<p>数据没部署上去,应该是链接没做好,部署脚本是之前同事写的,关于Symlink这部分,我又谷歌了一下:</p>
+
+<p><code>Update @ 2011-12-9 11:17</code></p>
+
+<ul>
+<li><p>The <code>current</code>directory is where the most current version of your Rails application is located. Each time you deploy your application, the contents of this directory are overwritten with your new changes.</p></li>
+<li><p>The <code>releases</code> directory stores previous releases of your application, which allow Capistrano to &#8220;roll back&#8221; changes in the event that something goes wrong. Each time you deploy your application, the contents of the current directory are moved to the releases before the new version is copied to the current directory. You will want to limit the number of previous releases that are stored to preserve disk space. This can be done by running cap deploy:cleanup.</p></li>
+<li><p>The <code>shared</code> directory contains assets that are independent of the version of your application. In other words, the shared directory is left alone during a deployment, which makes it a perfect place to hold uploaded files and documents that you want to preserve between migrations.This is a great time to mention that that config/database.yml file is a wonderful candidate for storing in the shared directory and symlinking to it. By doing this, you can avoid having to publish your development and testing passwords, and multiple developers can easily collaborate on the same project.</p></li>
+</ul>
+
+
+<p>Rather than having to manually create our symlinks,  Luckily, we can create a Capistrano deployment recipe that automates this task.Since our application is already up and running, we will only be adding some things to the end of the recipe that is currently in place for your web host. In this example we create a namespace called &#8220;customs&#8221; for our new tasks:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>namespace(:customs) do
+</span><span class='line'>  task :config, :roles => :app do
+</span><span class='line'>    run &lt;&lt;-CMD
+</span><span class='line'>      ln -nfs #{shared_path}/system/database.yml #{release_path}/config/database.yml
+</span><span class='line'>    CMD
+</span><span class='line'>  end
+</span><span class='line'>  task :symlink, :roles => :app do
+</span><span class='line'>    run &lt;&lt;-CMD
+</span><span class='line'>      ln -nfs #{shared_path}/system/uploads #{release_path}/public/uploads
+</span><span class='line'>    CMD
+</span><span class='line'>  end
+</span><span class='line'>end</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In order to get Capistrano to perform these tasks each time we deploy our application, we need to set some hooks by placing the following code at the bottom of our deploy.rb file:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>after "deploy:update_code", "customs:config"
+</span><span class='line'>after "deploy:symlink","customs:symlink"
+</span><span class='line'>after "deploy", "deploy:cleanup"</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The first line tells Capistrano that after it has performed the update_code methods, which updates the Rails application, that it should symlink to our shared database.yml file so that Rails has the production database configuration settings.</p>
+
+<p>The next line tells Capistrano that once it has finished symlinking the application (a normal deploy involves symlinking to the current directory), it should then create the symlink for our uploads directory.</p>
+
+<p>Finally, I have added a third line that tells Capistrano to finish it all up by running the cap deploy:cleanup task, which removes all but the last 5 releases from the releases directory. We do this for good housekeeping reasons so that we are not bloating our server with releases that we don&#8217;t need.</p>
 
 <p>报错提示：
 <img src="http://p4.42qu.us/721/821/149301.jpg"></p>
