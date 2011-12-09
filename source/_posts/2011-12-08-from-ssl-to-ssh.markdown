@@ -20,7 +20,51 @@ $ git commit -m "Add Bundler support"
 {% endcodeblock %}
 然后在deploy.rb中加入`require "bundler/capistrano"`
  {% img http://p4.42qu.us/721/819/149299.jpg %}
-数据没部署上去,`current/releases/shared/`这三个文件夹的结构得研究一下.
+
+数据没部署上去,应该是链接没做好,部署脚本是之前同事写的,关于Symlink这部分,我又谷歌了一下:
+
+`Update @ 2011-12-9 11:17`
+
+- The `current `directory is where the most current version of your Rails application is located. Each time you deploy your application, the contents of this directory are overwritten with your new changes.
+
+- The `releases` directory stores previous releases of your application, which allow Capistrano to "roll back" changes in the event that something goes wrong. Each time you deploy your application, the contents of the current directory are moved to the releases before the new version is copied to the current directory. You will want to limit the number of previous releases that are stored to preserve disk space. This can be done by running cap deploy:cleanup.
+
+- The `shared` directory contains assets that are independent of the version of your application. In other words, the shared directory is left alone during a deployment, which makes it a perfect place to hold uploaded files and documents that you want to preserve between migrations.This is a great time to mention that that config/database.yml file is a wonderful candidate for storing in the shared directory and symlinking to it. By doing this, you can avoid having to publish your development and testing passwords, and multiple developers can easily collaborate on the same project.
+
+Rather than having to manually create our symlinks,  Luckily, we can create a Capistrano deployment recipe that automates this task.Since our application is already up and running, we will only be adding some things to the end of the recipe that is currently in place for your web host. In this example we create a namespace called "customs" for our new tasks:
+
+{% codeblock %}
+
+namespace(:customs) do
+  task :config, :roles => :app do
+    run <<-CMD
+      ln -nfs #{shared_path}/system/database.yml #{release_path}/config/database.yml
+    CMD
+  end
+  task :symlink, :roles => :app do
+    run <<-CMD
+      ln -nfs #{shared_path}/system/uploads #{release_path}/public/uploads
+    CMD
+  end
+end
+
+{% endcodeblock %}
+
+In order to get Capistrano to perform these tasks each time we deploy our application, we need to set some hooks by placing the following code at the bottom of our deploy.rb file:
+
+{% codeblock %}
+
+after "deploy:update_code", "customs:config"
+after "deploy:symlink","customs:symlink"
+after "deploy", "deploy:cleanup"
+
+{% endcodeblock %}
+
+The first line tells Capistrano that after it has performed the update_code methods, which updates the Rails application, that it should symlink to our shared database.yml file so that Rails has the production database configuration settings.
+
+The next line tells Capistrano that once it has finished symlinking the application (a normal deploy involves symlinking to the current directory), it should then create the symlink for our uploads directory.
+
+Finally, I have added a third line that tells Capistrano to finish it all up by running the cap deploy:cleanup task, which removes all but the last 5 releases from the releases directory. We do this for good housekeeping reasons so that we are not bloating our server with releases that we don't need.
 
 报错提示：
 {% img http://p4.42qu.us/721/821/149301.jpg %}
@@ -31,7 +75,9 @@ $ git commit -m "Add Bundler support"
 - `rm -rf /usr/local/rvm`,并取消了rvm有关的环境设置,下载了ree的源码，编译，安装passenger出错,大改是说
 `openssl lib installed no longer supports SSLv2`,老大注释了源码中sslv2相关的部分，ok了.然而Emall依然部署不上去,所以后来想了想,还是rebuild linode服务器吧。还是犹豫了一下,因为好久以来都是在上面部署的服务，很多服务还是处于一半的状况,没办法从头来吧.
 - ssh到服务器，做最基本的配置：
+
 {% codeblock %}
+
 Welcome to Ubuntu!
  * Documentation:  https://help.ubuntu.com/
 Last login: Wed Dec  7 21:24:41 2011 from 182.18.65.14
@@ -48,3 +94,9 @@ Universal Time is now:  Thu Dec  8 02:28:55 UTC 2011.
 {% endcodeblock %}
 - 因为又要装很多服务，而且也会有很多配置,考虑到效率，选择使用chef。
 - ok。今天的折腾就开始了，chef的文档太详细了！丰富到我在众多的流程转向If Else中不知方向...好吧,最后终于知道怎么新建一个node节点了，可是第一步`knife bootstrap host -u root -P passwd`就ssh keys出错了,应该是kes不匹配,修改了.ssh/known_hosts后ok了.
+
+
+
+
+
+
