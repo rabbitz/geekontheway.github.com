@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Rvm | Geekontheway]]></title>
+  <link href="http://geekontheway.github.com/blog/categories/rvm/atom.xml" rel="self"/>
+  <link href="http://geekontheway.github.com/"/>
+  <updated>2011-12-10T12:11:29+08:00</updated>
+  <id>http://geekontheway.github.com/</id>
+  <author>
+    <name><![CDATA[Bill Zh]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[分享一个全局RVM的安装脚本 Ubuntu 10.04 ]]></title>
+    <link href="http://geekontheway.github.com/blog/2011/12/09/rvm-system-wide-install-script/"/>
+    <updated>2011-12-09T15:27:00+08:00</updated>
+    <id>http://geekontheway.github.com/blog/2011/12/09/rvm-system-wide-install-script</id>
+    <content type="html"><![CDATA[<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Includes: StackScript Bash Library </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;!/bin/bash&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;&lt;udf <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;admin_login&quot;</span> <span class="nv">label</span><span class="o">=</span><span class="s2">&quot;Admin Login&quot;</span> /&gt;&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;&lt;udf <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;admin_password&quot;</span> <span class="nv">label</span><span class="o">=</span><span class="s2">&quot;Admin Password&quot;</span> /&gt;&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;&lt;udf <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;group_name&quot;</span> <span class="nv">label</span><span class="o">=</span><span class="s2">&quot;RVM Group name&quot;</span> <span class="nv">default</span><span class="o">=</span><span class="s2">&quot;rvm&quot;</span> /&gt;&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;source &lt;ssinclude <span class="nv">StackScriptID</span><span class="o">=</span><span class="s2">&quot;1&quot;</span>&gt;
+</span><span class='line'>system_update
+</span><span class='line'>hostname &lt;code&gt;get_rdns_primary_ip&lt;/code&gt;
+</span><span class='line'>aptitude -y install sudo
+</span><span class='line'>groupadd wheel
+</span><span class='line'>cp /etc/sudoers /etc/sudoers.tmp
+</span><span class='line'>chmod 0640 /etc/sudoers.tmp
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;%wheel ALL = (ALL) ALL&quot;</span> &gt;&gt; /etc/sudoers.tmp
+</span><span class='line'>chmod 0440 /etc/sudoers.tmp
+</span><span class='line'>mv /etc/sudoers.tmp /etc/sudoers
+</span><span class='line'>useradd -m -s /bin/bash -G wheel <span class="s2">&quot;$ADMIN_LOGIN&quot;</span>
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;${ADMIN_LOGIN}:${ADMIN_PASSWORD}&quot;</span> | chpasswd
+</span><span class='line'><span class="nb">export </span><span class="nv">rvm_group_name</span><span class="o">=</span><span class="s2">&quot;$GROUP_NAME&quot;</span>
+</span><span class='line'>aptitude -y install curl bison build-essential zlib1g-dev libssl-dev libreadline5-dev libxml2-dev git-core
+</span><span class='line'>bash &amp;lt; &amp;lt;<span class="o">(</span> curl -L http://bit.ly/rvm-install-system-wide <span class="o">)</span>
+</span><span class='line'>usermod -a -G <span class="s2">&quot;$GROUP_NAME&quot;</span> <span class="s2">&quot;$ADMIN_LOGIN&quot;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+]]></content>
+  </entry>
+  
+</feed>

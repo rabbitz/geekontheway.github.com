@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Capistrano | Geekontheway]]></title>
+  <link href="http://geekontheway.github.com/blog/categories/capistrano/atom.xml" rel="self"/>
+  <link href="http://geekontheway.github.com/"/>
+  <updated>2011-12-10T12:11:29+08:00</updated>
+  <id>http://geekontheway.github.com/</id>
+  <author>
+    <name><![CDATA[Bill Zh]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[初学capistrano]]></title>
+    <link href="http://geekontheway.github.com/blog/2011/12/09/starting-capistrano/"/>
+    <updated>2011-12-09T15:56:00+08:00</updated>
+    <id>http://geekontheway.github.com/blog/2011/12/09/starting-capistrano</id>
+    <content type="html"><![CDATA[<p>上一篇博客<a href="http://geekontheway.github.com/blog/2011/12/08/from-ssl-to-ssh/">从capistrano说起</a>谈到了capistrano,刚接触有很多地方不懂，就拿出这篇博客做一个记录,有什么新的发现和问题，都会放上来.</p>
+
+<h2>capistrano-ex</h2>
+
+<p>注意到安装<code>capistrano</code>的时候还要安装<code>capistrano-ex</code>这个gem包,官方的介绍是 <code>capistrano-ex allows you to setup multiple deploy environments</code>.</p>
+
+<p>使用方法：</p>
+
+<ul>
+<li>定义stage:
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>config/deploy.rb </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/li&gt;</span>
+</span><span class='line'><span class="sr">&lt;/u</span><span class="n">l</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">set</span> <span class="ss">:stages</span><span class="p">,</span> <span class="sx">%w(production development)</span>
+</span><span class='line'><span class="n">set</span> <span class="ss">:default_stage</span><span class="p">,</span> <span class="s2">&quot;development&quot;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;capistrano/ext/multistage&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<ul>
+<li>设置stage</li>
+</ul>
+
+
+<p>在config目录下创建deploy目录，并在其中修改各stage的配置.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>config/ </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;$ cat production.rb&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">set</span> <span class="ss">:rails_env</span><span class="p">,</span> <span class="s2">&quot;production&quot;</span>
+</span><span class='line'><span class="n">role</span> <span class="ss">:web</span><span class="p">,</span> <span class="s2">&quot;productionserver.com&quot;</span>
+</span><span class='line'><span class="n">role</span> <span class="ss">:app</span><span class="p">,</span> <span class="s2">&quot;productionserver.com&quot;</span>
+</span><span class='line'><span class="n">role</span> <span class="ss">:db</span><span class="p">,</span>  <span class="s2">&quot;productionserver.com&quot;</span><span class="p">,</span> <span class="ss">:primary</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;$ cat development.rb&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">set</span> <span class="ss">:rails_env</span><span class="p">,</span> <span class="s2">&quot;development&quot;</span>
+</span><span class='line'><span class="n">role</span> <span class="ss">:web</span><span class="p">,</span> <span class="s2">&quot;developmentserver.com&quot;</span>
+</span><span class='line'><span class="n">role</span> <span class="ss">:app</span><span class="p">,</span> <span class="s2">&quot;developmentserver.com&quot;</span>
+</span><span class='line'><span class="n">role</span> <span class="ss">:db</span><span class="p">,</span>  <span class="s2">&quot;developmentserver.com&quot;</span><span class="p">,</span> <span class="ss">:primary</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<ul>
+<li>运行特定stage的deploy</li>
+</ul>
+
+
+<p><code>cap stagename deploy</code></p>
+]]></content>
+  </entry>
+  
+</feed>

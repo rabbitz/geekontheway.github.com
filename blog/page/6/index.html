@@ -9,31 +9,7 @@
   <meta name="author" content="Bill Zh">
 
   
-  <meta name="description" content="Octopress基于jekyll，刚开始使用起来也比较复杂： Octopress会有两个分支：source（编写博客）和master（生成好的博客），就像这样： 1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25 &hellip;">
+  <meta name="description" content="大二使用ubuntu的时候，了解了一些开机自动运行服务的命令和配置，不过一直没机会也没环境去操作。所以这几天配置服务器时候就麻烦了一些。为什么会麻烦呢？因为不好的习惯，国人喜欢百度，喜欢不加思索复制粘贴，goole上又全是英文，不一定每个人都英语好。其实就是一个很小的问题， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -104,7 +80,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2011/12/03/octopress-for-freshman/">Octopress: 新手教程</a></h1>
+      <h1 class="entry-title"><a href="/blog/2011/12/06/nginx-autorun-with-init-scripts/">Nginx自启动设置</a></h1>
     
     
       <p class="meta">
@@ -120,79 +96,21 @@
   
 
 
-<time datetime="2011-12-03T09:16:00+08:00" pubdate data-updated="true">Dec 3<span>rd</span>, 2011</time>
+<time datetime="2011-12-06T19:40:00+08:00" pubdate data-updated="true">Dec 6<span>th</span>, 2011</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>Octopress基于jekyll，刚开始使用起来也比较复杂：</p>
+  <div class="entry-content"><p>大二使用ubuntu的时候，了解了一些开机自动运行服务的命令和配置，不过一直没机会也没环境去操作。所以这几天配置服务器时候就麻烦了一些。为什么会麻烦呢？因为不好的习惯，国人喜欢百度，喜欢不加思索复制粘贴，goole上又全是英文，不一定每个人都英语好。其实就是一个很小的问题，百度上是一大堆重复的讲的不清不楚的，没有平台观念，版本观念的[不过确实有例外，CSDN上很多文章还是不错的，程序员的个人博客里的文章也都有思考在里面]，其实说回来，linux自身的版本过多，发行版中的一些设置也一直在变，从技术上讲是好事，可是给普通用户带来了学习的压力。</p>
 
-<blockquote><p>Octopress会有两个分支：source（编写博客）和master（生成好的博客），就像这样：</p></blockquote>
+<blockquote><p>假定你：</p></blockquote>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>git remote -v
-</span><span class='line'>
-</span><span class='line'>octopress git://github.com/imathis/octopress.git <span class="o">(</span>fetch<span class="o">)</span>
-</span><span class='line'>octopress git://github.com/imathis/octopress.git <span class="o">(</span>push<span class="o">)</span>
-</span><span class='line'>origin    git@github.com:geekontheway/geekontheway.github.com.git <span class="o">(</span>fetch<span class="o">)</span>
-</span><span class='line'>origin    git@github.com:geekontheway/geekontheway.github.com.git <span class="o">(</span>push<span class="o">)</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>git branch -a
-</span><span class='line'>
-</span><span class='line'>* <span class="nb">source</span>
-</span><span class='line'><span class="nb">  </span>remotes/octopress/HEAD -&gt; octopress/master
-</span><span class='line'>  remotes/octopress/compass
-</span><span class='line'>  remotes/octopress/configuration
-</span><span class='line'>  remotes/octopress/edge
-</span><span class='line'>  remotes/octopress/generate_environment
-</span><span class='line'>  remotes/octopress/gh-pages
-</span><span class='line'>  remotes/octopress/master
-</span><span class='line'>  remotes/octopress/move_rakefile_configs
-</span><span class='line'>  remotes/octopress/post_names
-</span><span class='line'>  remotes/octopress/rake_minify_js
-</span><span class='line'>  remotes/octopress/refactor_code_highlight
-</span><span class='line'>  remotes/octopress/refactor_deployment
-</span><span class='line'>  remotes/octopress/refactor_js
-</span><span class='line'>  remotes/octopress/site
-</span><span class='line'>  remotes/octopress/site-deploy-test
-</span><span class='line'>  remotes/octopress/subdir
-</span><span class='line'>  remotes/octopress/thor
-</span></code></pre></td></tr></table></div></figure>
+<ul>
+<li>熟悉linux的运行级别[runlevel]</li>
+</ul>
 
-
-<p>其中只有origin仓库和source分支是必须的，其余分支或仓库建议删掉。</p>
-
-<p>我们来看一下source分支都有什么：</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -200,95 +118,132 @@
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>CHANGELOG.markdown  
-</span><span class='line'>config.ru   
-</span><span class='line'> _deploy  部署文件夹，在.gitignore中被设置了
-</span><span class='line'>.DS_Store 文件夹显示属性，在.gitignore中被设置了
-</span><span class='line'>Gemfile.lock  
-</span><span class='line'>.gitignore  
-</span><span class='line'>plugins  
-</span><span class='line'>.pygments-cache   
-</span><span class='line'>.rbenv-version Ruby版本有特殊要求 这个文件在.gitignore中被设置了   
-</span><span class='line'>.rvmrc   Ruby版本有特殊要求
-</span><span class='line'>.sass-cache  
-</span><span class='line'>source
-</span><span class='line'>config.rb           
-</span><span class='line'>_config.yml  
-</span><span class='line'>Gemfile  
-</span><span class='line'>.git          
-</span><span class='line'>.idea   Rubymine设置文件，在.gitignore中被设置了    
-</span><span class='line'>public  在.gitignore中被设置了  
-</span><span class='line'>Rakefile         
-</span><span class='line'>README.markdown  
-</span><span class='line'>sass    
-</span><span class='line'>.slugignore  
-</span><span class='line'>.themes</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>0    关闭（或终止）系统
+</span><span class='line'> 1    单用户模式：通常又称为 s 或 S
+</span><span class='line'> 6    重启系统
+</span><span class='line'> 2    没有网络的多用户模式
+</span><span class='line'> 3    有网络的多用户模式
+</span><span class='line'> 5    有网络和 X Window System的多用户模式</span></code></pre></td></tr></table></div></figure>
 
 
-<p>其中_deploy,source,public这三个文件夹很有趣：</p>
+<p> 分享一下ngnix配置自动启动脚本：</p>
 
-<p><img src="http://p4.42qu.us/721/689/144049.jpg"></p>
+<div><script src='https://gist.github.com/1436747.js?file='></script>
+<noscript><pre><code>[root@xjeevps opt]# cat /etc/init.d/nginx
+#!/bin/bash 
+# nginx Startup script for the Nginx HTTP Server 
+# it is v.0.0.2 version. 
+# chkconfig: - 85 15 
+# description: Nginx is a high-performance web and proxy server. 
+#              It has a lot of features, but it's not for everyone. 
+# processname: nginx 
+# pidfile: /var/run/nginx.pid 
+# config: /usr/local/nginx/conf/nginx.conf 
+nginxd=/usr/local/nginx/sbin/nginx 
+nginx_config=/usr/local/nginx/conf/nginx.conf 
+nginx_pid=/var/run/nginx.pid 
+RETVAL=0 
+prog=&quot;nginx&quot; 
+# Source function library. 
+. /etc/rc.d/init.d/functions 
+# Source networking configuration. 
+. /etc/sysconfig/network 
+# Check that networking is up. 
+[ ${NETWORKING} = &quot;no&quot; ] &amp;&amp; exit 0 
+[ -x $nginxd ] || exit 0 
+# Start nginx daemons functions. 
+start() { 
+if [ -e $nginx_pid ];then 
+   echo &quot;nginx already running....&quot; 
+   exit 1 
+fi 
+   echo -n $&quot;Starting $prog: &quot; 
+   daemon $nginxd -c ${nginx_config} 
+   RETVAL=$? 
+   echo 
+   [ $RETVAL = 0 ] &amp;&amp; touch /var/lock/subsys/nginx 
+   return $RETVAL 
+} 
+# Stop nginx daemons functions. 
+stop() { 
+        echo -n $&quot;Stopping $prog: &quot; 
+        killproc $nginxd 
+        RETVAL=$? 
+        echo 
+        [ $RETVAL = 0 ] &amp;&amp; rm -f /var/lock/subsys/nginx /var/run/nginx.pid 
+} 
+# reload nginx service functions. 
+reload() { 
+    echo -n $&quot;Reloading $prog: &quot; 
+    #kill -HUP `cat ${nginx_pid}` 
+    killproc $nginxd -HUP 
+    RETVAL=$? 
+    echo 
+} 
+# See how we were called. 
+case &quot;$1&quot; in 
+start) 
+        start 
+        ;; 
+stop) 
+        stop 
+        ;; 
+reload) 
+        reload 
+        ;; 
+restart) 
+        stop 
+        start 
+        ;; 
+status) 
+        status $prog 
+        RETVAL=$? 
+        ;; 
+*) 
+        echo $&quot;Usage: $prog {start|stop|restart|reload|status|help}&quot; 
+        exit 1 
+esac 
+exit $RETVAL
+</code></pre></noscript></div>
+
+
+<blockquote><p>Ubuntu natty</p></blockquote>
 
 <ul>
-<li><p>如果你是和别人合作博客，或者自己同时在好几个电脑上写博客，每次开始之前，<code>git pull origin source</code>获得最新的文件,<code>rake generate</code>生成新的页面</p></li>
-<li><p>我们在source分支做了博客的发布，或者改变了博客的设置之后，<code>rake generate</code>生成网站</p></li>
-<li><p><code>rake watch</code>+pow 或者<code>rake review</code>+http://localhost:4000就可以看到我们所做的变化</p></li>
-<li><p>确认无误后，<code>rake deploy</code>文章就发布到了博客中</p></li>
-<li><p>当然，不要忘了更新项目 <code>git push origin source</code></p></li>
+<li>在/etc/init.d中建立脚本nginx，添加脚本进去，chmod+x</li>
+<li>/usr/sbin/update-rc.d -f nginx defaults</li>
 </ul>
 
 
-<blockquote><p>特别的，如果你克隆了博客，记得在<code>git checkout source</code>，然后<code>rake setup_gh_pages</code>执行初始化，当然，你可能也需要<code>bundle install</code></p>
-
-<p>如果是新建的Repo ，记得</p></blockquote>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>mkdir yourrepo
-</span><span class='line'><span class="nv">$ </span><span class="nb">cd </span>yourrepo
-</span><span class='line'><span class="nv">$ </span>git init
-</span><span class='line'><span class="c"># 其实这这时如果你多新建一个index.html文件的话，github会为你生成一个jekyll博客。</span>
-</span><span class='line'><span class="nv">$ </span>touch README
-</span><span class='line'><span class="nv">$ </span>git add .
-</span><span class='line'><span class="nv">$ </span>git commit -m <span class="s1">&#39;first commit&#39;</span>
-</span><span class='line'><span class="nv">$ </span>git remote add origin git@github.com:username/yourname.github.com.git
-</span><span class='line'><span class="nv">$ </span>git push origin master
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>对于新手有几个提醒:</p>
+<blockquote><p>or</p></blockquote>
 
 <ul>
-<li>时常<code>git status</code>,<code>git log</code>避免误操作</li>
-<li>不要在github上直接编辑文件</li>
-<li>想清楚了再下手</li>
-<li>github pages的 username 大小写敏感。如果用户名和username不一致的话,默认会生成这个Repo的project pages。</li>
+<li>sysv-rc-conf 设定2345运行nginx</li>
 </ul>
 
+
+<p>要启动或者停止,重启</p>
+
+<p><code>/etc/init.d/nginx start/stop/restart</code></p>
+
+<blockquote><p>CentOS5</p></blockquote>
+
+<ul>
+<li>在/etc/init.d中建立脚本nginx，添加脚本进去，chmod+x</li>
+<li>/usr/sbin/update-rc.d -f nginx defaults</li>
+</ul>
+
+
+<blockquote><p>or</p></blockquote>
+
+<ul>
+<li>/sbin/chkconfig nginx 2345 on</li>
+</ul>
+
+
+<p>要启动或者停止,重启</p>
+
+<p><code>service nginx start/stop/restart</code></p>
 </div>
   
   
@@ -313,11 +268,23 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2011/12/08/from-ssl-to-ssh/">从ssl说起</a>
+        <a href="/blog/2011/12/10/learning-ruby/">Ruby语言入门by园田裕贵</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2011/12/06/nginxzi-qi-dong-she-zhi/">nginx自启动设置</a>
+        <a href="/blog/2011/12/09/linode-assets/">Linode上相关安装和设置</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/12/09/starting-capistrano/">初学capistrano</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/12/09/rvm-system-wide-install-script/">分享一个全局RVM的安装脚本 Ubuntu 10.04 </a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/12/08/from-ssl-to-ssh/">从Capsitrano说起</a>
       </li>
     
       <li class="post">
@@ -338,14 +305,6 @@
     
       <li class="post">
         <a href="/blog/2011/12/03/octopress-image-tag/">Octopress: Image tag</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2011/12/02/octopress-configuration-files/">Octopress: Configuration files</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2011/12/01/octopress-the-first-day/">Octopress: The first day</a>
       </li>
     
   </ul>

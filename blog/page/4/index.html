@@ -9,7 +9,28 @@
   <meta name="author" content="Bill Zh">
 
   
-  <meta name="description" content="The blockquote plugin takes and author, source, title and quote, and outputs semantic HTML. Note that they also must start and end with brace and &hellip;">
+  <meta name="description" content="Includes: StackScript Bash Library 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+#!/bin/bash
+# &lt;udf name=&quot;admin_login&quot; label=&quot &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,7 +101,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2011/12/03/octopress-blockquote/">Octopress: Blockquote</a></h1>
+      <h1 class="entry-title"><a href="/blog/2011/12/09/rvm-system-wide-install-script/">分享一个全局RVM的安装脚本 Ubuntu 10.04</a></h1>
     
     
       <p class="meta">
@@ -96,35 +117,57 @@
   
 
 
-<time datetime="2011-12-03T12:48:00+08:00" pubdate data-updated="true">Dec 3<span>rd</span>, 2011</time>
+<time datetime="2011-12-09T15:27:00+08:00" pubdate data-updated="true">Dec 9<span>th</span>, 2011</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>The blockquote plugin takes and <strong>author, source, title and quote, and outputs</strong> semantic HTML.</p>
+  <div class="entry-content">
 
-<blockquote><p>Note that they also must start and end with brace and persent.</p></blockquote>
-
-<h1>Syntax</h1>
-
-<blockquote><p>blockquote [author[, source]] [link] [source_link_title]</p>
-
-<p>Quote string</p>
-
-<p> endblockquote</p></blockquote>
-
-<p>You’ll notice there are two entries for source; one after author, and one after link. If you are citing from a printed work or a speech or something you cannot link to, use the first method Author&#8217;s Name, Cited Work. If you’re going to link to the work, omit the first source method, and add a source title after the link Author&#8217;s Name http://source.com Article title.</p>
-
-<h3>Examples</h3>
-
-<blockquote><p>Over the past 24 hours I&#8217;ve been reflecting on my life & I&#8217;ve realized only one thing. I need a medieval battle axe.</p><footer><strong>@allanbranch</strong><cite><a href='https://twitter.com/allanbranch/status/90766146063712256'>twitter.com/allanbranch/status/&hellip;</a></cite></footer></blockquote>
-
-
-
-
-<blockquote><p>Every interaction is both precious and an opportunity to delight.</p><footer><strong>Seth Godin</strong><cite><a href='http://sethgodin.typepad.com/seths_blog/2009/07/welcome-to-island-marketing.html'>Welcome to Island Marketing</a></cite></footer></blockquote>
+<figure class='code'><figcaption><span>Includes: StackScript Bash Library </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/bash</span>
+</span><span class='line'><span class="c"># &lt;udf name=&quot;admin_login&quot; label=&quot;Admin Login&quot; /&gt;</span>
+</span><span class='line'><span class="c"># &lt;udf name=&quot;admin_password&quot; label=&quot;Admin Password&quot; /&gt;</span>
+</span><span class='line'><span class="c"># &lt;udf name=&quot;group_name&quot; label=&quot;RVM Group name&quot; default=&quot;rvm&quot; /&gt;</span>
+</span><span class='line'><span class="nb">source</span> &lt;ssinclude <span class="nv">StackScriptID</span><span class="o">=</span><span class="s2">&quot;1&quot;</span>&gt;
+</span><span class='line'>system_update
+</span><span class='line'>hostname <span class="sb">`</span>get_rdns_primary_ip<span class="sb">`</span>
+</span><span class='line'>aptitude -y install sudo
+</span><span class='line'>groupadd wheel
+</span><span class='line'>cp /etc/sudoers /etc/sudoers.tmp
+</span><span class='line'>chmod 0640 /etc/sudoers.tmp
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;%wheel ALL = (ALL) ALL&quot;</span> &gt;&gt; /etc/sudoers.tmp
+</span><span class='line'>chmod 0440 /etc/sudoers.tmp
+</span><span class='line'>mv /etc/sudoers.tmp /etc/sudoers
+</span><span class='line'>useradd -m -s /bin/bash -G wheel <span class="s2">&quot;$ADMIN_LOGIN&quot;</span>
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;${ADMIN_LOGIN}:${ADMIN_PASSWORD}&quot;</span> | chpasswd
+</span><span class='line'><span class="nb">export </span><span class="nv">rvm_group_name</span><span class="o">=</span><span class="s2">&quot;$GROUP_NAME&quot;</span>
+</span><span class='line'>aptitude -y install curl bison build-essential zlib1g-dev libssl-dev libreadline5-dev libxml2-dev git-core
+</span><span class='line'>bash &lt; &lt;<span class="o">(</span> curl -L http://bit.ly/rvm-install-system-wide <span class="o">)</span>
+</span><span class='line'>usermod -a -G <span class="s2">&quot;$GROUP_NAME&quot;</span> <span class="s2">&quot;$ADMIN_LOGIN&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 </div>
   
@@ -150,11 +193,23 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2011/12/08/from-ssl-to-ssh/">从ssl说起</a>
+        <a href="/blog/2011/12/10/learning-ruby/">Ruby语言入门by园田裕贵</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2011/12/06/nginxzi-qi-dong-she-zhi/">nginx自启动设置</a>
+        <a href="/blog/2011/12/09/linode-assets/">Linode上相关安装和设置</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/12/09/starting-capistrano/">初学capistrano</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/12/09/rvm-system-wide-install-script/">分享一个全局RVM的安装脚本 Ubuntu 10.04 </a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/12/08/from-ssl-to-ssh/">从Capsitrano说起</a>
       </li>
     
       <li class="post">
@@ -175,14 +230,6 @@
     
       <li class="post">
         <a href="/blog/2011/12/03/octopress-image-tag/">Octopress: Image tag</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2011/12/02/octopress-configuration-files/">Octopress: Configuration files</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2011/12/01/octopress-the-first-day/">Octopress: The first day</a>
       </li>
     
   </ul>

@@ -1,0 +1,400 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>分享一个全局RVM的安装脚本 Ubuntu 10.04  - Geekontheway</title>
+  <meta name="author" content="Bill Zh">
+
+  
+  <meta name="description" content="Includes: StackScript Bash Library 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+#!/bin/bash
+# &lt;udf name=&quot;admin_login&quot; label=&quot &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://geekontheway.github.com/blog/2011/12/09/rvm-system-wide-install-script">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Geekontheway" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-27438087-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Geekontheway</a></h1>
+  
+    <h2>Stay hungry Stay foolish</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:geekontheway.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">分享一个全局RVM的安装脚本 Ubuntu 10.04</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-12-09T15:27:00+08:00" pubdate data-updated="true">Dec 9<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content">
+
+<figure class='code'><figcaption><span>Includes: StackScript Bash Library </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/bash</span>
+</span><span class='line'><span class="c"># &lt;udf name=&quot;admin_login&quot; label=&quot;Admin Login&quot; /&gt;</span>
+</span><span class='line'><span class="c"># &lt;udf name=&quot;admin_password&quot; label=&quot;Admin Password&quot; /&gt;</span>
+</span><span class='line'><span class="c"># &lt;udf name=&quot;group_name&quot; label=&quot;RVM Group name&quot; default=&quot;rvm&quot; /&gt;</span>
+</span><span class='line'><span class="nb">source</span> &lt;ssinclude <span class="nv">StackScriptID</span><span class="o">=</span><span class="s2">&quot;1&quot;</span>&gt;
+</span><span class='line'>system_update
+</span><span class='line'>hostname <span class="sb">`</span>get_rdns_primary_ip<span class="sb">`</span>
+</span><span class='line'>aptitude -y install sudo
+</span><span class='line'>groupadd wheel
+</span><span class='line'>cp /etc/sudoers /etc/sudoers.tmp
+</span><span class='line'>chmod 0640 /etc/sudoers.tmp
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;%wheel ALL = (ALL) ALL&quot;</span> &gt;&gt; /etc/sudoers.tmp
+</span><span class='line'>chmod 0440 /etc/sudoers.tmp
+</span><span class='line'>mv /etc/sudoers.tmp /etc/sudoers
+</span><span class='line'>useradd -m -s /bin/bash -G wheel <span class="s2">&quot;$ADMIN_LOGIN&quot;</span>
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;${ADMIN_LOGIN}:${ADMIN_PASSWORD}&quot;</span> | chpasswd
+</span><span class='line'><span class="nb">export </span><span class="nv">rvm_group_name</span><span class="o">=</span><span class="s2">&quot;$GROUP_NAME&quot;</span>
+</span><span class='line'>aptitude -y install curl bison build-essential zlib1g-dev libssl-dev libreadline5-dev libxml2-dev git-core
+</span><span class='line'>bash &lt; &lt;<span class="o">(</span> curl -L http://bit.ly/rvm-install-system-wide <span class="o">)</span>
+</span><span class='line'>usermod -a -G <span class="s2">&quot;$GROUP_NAME&quot;</span> <span class="s2">&quot;$ADMIN_LOGIN&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Bill Zh</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-12-09T15:27:00+08:00" pubdate data-updated="true">Dec 9<span>th</span>, 2011</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/rails/'>Rails</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/rvm/'>Rvm</a>, <a class='category' href='/blog/categories/ubuntu/'>Ubuntu</a>, <a class='category' href='/blog/categories/script/'>script</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://geekontheway.github.com/blog/2011/12/09/rvm-system-wide-install-script/" data-via="geekzh" data-counturl="http://geekontheway.github.com/blog/2011/12/09/rvm-system-wide-install-script/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2011/12/08/from-ssl-to-ssh/" title="Previous Post: 从Capsitrano说起">&laquo; 从Capsitrano说起</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2011/12/09/starting-capistrano/" title="next Post: 初学capistrano">初学capistrano &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2011/12/10/learning-ruby/">Ruby语言入门by园田裕贵</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/12/09/linode-assets/">Linode上相关安装和设置</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/12/09/starting-capistrano/">初学capistrano</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/12/09/rvm-system-wide-install-script/">分享一个全局RVM的安装脚本 Ubuntu 10.04 </a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/12/08/from-ssl-to-ssh/">从Capsitrano说起</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/12/06/nginx-autorun-with-init-scripts/">nginx自启动设置</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/12/03/octopress-blockquote/">Octopress: Blockquote</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/12/03/octopress-codeblock/">Octopress: Codeblock</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/12/03/octopress-for-freshman/">Octopress: 新手教程</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/12/03/octopress-image-tag/">Octopress: Image tag</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>Github Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/geekontheway">@geekontheway</a> on Github
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'geekontheway',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("geekzh", 4, true);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/geekzh" class="twitter-follow-button" data-width="208px" data-show-count="false">Follow @geekzh</a>
+  
+</section>
+
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/xiaoliang@networking.io?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2011 - Bill Zh -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'geekzh';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://geekontheway.github.com/blog/2011/12/09/rvm-system-wide-install-script/';
+        var disqus_url = 'http://geekontheway.github.com/blog/2011/12/09/rvm-system-wide-install-script/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Rails,Deploy,Chef,Ubuntu | Geekontheway]]></title>
   <link href="http://geekontheway.github.com/blog/categories/rails-deploy-chef-ubuntu/atom.xml" rel="self"/>
   <link href="http://geekontheway.github.com/"/>
-  <updated>2011-12-09T11:36:44+08:00</updated>
+  <updated>2011-12-10T12:11:29+08:00</updated>
   <id>http://geekontheway.github.com/</id>
   <author>
     <name><![CDATA[Bill Zh]]></name>
@@ -14,12 +14,205 @@
 
   
   <entry>
-    <title type="html"><![CDATA[从ssl说起]]></title>
+    <title type="html"><![CDATA[从Capsitrano说起]]></title>
     <link href="http://geekontheway.github.com/blog/2011/12/08/from-ssl-to-ssh/"/>
     <updated>2011-12-08T19:20:00+08:00</updated>
     <id>http://geekontheway.github.com/blog/2011/12/08/from-ssl-to-ssh</id>
-    <content type="html"><![CDATA[<p>起因是昨天要部署公司的一个测试项目Emall到linode服务器，作为新手的我艰难的使用
-<code>cap staging deploy:cold</code>诸如此类的命令,结果一开始就报错，原因很简单，deploy.rb文件和~/config/deploy/staging.rb中的代码有错误，capistrano的机制改天得画出一个流程图来，不然老觉得难理解.错误：</p>
+    <content type="html"><![CDATA[<h1>Capistrano with bundler</h1>
+
+<p>起因是昨天要部署公司的一个测试项目bar到linode服务器,部署代码是之前写的,正好拿来学习了:</p>
+
+<p><code>$ gem list capistrano</code></p>
+
+<blockquote><p><strong><em> LOCAL GEMS </em></strong></p>
+
+<p>capistrano (2.9.0)</p>
+
+<p>capistrano-ext (1.2.1)</p></blockquote>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>title: deploy.rb </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;-&lt;em&gt;- encoding : utf-8 -&lt;/em</span><span class="o">&gt;-&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;set :stages, %w(production staging)</span>
+</span><span class='line'><span class="sr">set :default_stage, &quot;production&quot;</span>
+</span><span class='line'><span class="sr">require &#39;capistrano/ex</span><span class="n">t</span><span class="o">/</span><span class="n">multistage</span><span class="err">&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;set :application, &quot;bar&quot;&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">set</span> <span class="ss">:use_sudo</span><span class="p">,</span> <span class="kp">false</span>
+</span><span class='line'><span class="n">set</span> <span class="ss">:scm</span><span class="p">,</span> <span class="ss">:git</span>
+</span><span class='line'><span class="n">set</span> <span class="ss">:deploy_via</span><span class="p">,</span> <span class="ss">:remote_cache</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;default_run_options[:pty] = true</span>
+</span><span class='line'><span class="sr">ssh_options[:forward_agent] = true&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">set</span> <span class="ss">:git_shallow_clone</span><span class="p">,</span> <span class="mi">1</span>
+</span><span class='line'><span class="n">set</span> <span class="ss">:git_enable_submodules</span><span class="p">,</span> <span class="mi">1</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>title: deploy/staging.rb </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;-&lt;em&gt;- encoding : utf-8 -&lt;/em</span><span class="o">&gt;-&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;set :user, &quot;root&quot;</span>
+</span><span class='line'><span class="sr">set :repository, &quot;git@github.com:foo/</span><span class="n">bar</span><span class="o">.</span><span class="n">git</span><span class="s2">&quot;</span>
+</span><span class='line'><span class="s2">set :branch, &quot;</span><span class="n">master</span><span class="s2">&quot;</span>
+</span><span class='line'><span class="s2">set :deploy_to, &quot;</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">staging</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">bar</span><span class="s2">&quot;&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s2">&lt;p&gt;role :web, &quot;</span><span class="n">foo</span><span class="o">.</span><span class="n">bar</span><span class="o">.</span><span class="n">com</span><span class="s2">&quot; # Your HTTP server, Apache/etc</span>
+</span><span class='line'><span class="s2">role :app, &quot;</span><span class="n">foo</span><span class="o">.</span><span class="n">bar</span><span class="o">.</span><span class="n">com</span><span class="s2">&quot; # This may be the same as your &lt;code&gt;Web&lt;/code&gt; server</span>
+</span><span class='line'><span class="s2">role :db, &quot;</span><span class="n">foo</span><span class="o">.</span><span class="n">bar</span><span class="o">.</span><span class="n">com</span><span class="s2">&quot;, :primary =&gt; true # This is where Rails migrations will run&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s2">&lt;h1&gt;tasks&lt;/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s2">&lt;p&gt;namespace :deploy do</span>
+</span><span class='line'><span class="s2">  task :start, :roles =&gt; :app do&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s2">&lt;pre&gt;&lt;code&gt;run &quot;</span><span class="n">touch</span> <span class="c1">#{current_path}/tmp/restart.txt&quot;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  task :stop, :roles =&gt; :app do&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="c1"># Do nothing.</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  desc &quot;Restart Application&quot;</span>
+</span><span class='line'><span class="sr">  task :restart, :roles =&gt; :app do&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">run</span> <span class="s2">&quot;touch </span><span class="si">#{</span><span class="n">current_path</span><span class="si">}</span><span class="s2">/tmp/restart.txt&quot;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  desc &quot;Symlink shared resources on each release&quot;</span>
+</span><span class='line'><span class="sr">  task :symlink_shared, :roles =&gt; :app do&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">run</span> <span class="s2">&quot;ln -nfs </span><span class="si">#{</span><span class="n">shared_path</span><span class="si">}</span><span class="s2">/config/database.yml </span><span class="si">#{</span><span class="n">release_path</span><span class="si">}</span><span class="s2">/config/database.yml&quot;</span>
+</span><span class='line'><span class="n">run</span> <span class="s2">&quot;ln -nfs </span><span class="si">#{</span><span class="n">shared_path</span><span class="si">}</span><span class="s2">/config/mailers.yml </span><span class="si">#{</span><span class="n">release_path</span><span class="si">}</span><span class="s2">/config/mailers.yml&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#run &quot;mkdir #{release_path}/public/stylesheets/compiled&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">run</span> <span class="s2">&quot;ln -nfs </span><span class="si">#{</span><span class="n">shared_path</span><span class="si">}</span><span class="s2">/ckeditor_assets </span><span class="si">#{</span><span class="n">release_path</span><span class="si">}</span><span class="s2">/public/ckeditor_assets&quot;</span>
+</span><span class='line'><span class="n">run</span> <span class="s2">&quot;ln -nfs </span><span class="si">#{</span><span class="n">shared_path</span><span class="si">}</span><span class="s2">/system </span><span class="si">#{</span><span class="n">release_path</span><span class="si">}</span><span class="s2">/public/system&quot;</span>
+</span><span class='line'><span class="n">run</span> <span class="s2">&quot;chmod 0777 </span><span class="si">#{</span><span class="n">release_path</span><span class="si">}</span><span class="s2">/public/stylesheets/compiled&quot;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;after &#39;deploy:update_code&#39;, &#39;deploy:symlink_shared&#39;&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">namespace</span> <span class="ss">:db</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">desc</span> <span class="s2">&quot;migrate db&quot;</span>
+</span><span class='line'>  <span class="n">task</span> <span class="ss">:migrate</span><span class="p">,</span> <span class="ss">:roles</span> <span class="o">=&gt;</span> <span class="ss">:app</span> <span class="k">do</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;run &quot;cd </span><span class="si">#{</span><span class="n">release_path</span><span class="si">}</span><span class="sr"> &amp;amp;&amp;amp; RAILS_ENV=production rake db:migrate&quot;</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end</span>
+</span><span class='line'><span class="sr">end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>运行部署后报错：</p>
 
 <p> <img src="http://p4.42qu.us/721/820/149300.jpg"></p>
 
@@ -116,15 +309,43 @@
 
 <p>Finally, I have added a third line that tells Capistrano to finish it all up by running the cap deploy:cleanup task, which removes all but the last 5 releases from the releases directory. We do this for good housekeeping reasons so that we are not bloating our server with releases that we don't need.</p>
 
+<h1>RVM Issue</h1>
+
 <p>报错提示：
 <img src="http://p4.42qu.us/721/821/149301.jpg"></p>
 
-<p>好像是rvm不能选择ruby版本的问题。[后来发了一个帖子关于Linode上RVM的奇怪问题，每次ssh登陆服务器后，发现rvm并未选择ruby版本，即使上次登陆的时候<code>rvm --default use ree</code>][http://ruby-china.org/topics/386],用了大家给的方法后,没找到合适答案后,折腾开始了:</p>
+<p>好像是rvm不能选择ruby版本的问题。[后来发了一个帖子关于Linode上RVM的奇怪问题，每次ssh登陆服务器后，发现rvm并未选择ruby版本，即使上次登陆的时候rvm的默认ruby选项][http://ruby-china.org/topics/386],用了大家给的方法后,没找到合适答案后,rebuild linode服务器.</p>
+
+<p><code>Update @ 2011-12-9 12:57</code></p>
+
+<p>还是找到了Rvm的解决方案:</p>
+
+<p>When you use capistrano it uses a non-interactive ssh session which doesn't run .profile or .bash_rc and it gets you a really bare bones environment. You will have to specify all the variables you need to use. This is especially important with RVM which relies on a lot of variables to work properly.</p>
+
+<p>The following can be added to your capistrano recipe:
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>set :default_environment, {
+</span><span class='line'>'PATH' => "/usr/local/sphinx/bin:/usr/local/rvm/gems/ruby-1.9.2-p0/bin:/usr/local/rvm/gems/ruby-1.9.2-p0@global/bin:/usr/local/rvm/rubies/ruby-1.9.2-p0/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+</span><span class='line'>'RUBY_VERSION' => 'ruby-1.9.2-p0',
+</span><span class='line'>'GEM_HOME' => '/usr/local/rvm/gems/ruby-1.9.2-p0',
+</span><span class='line'>'GEM_PATH' => '/usr/local/rvm/gems/ruby-1.9.2-p0:/usr/local/rvm/gems/ruby-1.9.2-p0@global',
+</span><span class='line'>'BUNDLE_PATH' => '/usr/local/rvm/gems/ruby-1.9.2-p0',
+</span><span class='line'>'MY_RUBY_HOME' => '/usr/local/rvm/rubies/ruby-1.9.2-p0',
+</span><span class='line'>:'RAILS_ENV' => 'production'
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure></notextile></div>
+You'll probably have to tweak this for your particular enviroment, but hopefully this gives you a good starting point to work from.</p>
+
+<h1>Rebuild Linode</h1>
 
 <ul>
-<li><code>rvm uninstall ree</code>,<code>rvm install ree</code>报错了</li>
-<li><code>rm -rf /usr/local/rvm</code>,并取消了rvm有关的环境设置,下载了ree的源码，编译，安装passenger出错,大改是说
-<code>openssl lib installed no longer supports SSLv2</code>,老大注释了源码中sslv2相关的部分，ok了.然而Emall依然部署不上去,所以后来想了想,还是rebuild linode服务器吧。还是犹豫了一下,因为好久以来都是在上面部署的服务，很多服务还是处于一半的状况,没办法从头来吧.</li>
 <li>ssh到服务器，做最基本的配置：</li>
 </ul>
 
@@ -160,9 +381,128 @@
 </span><span class='line'>Local time is now:      Thu Dec  8 10:28:55 CST 2011.
 </span><span class='line'>Universal Time is now:  Thu Dec  8 02:28:55 UTC 2011.&lt;/p>
 </span><span class='line'>
-</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div>
-- 因为又要装很多服务，而且也会有很多配置,考虑到效率，选择使用chef。
-- ok。今天的折腾就开始了，chef的文档太详细了！丰富到我在众多的流程转向If Else中不知方向...好吧,最后终于知道怎么新建一个node节点了，可是第一步<code>knife bootstrap host -u root -P passwd</code>就ssh keys出错了,应该是kes不匹配,修改了.ssh/known_hosts后ok了.</p>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h1>Chef-Cookbooks&amp;Recipe</h1>
+
+<ul>
+<li>因为又要装很多服务，而且也会有很多配置,考虑到效率，选择使用chef-repo,本地建立chef workstation。</li>
+<li>表示一下,chef的文档太详细了!</li>
+<li>前阵子修改了服务器域名转向,需要修改一下.SSH中的known_hosts,删掉冲突的行就行了.</li>
+<li>chef-repo依然是git版本控制,很强大</li>
+</ul>
+
+
+<p>先看个在远程服务器node上安装apache2的sample:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>local:workstation </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Zh:chef-repo bill$ knife cookbook site install apache2
+</span><span class='line'>Zh:chef-repo bill$ knife node run_list node name add "recipe[apache2]"
+</span><span class='line'>Zh:chef-repo bill$ ls cookbooks/
+</span><span class='line'>apache2
+</span><span class='line'>Zh:chef-repo bill$ knife node run_list add "recipe[apache2]"
+</span><span class='line'>Zh:chef-repo bill$ knife cookbook upload apache2
+</span><span class='line'>Uploading apache2             [1.0.2]
+</span><span class='line'>upload complete
+</span><span class='line'>Zh:chef-repo bill$ knife node show log -r
+</span><span class='line'>run_list:  recipe[apache2]</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>node:nodename </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>nodename:# sudo chef client</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>安装workstation配置chef-client</h2>
+
+<ul>
+<li>因为使用的是Hosted-Chef,所以首先你要有一个opscode的账号,免费版的提供五个节点和两个管理员权限.然后创建一个orgnazition，会提示你下载knife配置文件和密钥文件,然后也到Users的界面生成密钥,一起下载下来</li>
+<li>安装依赖:ruby ree +,ruby-dev,libopenssl-ruby,ri,irb,build-essential,wget,ssl-cert,git-core</li>
+<li>安装rubygems:下载源码后解压，cd到该路径,执行<code>sudo ruby setup.rb --no-format-executable</code></li>
+<li><p>安装chef，创建必须的目录
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Zh:~ bill$ sudo gem install chef
+</span><span class='line'>Zh:~ bill$ git clone https://github.com/opscode/chef-repo.git&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>create chef configuration directories:&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;p>Zh:~ bill$ mkdir -p ~/chef-repo/.chef&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>copy the keys and knife configuration you download into this directory&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;p>Zh:~ bill$ cp USERNAME.pem ~/chef-repo/.chef
+</span><span class='line'>Zh:~ bill$ cp ORGANIZATION-validator.pem ~/Documents/chef-repo/.chef
+</span><span class='line'>Zh:~ bill$ cp knife.rb ~/chef-repo/.chef</span></code></pre></td></tr></table></div></figure></notextile></div></p></li>
+<li>测试一下knife是否与Hosted Chef API 建立了连接</li>
+</ul>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Zh:chef-repo bill$ knife client list
+</span><span class='line'>  ORGNIZATION-validator</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<blockquote><p>workstation就完成了,现在可以下载并上传recipe,以及用knife管理node的配置安装工作了.你可以选择将workstation这台电脑配置成chef-client,或者在一个node上配置chef-client并用workstation管理它.</p></blockquote>
+
+<h3>配置本地的chef client</h3>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Zh:~ bill$ cd chef-repo
+</span><span class='line'>Zh:~ bill$ knife configure client ./client-config&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>After this done,you will have a client-config directory in your local repository:&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;p>Zh:~ bill$ sudo mkdir /etc/clef
+</span><span class='line'>Zh:~ bill$ sudo cp -r ~/chef-repo/client-config/* /etc/chef&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>You will now need to run chef-client for the first time,so your node is added to the client list.&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;p>Zh:~ bill$ sudo chef-client&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>Check if works&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;p>Zh:~ bill$ cd chef-repo
+</span><span class='line'>Zh:chef-repo bill$ knife client list</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h4>cookbook</h4>
+
+<h4>recipe</h4>
+
+<h3>配置远程的chef client</h3>
 ]]></content>
   </entry>
   

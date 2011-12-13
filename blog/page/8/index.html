@@ -9,55 +9,7 @@
   <meta name="author" content="Bill Zh">
 
   
-  <meta name="description" content="_config.yml 1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49 &hellip;">
+  <meta name="description" content="With this plugin you can write blocks of code directly in your posts and optionally add titles and links. Syntax Start and end must be in one couple &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -128,7 +80,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2011/12/02/octopress-configuration-files/">Octopress: Configuration Files</a></h1>
+      <h1 class="entry-title"><a href="/blog/2011/12/03/octopress-codeblock/">Octopress: Codeblock</a></h1>
     
     
       <p class="meta">
@@ -144,305 +96,75 @@
   
 
 
-<time datetime="2011-12-02T07:44:00+08:00" pubdate data-updated="true">Dec 2<span>nd</span>, 2011</time>
+<time datetime="2011-12-03T12:21:00+08:00" pubdate data-updated="true">Dec 3<span>rd</span>, 2011</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><h1>_config.yml</h1>
+  <div class="entry-content"><p>With this plugin you can write blocks of code directly in your posts and optionally add titles and links.</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
-<span class='line-number'>62</span>
-<span class='line-number'>63</span>
-<span class='line-number'>64</span>
-<span class='line-number'>65</span>
-<span class='line-number'>66</span>
-<span class='line-number'>67</span>
-<span class='line-number'>68</span>
-<span class='line-number'>69</span>
-<span class='line-number'>70</span>
-<span class='line-number'>71</span>
-<span class='line-number'>72</span>
-<span class='line-number'>73</span>
-<span class='line-number'>74</span>
-<span class='line-number'>75</span>
-<span class='line-number'>76</span>
-<span class='line-number'>77</span>
-<span class='line-number'>78</span>
-<span class='line-number'>79</span>
-<span class='line-number'>80</span>
-<span class='line-number'>81</span>
-<span class='line-number'>82</span>
-<span class='line-number'>83</span>
-<span class='line-number'>84</span>
-<span class='line-number'>85</span>
-<span class='line-number'>86</span>
-<span class='line-number'>87</span>
-<span class='line-number'>88</span>
-<span class='line-number'>89</span>
-<span class='line-number'>90</span>
-<span class='line-number'>91</span>
-<span class='line-number'>92</span>
-<span class='line-number'>93</span>
-<span class='line-number'>94</span>
-<span class='line-number'>95</span>
-<span class='line-number'>96</span>
-<span class='line-number'>97</span>
-<span class='line-number'>98</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="c1"># ----------------------- #</span>
-</span><span class='line'><span class="c1">#      Main Configs       #</span>
-</span><span class='line'><span class="c1"># ----------------------- #</span>
-</span><span class='line'>
-</span><span class='line'><span class="l-Scalar-Plain">url</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">http://geekontheway.github.com</span>
-</span><span class='line'><span class="l-Scalar-Plain">title</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Geekontheway</span>
-</span><span class='line'><span class="l-Scalar-Plain">subtitle</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Stay hungry Stay foolish</span>
-</span><span class='line'><span class="l-Scalar-Plain">author</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Bill Zh</span>
-</span><span class='line'><span class="l-Scalar-Plain">simple_search</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">http://google.com/search</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># Default date format is &quot;ordinal&quot; (resulting in &quot;July 22nd 2007&quot;)</span>
-</span><span class='line'><span class="c1"># You can customize the format as defined in</span>
-</span><span class='line'><span class="c1"># http://www.ruby-doc.org/core-1.9.2/Time.html#method-i-strftime</span>
-</span><span class='line'><span class="c1"># Additionally, %o will give you the ordinal representation of the day</span>
-</span><span class='line'><span class="l-Scalar-Plain">date_format</span><span class="p-Indicator">:</span> <span class="s">&quot;ordinal&quot;</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># RSS / Email (optional) subscription links (change if using something like Feedburner)</span>
-</span><span class='line'><span class="l-Scalar-Plain">subscribe_rss</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">/atom.xml</span>
-</span><span class='line'><span class="l-Scalar-Plain">subscribe_email</span><span class="p-Indicator">:</span>
-</span><span class='line'><span class="c1"># RSS feeds can list your email address if you like</span>
-</span><span class='line'><span class="l-Scalar-Plain">email</span><span class="p-Indicator">:</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># ----------------------- #</span>
-</span><span class='line'><span class="c1">#    Jekyll &amp; Plugins     #</span>
-</span><span class='line'><span class="c1"># ----------------------- #</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># If publishing to a subdirectory as in http://site.com/project set &#39;root: /project&#39;</span>
-</span><span class='line'><span class="l-Scalar-Plain">root</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">/</span>
-</span><span class='line'><span class="l-Scalar-Plain">permalink</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">/blog/:year/:month/:day/:title/</span>
-</span><span class='line'><span class="l-Scalar-Plain">source</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">source</span>
-</span><span class='line'><span class="l-Scalar-Plain">destination</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">public</span>
-</span><span class='line'><span class="l-Scalar-Plain">plugins</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">plugins</span>
-</span><span class='line'><span class="l-Scalar-Plain">code_dir</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">downloads/code</span>
-</span><span class='line'><span class="l-Scalar-Plain">category_dir</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">blog/categories</span>
-</span><span class='line'><span class="l-Scalar-Plain">markdown</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">rdiscount</span>
-</span><span class='line'><span class="l-Scalar-Plain">pygments</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span> <span class="c1"># default python pygments have been replaced by pygments.rb</span>
-</span><span class='line'>
-</span><span class='line'><span class="l-Scalar-Plain">paginate</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">10</span>          <span class="c1"># Posts per page on the blog index</span>
-</span><span class='line'><span class="l-Scalar-Plain">pagination_dir</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">blog</span>  <span class="c1"># Directory base for pagination URLs eg. /blog/page/2/</span>
-</span><span class='line'><span class="l-Scalar-Plain">recent_posts</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">5</span>       <span class="c1"># Posts in the sidebar Recent Posts section</span>
-</span><span class='line'><span class="l-Scalar-Plain">excerpt_link</span><span class="p-Indicator">:</span> <span class="s">&quot;Read</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">&amp;rarr;&quot;</span>  <span class="c1"># &quot;Continue reading&quot; link text at the bottom of excerpted articles</span>
-</span><span class='line'>
-</span><span class='line'><span class="l-Scalar-Plain">titlecase</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>       <span class="c1"># Converts page and post titles to tilecase</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># list each of the sidebar modules you want to include, in the order you want them to appear.</span>
-</span><span class='line'><span class="c1"># To add custom asides, create files in /source/_includes/custom/asides/ and add them to the list like &#39;custom/asides/custom_aside_name.html&#39;</span>
-</span><span class='line'><span class="l-Scalar-Plain">default_asides</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="nv">asides/recent_posts.html</span><span class="p-Indicator">,</span> <span class="nv">asides/github.html</span><span class="p-Indicator">,</span> <span class="nv">asides/twitter.html</span><span class="p-Indicator">,</span> <span class="nv">asides/delicious.html</span><span class="p-Indicator">,</span> <span class="nv">asides/pinboard.html</span><span class="p-Indicator">,</span> <span class="nv">asides/googleplus.html</span><span class="p-Indicator">]</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># Each layout uses the default asides, but they can have their own asides instead. Simply uncomment the lines below</span>
-</span><span class='line'><span class="c1"># and add an array with the asides you want to use.</span>
-</span><span class='line'><span class="c1"># blog_index_asides:</span>
-</span><span class='line'><span class="c1"># post_asides:</span>
-</span><span class='line'><span class="c1"># page_asides:</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># ----------------------- #</span>
-</span><span class='line'><span class="c1">#   3rd Party Settings    #</span>
-</span><span class='line'><span class="c1"># ----------------------- #</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># Github repositories</span>
-</span><span class='line'><span class="l-Scalar-Plain">github_user</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">geekontheway</span>
-</span><span class='line'><span class="l-Scalar-Plain">github_repo_count</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">0</span>
-</span><span class='line'><span class="l-Scalar-Plain">github_show_profile_link</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
-</span><span class='line'><span class="l-Scalar-Plain">github_skip_forks</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># Twitter</span>
-</span><span class='line'><span class="l-Scalar-Plain">twitter_user</span><span class="p-Indicator">:</span>
-</span><span class='line'><span class="l-Scalar-Plain">twitter_tweet_count</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">4</span>
-</span><span class='line'><span class="l-Scalar-Plain">twitter_show_replies</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
-</span><span class='line'><span class="l-Scalar-Plain">twitter_follow_button</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
-</span><span class='line'><span class="l-Scalar-Plain">twitter_show_follower_count</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
-</span><span class='line'><span class="l-Scalar-Plain">twitter_tweet_button</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># Google +1</span>
-</span><span class='line'><span class="l-Scalar-Plain">google_plus_one</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
-</span><span class='line'><span class="l-Scalar-Plain">google_plus_one_size</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">medium</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># Google Plus Profile</span>
-</span><span class='line'><span class="c1"># Hidden: No visible button, just add author information to search results</span>
-</span><span class='line'><span class="l-Scalar-Plain">googleplus_user</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">xiaoliang@networking.io</span>
-</span><span class='line'><span class="l-Scalar-Plain">googleplus_hidden</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># Pinboard</span>
-</span><span class='line'><span class="l-Scalar-Plain">pinboard_user</span><span class="p-Indicator">:</span>
-</span><span class='line'><span class="l-Scalar-Plain">pinboard_count</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">3</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># Delicious</span>
-</span><span class='line'><span class="l-Scalar-Plain">delicious_user</span><span class="p-Indicator">:</span>
-</span><span class='line'><span class="l-Scalar-Plain">delicious_count</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">3</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># Disqus Comments</span>
-</span><span class='line'><span class="l-Scalar-Plain">disqus_short_name</span><span class="p-Indicator">:</span>
-</span><span class='line'><span class="l-Scalar-Plain">disqus_show_comment_count</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># Google Analytics</span>
-</span><span class='line'><span class="l-Scalar-Plain">google_analytics_tracking_id</span><span class="p-Indicator">:</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># Facebook Like</span>
-</span><span class='line'><span class="l-Scalar-Plain">facebook_like</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
-</span></code></pre></td></tr></table></div></figure>
+<h1>Syntax</h1>
+
+<p>Start and end must be in <strong>one couple of brace percent</strong>,they will also works in HTML block.</p>
+
+<pre>
+ codeblock [title] [lang:language] [url] [link text] 
+
+ code snippet
+
+ endcodeblock 
+</pre>
 
 
-<h1>config.rb</h1>
+<h1>Example</h1>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;yaml&#39;</span>
-</span><span class='line'><span class="no">YAML</span><span class="o">::</span><span class="no">ENGINE</span><span class="o">.</span><span class="n">yamler</span> <span class="o">=</span> <span class="s1">&#39;syck&#39;</span>
-</span><span class='line'><span class="n">project_type</span> <span class="o">=</span> <span class="ss">:stand_alone</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># Publishing paths</span>
-</span><span class='line'><span class="n">http_path</span> <span class="o">=</span> <span class="s2">&quot;/&quot;</span>
-</span><span class='line'><span class="n">http_images_path</span> <span class="o">=</span> <span class="s2">&quot;/images&quot;</span>
-</span><span class='line'><span class="n">http_fonts_path</span> <span class="o">=</span> <span class="s2">&quot;/fonts&quot;</span>
-</span><span class='line'><span class="n">css_dir</span> <span class="o">=</span> <span class="s2">&quot;public/stylesheets&quot;</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># Local development paths</span>
-</span><span class='line'><span class="n">sass_dir</span> <span class="o">=</span> <span class="s2">&quot;sass&quot;</span>
-</span><span class='line'><span class="n">images_dir</span> <span class="o">=</span> <span class="s2">&quot;source/images&quot;</span>
-</span><span class='line'><span class="n">fonts_dir</span> <span class="o">=</span> <span class="s2">&quot;source/fonts&quot;</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">line_comments</span> <span class="o">=</span> <span class="kp">false</span>
-</span><span class='line'><span class="n">output_style</span> <span class="o">=</span> <span class="ss">:compressed</span>
-</span></code></pre></td></tr></table></div></figure>
+<pre>
+ codeblock
+Awesome code snippet
+ endcodeblock
+</pre>
 
 
-<h1>config.ru</h1>
+<p>You can also add syntax highlighting like this.</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;bundler/setup&#39;</span>
-</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;sinatra/base&#39;</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># The project root directory</span>
-</span><span class='line'><span class="vg">$root</span> <span class="o">=</span> <span class="o">::</span><span class="no">File</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="bp">__FILE__</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">class</span> <span class="nc">SinatraStaticServer</span> <span class="o">&lt;</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Base</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="n">get</span><span class="p">(</span><span class="sr">/.+/</span><span class="p">)</span> <span class="k">do</span>
-</span><span class='line'>      <span class="n">send_sinatra_file</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">path</span><span class="p">)</span> <span class="p">{</span><span class="mi">404</span><span class="p">}</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="n">not_found</span> <span class="k">do</span>
-</span><span class='line'>      <span class="n">send_sinatra_file</span><span class="p">(</span><span class="s1">&#39;404.html&#39;</span><span class="p">)</span> <span class="p">{</span><span class="s2">&quot;Sorry, I cannot find </span><span class="si">#{</span><span class="n">request</span><span class="o">.</span><span class="n">path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">}</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">send_sinatra_file</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">missing_file_block</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">file_path</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="no">File</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="bp">__FILE__</span><span class="p">),</span> <span class="s1">&#39;public&#39;</span><span class="p">,</span>  <span class="n">path</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">file_path</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s1">&#39;index.html&#39;</span><span class="p">)</span> <span class="k">unless</span> <span class="n">file_path</span> <span class="o">=~</span> <span class="sr">/\.[a-z]+$/i</span>
-</span><span class='line'>    <span class="no">File</span><span class="o">.</span><span class="n">exist?</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span> <span class="p">?</span> <span class="n">send_file</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span> <span class="p">:</span> <span class="n">missing_file_block</span><span class="o">.</span><span class="n">call</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
+<pre>
+ codeblock lang:objc
+[rectangle setX: 10 y: 10 width: 20 height: 20];
+ endcodeblock
+</pre>
 
 
+<p>Including a file extension in the title enables highlighting</p>
 
+<pre>
+ codeblock Time to be Awesome - awesome.rb
+puts "Awesome!" unless lame
+ endcodeblock
+</pre>
+
+
+<p>Pygments supports many languages, but doesn’t recognize some file extensions. Add lang:your_language to force highlighting if the filename doesn’t work.</p>
+
+<pre>
+ codeblock Here's an example .rvmrc file. lang:ruby
+rvm ruby-1.8.6 # ZOMG, seriously? We still use this version?
+ endcodeblock
+</pre>
+
+
+<p>Add an optional URL to enable downloading or linking to source.</p>
+
+<pre>
+ codeblock Javascript Array Syntax lang:js http://j.mp/pPUUmW MDN Documentation
+var arr1 = new Array(arrayLength);
+var arr2 = new Array(element0, element1, ..., elementN);
+ endcodeblock
+</pre>
+
+
+<p>The last argument link_text is optional. You may want to link to a source for download file, or documentation on some other site.</p>
 </div>
   
   
@@ -467,11 +189,23 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2011/12/08/from-ssl-to-ssh/">从ssl说起</a>
+        <a href="/blog/2011/12/10/learning-ruby/">Ruby语言入门by园田裕贵</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2011/12/06/nginxzi-qi-dong-she-zhi/">nginx自启动设置</a>
+        <a href="/blog/2011/12/09/linode-assets/">Linode上相关安装和设置</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/12/09/starting-capistrano/">初学capistrano</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/12/09/rvm-system-wide-install-script/">分享一个全局RVM的安装脚本 Ubuntu 10.04 </a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/12/08/from-ssl-to-ssh/">从Capsitrano说起</a>
       </li>
     
       <li class="post">
@@ -492,14 +226,6 @@
     
       <li class="post">
         <a href="/blog/2011/12/03/octopress-image-tag/">Octopress: Image tag</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2011/12/02/octopress-configuration-files/">Octopress: Configuration files</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2011/12/01/octopress-the-first-day/">Octopress: The first day</a>
       </li>
     
   </ul>

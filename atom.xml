@@ -4,7 +4,7 @@
   <title><![CDATA[Geekontheway]]></title>
   <link href="http://geekontheway.github.com/atom.xml" rel="self"/>
   <link href="http://geekontheway.github.com/"/>
-  <updated>2011-12-09T11:36:44+08:00</updated>
+  <updated>2011-12-10T12:11:29+08:00</updated>
   <id>http://geekontheway.github.com/</id>
   <author>
     <name><![CDATA[Bill Zh]]></name>
@@ -14,12 +14,856 @@
 
   
   <entry>
-    <title type="html"><![CDATA[从ssl说起]]></title>
+    <title type="html"><![CDATA[Ruby语言入门by园田裕贵]]></title>
+    <link href="http://geekontheway.github.com/blog/2011/12/10/learning-ruby/"/>
+    <updated>2011-12-10T11:39:00+08:00</updated>
+    <id>http://geekontheway.github.com/blog/2011/12/10/learning-ruby</id>
+    <content type="html"><![CDATA[<p><img src="images/learningruby.jpeg"></p>
+
+<p>最近在读这本书,   <a href="http://yugui.jp/files/learning-ruby-examples.20080616-143903.zip">源码在此</a></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>001: 他言語プログラマのためのRuby入門書『初めてのRuby』のサポートページです.</span></code></pre></td></tr></table></div></figure>
+
+
+<p>有两个想法：</p>
+
+<blockquote><p>1.有时间了学学日语</p>
+
+<p>2.如何替换掉文本文件中每行首/行尾的行号,空格&#8230;eg.?分别使用awk+sed,vim,textmate,Sh拿出解决方案.</p></blockquote>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Linode上相关安装和设置]]></title>
+    <link href="http://geekontheway.github.com/blog/2011/12/09/linode-assets/"/>
+    <updated>2011-12-09T16:34:00+08:00</updated>
+    <id>http://geekontheway.github.com/blog/2011/12/09/linode-assets</id>
+    <content type="html"><![CDATA[<blockquote><p>Deploying Rails to Linode</p></blockquote>
+
+<div><script src='https://gist.github.com/1441588.js?file='></script>
+<noscript><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset='utf-8'&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;chrome=1&quot;&gt;
+        &lt;title&gt;404 - GitHub&lt;/title&gt;
+    &lt;link rel=&quot;search&quot; type=&quot;application/opensearchdescription+xml&quot; href=&quot;/opensearch.xml&quot; title=&quot;GitHub&quot; /&gt;
+    &lt;link rel=&quot;fluid-icon&quot; href=&quot;https://github.com/fluidicon.png&quot; title=&quot;GitHub&quot; /&gt;
+
+    
+    
+
+    
+
+    &lt;link href=&quot;https://a248.e.akamai.net/assets.github.com/stylesheets/bundles/github-74801ded75693533333ef343dece5bacb90ed607.css&quot; media=&quot;screen&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+    
+
+    &lt;script src=&quot;https://a248.e.akamai.net/assets.github.com/javascripts/bundles/jquery-6bd7d190e98b26f66e07c297fcfbe5ca057cb2fa.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://a248.e.akamai.net/assets.github.com/javascripts/bundles/github-de3b828ac620f46e9ec91b15b79a31b23f096b2a.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+    
+
+    
+  &lt;/head&gt;
+
+
+  &lt;body class=&quot;logged_out   env-production  &quot;&gt;
+    
+
+
+    
+    &lt;div id=&quot;main&quot;&gt;
+      &lt;div id=&quot;header&quot; class=&quot;true&quot;&gt;
+          &lt;a class=&quot;logo&quot; href=&quot;https://github.com&quot;&gt;
+            &lt;img alt=&quot;github&quot; class=&quot;default svg&quot; height=&quot;45&quot; src=&quot;https://a248.e.akamai.net/assets.github.com/images/modules/header/logov6.svg?1315937721&quot; /&gt;
+            &lt;img alt=&quot;github&quot; class=&quot;default png&quot; height=&quot;45&quot; src=&quot;https://a248.e.akamai.net/assets.github.com/images/modules/header/logov6.png?1315937721&quot; /&gt;
+            &lt;!--[if (gt IE 8)|!(IE)]&gt;&lt;!--&gt;
+            &lt;img alt=&quot;github&quot; class=&quot;hover svg&quot; height=&quot;45&quot; src=&quot;https://a248.e.akamai.net/assets.github.com/images/modules/header/logov6-hover.svg?1315937721&quot; /&gt;
+            &lt;img alt=&quot;github&quot; class=&quot;hover png&quot; height=&quot;45&quot; src=&quot;https://a248.e.akamai.net/assets.github.com/images/modules/header/logov6-hover.png?1315937721&quot; /&gt;
+            &lt;!--&lt;![endif]--&gt;
+          &lt;/a&gt;
+
+        &lt;div class=&quot;topsearch&quot;&gt;
+    &lt;!--
+      make sure to use fully qualified URLs here since this nav
+      is used on error pages on other domains
+    --&gt;
+    &lt;ul class=&quot;nav logged_out&quot;&gt;
+        &lt;li class=&quot;pricing&quot;&gt;&lt;a href=&quot;https://github.com/plans&quot;&gt;Signup and Pricing&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;explore&quot;&gt;&lt;a href=&quot;https://github.com/explore&quot;&gt;Explore GitHub&lt;/a&gt;&lt;/li&gt;
+      &lt;li class=&quot;features&quot;&gt;&lt;a href=&quot;https://github.com/features&quot;&gt;Features&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;blog&quot;&gt;&lt;a href=&quot;https://github.com/blog&quot;&gt;Blog&lt;/a&gt;&lt;/li&gt;
+      &lt;li class=&quot;login&quot;&gt;&lt;a href=&quot;https://github.com/login?return_to=%2Fgist%2F1441588%2F&quot;&gt;Login&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+
+      &lt;/div&gt;
+
+      
+        &lt;div class=&quot;site&quot;&gt;
+          
+
+&lt;style type=&quot;text/css&quot;&gt;
+    * {
+        margin: 0px;
+        padding: 0px;
+    }
+    #parallax_illustration {
+        display:block;
+        width: 940px;
+        height: 375px;
+        margin: 20px 0 0 20px;
+        position: relative;
+        overflow: hidden;
+    }
+    #parallax_illustration #parallax_error_text {
+        position: absolute;
+        top: 72px;
+        left: 72px;
+        z-index: 10;
+    }
+    #parallax_illustration #parallax_octocat {
+        position: absolute;
+        top: 94px;
+        left: 356px;
+        z-index: 9;
+    }
+    #parallax_illustration #parallax_speeder {
+        position: absolute;
+        top: 150px;
+        left: 432px;
+        z-index: 8;
+    }
+    #parallax_illustration #parallax_octocatshadow {
+        position: absolute;
+        top: 297px;
+        left: 371px;
+        z-index: 7;
+    }
+    #parallax_illustration #parallax_speedershadow {
+        position: absolute;
+        top: 263px;
+        left: 442px;
+        z-index: 6;
+    }
+    #parallax_illustration #parallax_building_1 {
+        position: absolute;
+        top: 73px;
+        left: 467px;
+        z-index: 5;
+    }
+    #parallax_illustration #parallax_building_2 {
+        position: absolute;
+        top: 113px;
+        left: 762px;
+        z-index: 4;
+    }
+    #parallax_illustration #parallax_bg {
+        position: absolute;
+        top: -20px;
+        left: -20px;
+        z-index: 1;
+    }
+&lt;/style&gt;
+
+
+
+&lt;div id=&quot;parallax_illustration&quot;&gt;
+  &lt;img alt=&quot;404 | &amp;ldquo;This is not the web page you are looking for&amp;rdquo;&quot; class=&quot;js-plaxify&quot; data-xrange=&quot;20&quot; data-yrange=&quot;10&quot; height=&quot;249&quot; id=&quot;parallax_error_text&quot; src=&quot;https://a248.e.akamai.net/assets.github.com/images/modules/404/parallax_errortext.png?1315937721&quot; width=&quot;271&quot; /&gt;
+  &lt;img alt=&quot;Octobi Wan Catnobi&quot; class=&quot;js-plaxify&quot; data-xrange=&quot;10&quot; data-yrange=&quot;10&quot; height=&quot;230&quot; id=&quot;parallax_octocat&quot; src=&quot;https://a248.e.akamai.net/assets.github.com/images/modules/404/parallax_octocat.png?1315937721&quot; width=&quot;188&quot; /&gt;
+  &lt;img alt=&quot;land speeder&quot; class=&quot;js-plaxify&quot; data-xrange=&quot;10&quot; data-yrange=&quot;10&quot; height=&quot;156&quot; id=&quot;parallax_speeder&quot; src=&quot;https://a248.e.akamai.net/assets.github.com/images/modules/404/parallax_speeder.png?1315937721&quot; width=&quot;440&quot; /&gt;
+  &lt;img alt=&quot;Octobi Wan Catnobi's shadow&quot; class=&quot;js-plaxify&quot; data-xrange=&quot;10&quot; data-yrange=&quot;10&quot; height=&quot;49&quot; id=&quot;parallax_octocatshadow&quot; src=&quot;https://a248.e.akamai.net/assets.github.com/images/modules/404/parallax_octocatshadow.png?1315937721&quot; width=&quot;166&quot; /&gt;
+  &lt;img alt=&quot;land speeder's shadow&quot; class=&quot;js-plaxify&quot; data-xrange=&quot;10&quot; data-yrange=&quot;10&quot; height=&quot;75&quot; id=&quot;parallax_speedershadow&quot; src=&quot;https://a248.e.akamai.net/assets.github.com/images/modules/404/parallax_speedershadow.png?1315937721&quot; width=&quot;430&quot; /&gt;
+  &lt;img alt=&quot;building&quot; class=&quot;js-plaxify&quot; data-invert=&quot;true&quot; data-xrange=&quot;50&quot; data-yrange=&quot;20&quot; height=&quot;123&quot; id=&quot;parallax_building_1&quot; src=&quot;https://a248.e.akamai.net/assets.github.com/images/modules/404/parallax_building_1.png?1315937721&quot; width=&quot;304&quot; /&gt;
+  &lt;img alt=&quot;building&quot; class=&quot;js-plaxify&quot; data-invert=&quot;true&quot; data-xrange=&quot;75&quot; data-yrange=&quot;30&quot; height=&quot;50&quot; id=&quot;parallax_building_2&quot; src=&quot;https://a248.e.akamai.net/assets.github.com/images/modules/404/parallax_building_2.png?1315937721&quot; width=&quot;116&quot; /&gt;
+  &lt;img alt=&quot;building&quot; class=&quot;js-plaxify&quot; data-invert=&quot;true&quot; data-xrange=&quot;0&quot; data-yrange=&quot;40&quot; height=&quot;415&quot; id=&quot;parallax_bg&quot; src=&quot;https://a248.e.akamai.net/assets.github.com/images/modules/404/parallax_bg.jpg?1315937721&quot; width=&quot;940&quot; /&gt;
+&lt;/div&gt;
+
+&lt;/script&gt;
+
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;!-- footer --&gt;
+    &lt;div id=&quot;footer&quot; &gt;
+      
+  &lt;div class=&quot;upper_footer&quot;&gt;
+     &lt;div class=&quot;site&quot; class=&quot;clearfix&quot;&gt;
+
+       &lt;!--[if IE]&gt;&lt;h4 id=&quot;blacktocat_ie&quot;&gt;GitHub Links&lt;/h4&gt;&lt;![endif]--&gt;
+       &lt;![if !IE]&gt;&lt;h4 id=&quot;blacktocat&quot;&gt;GitHub Links&lt;/h4&gt;&lt;![endif]&gt;
+
+       &lt;ul class=&quot;footer_nav&quot;&gt;
+         &lt;h4&gt;GitHub&lt;/h4&gt;
+         &lt;li&gt;&lt;a href=&quot;https://github.com/about&quot;&gt;About&lt;/a&gt;&lt;/li&gt;
+         &lt;li&gt;&lt;a href=&quot;https://github.com/blog&quot;&gt;Blog&lt;/a&gt;&lt;/li&gt;
+         &lt;li&gt;&lt;a href=&quot;https://github.com/features&quot;&gt;Features&lt;/a&gt;&lt;/li&gt;
+         &lt;li&gt;&lt;a href=&quot;https://github.com/contact&quot;&gt;Contact &amp;amp; Support&lt;/a&gt;&lt;/li&gt;
+         &lt;li&gt;&lt;a href=&quot;https://github.com/training&quot;&gt;Training&lt;/a&gt;&lt;/li&gt;
+         &lt;li&gt;&lt;a href=&quot;http://status.github.com/&quot;&gt;Site Status&lt;/a&gt;&lt;/li&gt;
+       &lt;/ul&gt;
+
+       &lt;ul class=&quot;footer_nav&quot;&gt;
+         &lt;h4&gt;Tools&lt;/h4&gt;
+         &lt;li&gt;&lt;a href=&quot;http://mac.github.com/&quot;&gt;GitHub for Mac&lt;/a&gt;&lt;/li&gt;
+         &lt;li&gt;&lt;a href=&quot;http://mobile.github.com/&quot;&gt;Issues for iPhone&lt;/a&gt;&lt;/li&gt;
+         &lt;li&gt;&lt;a href=&quot;https://gist.github.com&quot;&gt;Gist: Code Snippets&lt;/a&gt;&lt;/li&gt;
+         &lt;li&gt;&lt;a href=&quot;http://enterprise.github.com/&quot;&gt;GitHub Enterprise&lt;/a&gt;&lt;/li&gt;
+         &lt;li&gt;&lt;a href=&quot;http://jobs.github.com/&quot;&gt;Job Board&lt;/a&gt;&lt;/li&gt;
+       &lt;/ul&gt;
+
+       &lt;ul class=&quot;footer_nav&quot;&gt;
+         &lt;h4&gt;Extras&lt;/h4&gt;
+         &lt;li&gt;&lt;a href=&quot;http://shop.github.com/&quot;&gt;GitHub Shop&lt;/a&gt;&lt;/li&gt;
+         &lt;li&gt;&lt;a href=&quot;http://octodex.github.com/&quot;&gt;The Octodex&lt;/a&gt;&lt;/li&gt;
+       &lt;/ul&gt;
+
+       &lt;ul class=&quot;footer_nav&quot;&gt;
+         &lt;h4&gt;Documentation&lt;/h4&gt;
+         &lt;li&gt;&lt;a href=&quot;http://help.github.com/&quot;&gt;GitHub Help&lt;/a&gt;&lt;/li&gt;
+         &lt;li&gt;&lt;a href=&quot;http://developer.github.com/&quot;&gt;Developer API&lt;/a&gt;&lt;/li&gt;
+         &lt;li&gt;&lt;a href=&quot;http://github.github.com/github-flavored-markdown/&quot;&gt;GitHub Flavored Markdown&lt;/a&gt;&lt;/li&gt;
+         &lt;li&gt;&lt;a href=&quot;http://pages.github.com/&quot;&gt;GitHub Pages&lt;/a&gt;&lt;/li&gt;
+       &lt;/ul&gt;
+
+     &lt;/div&gt;&lt;!-- /.site --&gt;
+  &lt;/div&gt;&lt;!-- /.upper_footer --&gt;
+
+&lt;div class=&quot;lower_footer&quot;&gt;
+  &lt;div class=&quot;site&quot; class=&quot;clearfix&quot;&gt;
+    &lt;!--[if IE]&gt;&lt;div id=&quot;legal_ie&quot;&gt;&lt;![endif]--&gt;
+    &lt;![if !IE]&gt;&lt;div id=&quot;legal&quot;&gt;&lt;![endif]&gt;
+      &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;https://github.com/site/terms&quot;&gt;Terms of Service&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;https://github.com/site/privacy&quot;&gt;Privacy&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;https://github.com/security&quot;&gt;Security&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+
+      &lt;p&gt;&amp;copy; 2011 &lt;span id=&quot;_rrt&quot; title=&quot;0.01142s from fe12.rs.github.com&quot;&gt;GitHub&lt;/span&gt; Inc. All rights reserved.&lt;/p&gt;
+    &lt;/div&gt;&lt;!-- /#legal or /#legal_ie--&gt;
+
+      &lt;div class=&quot;sponsor&quot;&gt;
+        &lt;a href=&quot;http://www.rackspace.com&quot; class=&quot;logo&quot;&gt;
+          &lt;img alt=&quot;Dedicated Server&quot; height=&quot;36&quot; src=&quot;https://a248.e.akamai.net/assets.github.com/images/modules/footer/rackspace_logo.png?v2&quot; width=&quot;38&quot; /&gt;
+        &lt;/a&gt;
+        Powered by the &lt;a href=&quot;http://www.rackspace.com &quot;&gt;Dedicated
+        Servers&lt;/a&gt; and&lt;br/&gt; &lt;a href=&quot;http://www.rackspacecloud.com&quot;&gt;Cloud
+        Computing&lt;/a&gt; of Rackspace Hosting&lt;span&gt;&amp;reg;&lt;/span&gt;
+      &lt;/div&gt;
+  &lt;/div&gt;&lt;!-- /.site --&gt;
+&lt;/div&gt;&lt;!-- /.lower_footer --&gt;
+
+    &lt;/div&gt;&lt;!-- /#footer --&gt;
+
+    
+
+&lt;div id=&quot;keyboard_shortcuts_pane&quot; class=&quot;instapaper_ignore readability-extra&quot; style=&quot;display:none&quot;&gt;
+  &lt;h2&gt;Keyboard Shortcuts &lt;small&gt;&lt;a href=&quot;#&quot; class=&quot;js-see-all-keyboard-shortcuts&quot;&gt;(see all)&lt;/a&gt;&lt;/small&gt;&lt;/h2&gt;
+
+  &lt;div class=&quot;columns threecols&quot;&gt;
+    &lt;div class=&quot;column first&quot;&gt;
+      &lt;h3&gt;Site wide shortcuts&lt;/h3&gt;
+      &lt;dl class=&quot;keyboard-mappings&quot;&gt;
+        &lt;dt&gt;s&lt;/dt&gt;
+        &lt;dd&gt;Focus site search&lt;/dd&gt;
+      &lt;/dl&gt;
+      &lt;dl class=&quot;keyboard-mappings&quot;&gt;
+        &lt;dt&gt;?&lt;/dt&gt;
+        &lt;dd&gt;Bring up this help dialog&lt;/dd&gt;
+      &lt;/dl&gt;
+    &lt;/div&gt;&lt;!-- /.column.first --&gt;
+
+    &lt;div class=&quot;column middle&quot; style='display:none'&gt;
+      &lt;h3&gt;Commit list&lt;/h3&gt;
+      &lt;dl class=&quot;keyboard-mappings&quot;&gt;
+        &lt;dt&gt;j&lt;/dt&gt;
+        &lt;dd&gt;Move selection down&lt;/dd&gt;
+      &lt;/dl&gt;
+      &lt;dl class=&quot;keyboard-mappings&quot;&gt;
+        &lt;dt&gt;k&lt;/dt&gt;
+        &lt;dd&gt;Move selection up&lt;/dd&gt;
+      &lt;/dl&gt;
+      &lt;dl class=&quot;keyboard-mappings&quot;&gt;
+        &lt;dt&gt;c &lt;em&gt;or&lt;/em&gt; o &lt;em&gt;or&lt;/em&gt; enter&lt;/dt&gt;
+        &lt;dd&gt;Open commit&lt;/dd&gt;
+      &lt;/dl&gt;
+      &lt;dl class=&quot;keyboard-mappings&quot;&gt;
+        &lt;dt&gt;y&lt;/dt&gt;
+        &lt;dd&gt;Expand URL to its canonical form&lt;/dd&gt;
+      &lt;/dl&gt;
+    &lt;/div&gt;&lt;!-- /.column.first --&gt;
+
+    &lt;div class=&quot;column last&quot; style='display:none'&gt;
+      &lt;h3&gt;Pull request list&lt;/h3&gt;
+      &lt;dl class=&quot;keyboard-mappings&quot;&gt;
+        &lt;dt&gt;j&lt;/dt&gt;
+        &lt;dd&gt;Move selection down&lt;/dd&gt;
+      &lt;/dl&gt;
+      &lt;dl class=&quot;keyboard-mappings&quot;&gt;
+        &lt;dt&gt;k&lt;/dt&gt;
+        &lt;dd&gt;Move selection up&lt;/dd&gt;
+      &lt;/dl&gt;
+      &lt;dl class=&quot;keyboard-mappings&quot;&gt;
+        &lt;dt&gt;o &lt;em&gt;or&lt;/em&gt; enter&lt;/dt&gt;
+        &lt;dd&gt;Open issue&lt;/dd&gt;
+      &lt;/dl&gt;
+    &lt;/div&gt;&lt;!-- /.columns.last --&gt;
+
+  &lt;/div&gt;&lt;!-- /.columns.equacols --&gt;
+
+  &lt;div style='display:none'&gt;
+    &lt;div class=&quot;rule&quot;&gt;&lt;/div&gt;
+
+    &lt;h3&gt;Issues&lt;/h3&gt;
+
+    &lt;div class=&quot;columns threecols&quot;&gt;
+      &lt;div class=&quot;column first&quot;&gt;
+        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
+          &lt;dt&gt;j&lt;/dt&gt;
+          &lt;dd&gt;Move selection down&lt;/dd&gt;
+        &lt;/dl&gt;
+        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
+          &lt;dt&gt;k&lt;/dt&gt;
+          &lt;dd&gt;Move selection up&lt;/dd&gt;
+        &lt;/dl&gt;
+        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
+          &lt;dt&gt;x&lt;/dt&gt;
+          &lt;dd&gt;Toggle selection&lt;/dd&gt;
+        &lt;/dl&gt;
+        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
+          &lt;dt&gt;o &lt;em&gt;or&lt;/em&gt; enter&lt;/dt&gt;
+          &lt;dd&gt;Open issue&lt;/dd&gt;
+        &lt;/dl&gt;
+      &lt;/div&gt;&lt;!-- /.column.first --&gt;
+      &lt;div class=&quot;column middle&quot;&gt;
+        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
+          &lt;dt&gt;I&lt;/dt&gt;
+          &lt;dd&gt;Mark selection as read&lt;/dd&gt;
+        &lt;/dl&gt;
+        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
+          &lt;dt&gt;U&lt;/dt&gt;
+          &lt;dd&gt;Mark selection as unread&lt;/dd&gt;
+        &lt;/dl&gt;
+        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
+          &lt;dt&gt;e&lt;/dt&gt;
+          &lt;dd&gt;Close selection&lt;/dd&gt;
+        &lt;/dl&gt;
+        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
+          &lt;dt&gt;y&lt;/dt&gt;
+          &lt;dd&gt;Remove selection from view&lt;/dd&gt;
+        &lt;/dl&gt;
+      &lt;/div&gt;&lt;!-- /.column.middle --&gt;
+      &lt;div class=&quot;column last&quot;&gt;
+        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
+          &lt;dt&gt;c&lt;/dt&gt;
+          &lt;dd&gt;Create issue&lt;/dd&gt;
+        &lt;/dl&gt;
+        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
+          &lt;dt&gt;l&lt;/dt&gt;
+          &lt;dd&gt;Create label&lt;/dd&gt;
+        &lt;/dl&gt;
+        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
+          &lt;dt&gt;i&lt;/dt&gt;
+          &lt;dd&gt;Back to inbox&lt;/dd&gt;
+        &lt;/dl&gt;
+        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
+          &lt;dt&gt;u&lt;/dt&gt;
+          &lt;dd&gt;Back to issues&lt;/dd&gt;
+        &lt;/dl&gt;
+        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
+          &lt;dt&gt;/&lt;/dt&gt;
+          &lt;dd&gt;Focus issues search&lt;/dd&gt;
+        &lt;/dl&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div style='display:none'&gt;
+    &lt;div class=&quot;rule&quot;&gt;&lt;/div&gt;
+
+    &lt;h3&gt;Issues Dashboard&lt;/h3&gt;
+
+    &lt;div class=&quot;columns threecols&quot;&gt;
+      &lt;div class=&quot;column first&quot;&gt;
+        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
+          &lt;dt&gt;j&lt;/dt&gt;
+          &lt;dd&gt;Move selection down&lt;/dd&gt;
+        &lt;/dl&gt;
+        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
+          &lt;dt&gt;k&lt;/dt&gt;
+          &lt;dd&gt;Move selection up&lt;/dd&gt;
+        &lt;/dl&gt;
+        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
+          &lt;dt&gt;o &lt;em&gt;or&lt;/em&gt; enter&lt;/dt&gt;
+          &lt;dd&gt;Open issue&lt;/dd&gt;
+        &lt;/dl&gt;
+      &lt;/div&gt;&lt;!-- /.column.first --&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div style='display:none'&gt;
+    &lt;div class=&quot;rule&quot;&gt;&lt;/div&gt;
+
+    &lt;h3&gt;Network Graph&lt;/h3&gt;
+    &lt;div class=&quot;columns equacols&quot;&gt;
+      &lt;div class=&quot;column first&quot;&gt;
+        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
+          &lt;dt&gt;&lt;span class=&quot;badmono&quot;&gt;←&lt;/span&gt; &lt;em&gt;or&lt;/em&gt; h&lt;/dt&gt;
+          &lt;dd&gt;Scroll left&lt;/dd&gt;
+        &lt;/dl&gt;
+        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
+          &lt;dt&gt;&lt;span class=&quot;badmono&quot;&gt;→&lt;/span&gt; &lt;em&gt;or&lt;/em&gt; l&lt;/dt&gt;
+          &lt;dd&gt;Scroll right&lt;/dd&gt;
+        &lt;/dl&gt;
+        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
+          &lt;dt&gt;&lt;span class=&quot;badmono&quot;&gt;↑&lt;/span&gt; &lt;em&gt;or&lt;/em&gt; k&lt;/dt&gt;
+          &lt;dd&gt;Scroll up&lt;/dd&gt;
+        &lt;/dl&gt;
+        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
+          &lt;dt&gt;&lt;span class=&quot;badmono&quot;&gt;↓&lt;/span&gt; &lt;em&gt;or&lt;/em&gt; j&lt;/dt&gt;
+          &lt;dd&gt;Scroll down&lt;/dd&gt;
+        &lt;/dl&gt;
+        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
+          &lt;dt&gt;t&lt;/dt&gt;
+          &lt;dd&gt;Toggle visibility of head labels&lt;/dd&gt;
+        &lt;/dl&gt;
+      &lt;/div&gt;&lt;!-- /.column.first --&gt;
+      &lt;div class=&quot;column last&quot;&gt;
+        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
+          &lt;dt&gt;shift &lt;span class=&quot;badmono&quot;&gt;←&lt;/span&gt; &lt;em&gt;or&lt;/em&gt; shift h&lt;/dt&gt;
+          &lt;dd&gt;Scroll all the way left&lt;/dd&gt;
+        &lt;/dl&gt;
+        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
+          &lt;dt&gt;shift &lt;span class=&quot;badmono&quot;&gt;→&lt;/span&gt; &lt;em&gt;or&lt;/em&gt; shift l&lt;/dt&gt;
+          &lt;dd&gt;Scroll all the way right&lt;/dd&gt;
+        &lt;/dl&gt;
+        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
+          &lt;dt&gt;shift &lt;span class=&quot;badmono&quot;&gt;↑&lt;/span&gt; &lt;em&gt;or&lt;/em&gt; shift k&lt;/dt&gt;
+          &lt;dd&gt;Scroll all the way up&lt;/dd&gt;
+        &lt;/dl&gt;
+        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
+          &lt;dt&gt;shift &lt;span class=&quot;badmono&quot;&gt;↓&lt;/span&gt; &lt;em&gt;or&lt;/em&gt; shift j&lt;/dt&gt;
+          &lt;dd&gt;Scroll all the way down&lt;/dd&gt;
+        &lt;/dl&gt;
+      &lt;/div&gt;&lt;!-- /.column.last --&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div style='display:none'&gt;
+    &lt;div class=&quot;rule&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;columns threecols&quot;&gt;
+      &lt;div class=&quot;column first&quot; style='display:none'&gt;
+        &lt;h3&gt;Source Code Browsing&lt;/h3&gt;
+        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
+          &lt;dt&gt;t&lt;/dt&gt;
+          &lt;dd&gt;Activates the file finder&lt;/dd&gt;
+        &lt;/dl&gt;
+        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
+          &lt;dt&gt;l&lt;/dt&gt;
+          &lt;dd&gt;Jump to line&lt;/dd&gt;
+        &lt;/dl&gt;
+        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
+          &lt;dt&gt;w&lt;/dt&gt;
+          &lt;dd&gt;Switch branch/tag&lt;/dd&gt;
+        &lt;/dl&gt;
+        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
+          &lt;dt&gt;y&lt;/dt&gt;
+          &lt;dd&gt;Expand URL to its canonical form&lt;/dd&gt;
+        &lt;/dl&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+    &lt;div id=&quot;markdown-help&quot; class=&quot;instapaper_ignore readability-extra&quot;&gt;
+  &lt;h2&gt;Markdown Cheat Sheet&lt;/h2&gt;
+
+  &lt;div class=&quot;cheatsheet-content&quot;&gt;
+
+  &lt;div class=&quot;mod&quot;&gt;
+    &lt;div class=&quot;col&quot;&gt;
+      &lt;h3&gt;Format Text&lt;/h3&gt;
+      &lt;p&gt;Headers&lt;/p&gt;
+      &lt;pre&gt;
+# This is an &amp;lt;h1&amp;gt; tag
+## This is an &amp;lt;h2&amp;gt; tag
+###### This is an &amp;lt;h6&amp;gt; tag&lt;/pre&gt;
+     &lt;p&gt;Text styles&lt;/p&gt;
+     &lt;pre&gt;
+*This text will be italic*
+_This will also be italic_
+**This text will be bold**
+__This will also be bold__
+
+*You **can** combine them*
+&lt;/pre&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;col&quot;&gt;
+      &lt;h3&gt;Lists&lt;/h3&gt;
+      &lt;p&gt;Unordered&lt;/p&gt;
+      &lt;pre&gt;
+* Item 1
+* Item 2
+  * Item 2a
+  * Item 2b&lt;/pre&gt;
+     &lt;p&gt;Ordered&lt;/p&gt;
+     &lt;pre&gt;
+1. Item 1
+2. Item 2
+3. Item 3
+   * Item 3a
+   * Item 3b&lt;/pre&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;col&quot;&gt;
+      &lt;h3&gt;Miscellaneous&lt;/h3&gt;
+      &lt;p&gt;Images&lt;/p&gt;
+      &lt;pre&gt;
+![GitHub Logo](/images/logo.png)
+Format: ![Alt Text](url)
+&lt;/pre&gt;
+     &lt;p&gt;Links&lt;/p&gt;
+     &lt;pre&gt;
+http://github.com - automatic!
+[GitHub](http://github.com)&lt;/pre&gt;
+&lt;p&gt;Blockquotes&lt;/p&gt;
+     &lt;pre&gt;
+As Kanye West said:
+&gt; We're living the future so
+&gt; the present is our past.
+&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;rule&quot;&gt;&lt;/div&gt;
+
+  &lt;h3&gt;Code Examples in Markdown&lt;/h3&gt;
+  &lt;div class=&quot;col&quot;&gt;
+      &lt;p&gt;Syntax highlighting with &lt;a href=&quot;http://github.github.com/github-flavored-markdown/&quot; title=&quot;GitHub Flavored Markdown&quot; target=&quot;_blank&quot;&gt;GFM&lt;/a&gt;&lt;/p&gt;
+      &lt;pre&gt;
+```javascript
+function fancyAlert(arg) {
+  if(arg) {
+    $.facebox({div:'#foo'})
+  }
+}
+```&lt;/pre&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;col&quot;&gt;
+      &lt;p&gt;Or, indent your code 4 spaces&lt;/p&gt;
+      &lt;pre&gt;
+Here is a Python code example
+without syntax highlighting:
+
+    def foo:
+      if not bar:
+        return true&lt;/pre&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;col&quot;&gt;
+      &lt;p&gt;Inline code for comments&lt;/p&gt;
+      &lt;pre&gt;
+I think you should use an
+`&amp;lt;addr&amp;gt;` element here instead.&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;/div&gt;
+&lt;/div&gt;
+
+    &lt;div class=&quot;context-overlay&quot;&gt;&lt;/div&gt;
+
+    &lt;div class=&quot;ajax-error-message&quot;&gt;
+      &lt;p&gt;&lt;span class=&quot;icon&quot;&gt;&lt;/span&gt; Something went wrong with that request. Please try again. &lt;a href=&quot;javascript:;&quot; class=&quot;ajax-error-dismiss&quot;&gt;Dismiss&lt;/a&gt;&lt;/p&gt;
+    &lt;/div&gt;
+
+    
+    
+    
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre></noscript></div>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[初学capistrano]]></title>
+    <link href="http://geekontheway.github.com/blog/2011/12/09/starting-capistrano/"/>
+    <updated>2011-12-09T15:56:00+08:00</updated>
+    <id>http://geekontheway.github.com/blog/2011/12/09/starting-capistrano</id>
+    <content type="html"><![CDATA[<p>上一篇博客<a href="http://geekontheway.github.com/blog/2011/12/08/from-ssl-to-ssh/">从capistrano说起</a>谈到了capistrano,刚接触有很多地方不懂，就拿出这篇博客做一个记录,有什么新的发现和问题，都会放上来.</p>
+
+<h2>capistrano-ex</h2>
+
+<p>注意到安装<code>capistrano</code>的时候还要安装<code>capistrano-ex</code>这个gem包,官方的介绍是 <code>capistrano-ex allows you to setup multiple deploy environments</code>.</p>
+
+<p>使用方法：</p>
+
+<ul>
+<li>定义stage:</li>
+</ul>
+
+
+<figure class='code'><figcaption><span>config/deploy.rb </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">set</span> <span class="ss">:stages</span><span class="p">,</span> <span class="sx">%w(production development)</span>
+</span><span class='line'><span class="n">set</span> <span class="ss">:default_stage</span><span class="p">,</span> <span class="s2">&quot;development&quot;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;capistrano/ext/multistage&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>设置stage</li>
+</ul>
+
+
+<p>在config目录下创建deploy目录，并在其中修改各stage的配置.</p>
+
+<figure class='code'><figcaption><span>config/ </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="err">$</span> <span class="n">cat</span> <span class="n">production</span><span class="o">.</span><span class="n">rb</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">set</span> <span class="ss">:rails_env</span><span class="p">,</span> <span class="s2">&quot;production&quot;</span>
+</span><span class='line'><span class="n">role</span> <span class="ss">:web</span><span class="p">,</span> <span class="s2">&quot;productionserver.com&quot;</span>
+</span><span class='line'><span class="n">role</span> <span class="ss">:app</span><span class="p">,</span> <span class="s2">&quot;productionserver.com&quot;</span>
+</span><span class='line'><span class="n">role</span> <span class="ss">:db</span><span class="p">,</span>  <span class="s2">&quot;productionserver.com&quot;</span><span class="p">,</span> <span class="ss">:primary</span> <span class="o">=&gt;</span> <span class="kp">true</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">$</span> <span class="n">cat</span> <span class="n">development</span><span class="o">.</span><span class="n">rb</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">set</span> <span class="ss">:rails_env</span><span class="p">,</span> <span class="s2">&quot;development&quot;</span>
+</span><span class='line'><span class="n">role</span> <span class="ss">:web</span><span class="p">,</span> <span class="s2">&quot;developmentserver.com&quot;</span>
+</span><span class='line'><span class="n">role</span> <span class="ss">:app</span><span class="p">,</span> <span class="s2">&quot;developmentserver.com&quot;</span>
+</span><span class='line'><span class="n">role</span> <span class="ss">:db</span><span class="p">,</span>  <span class="s2">&quot;developmentserver.com&quot;</span><span class="p">,</span> <span class="ss">:primary</span> <span class="o">=&gt;</span> <span class="kp">true</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>运行特定stage的deploy</li>
+</ul>
+
+
+<p><code>cap stagename deploy</code></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[分享一个全局RVM的安装脚本 Ubuntu 10.04 ]]></title>
+    <link href="http://geekontheway.github.com/blog/2011/12/09/rvm-system-wide-install-script/"/>
+    <updated>2011-12-09T15:27:00+08:00</updated>
+    <id>http://geekontheway.github.com/blog/2011/12/09/rvm-system-wide-install-script</id>
+    <content type="html"><![CDATA[
+
+<figure class='code'><figcaption><span>Includes: StackScript Bash Library </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/bash</span>
+</span><span class='line'><span class="c"># &lt;udf name=&quot;admin_login&quot; label=&quot;Admin Login&quot; /&gt;</span>
+</span><span class='line'><span class="c"># &lt;udf name=&quot;admin_password&quot; label=&quot;Admin Password&quot; /&gt;</span>
+</span><span class='line'><span class="c"># &lt;udf name=&quot;group_name&quot; label=&quot;RVM Group name&quot; default=&quot;rvm&quot; /&gt;</span>
+</span><span class='line'><span class="nb">source</span> &lt;ssinclude <span class="nv">StackScriptID</span><span class="o">=</span><span class="s2">&quot;1&quot;</span>&gt;
+</span><span class='line'>system_update
+</span><span class='line'>hostname <span class="sb">`</span>get_rdns_primary_ip<span class="sb">`</span>
+</span><span class='line'>aptitude -y install sudo
+</span><span class='line'>groupadd wheel
+</span><span class='line'>cp /etc/sudoers /etc/sudoers.tmp
+</span><span class='line'>chmod 0640 /etc/sudoers.tmp
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;%wheel ALL = (ALL) ALL&quot;</span> &gt;&gt; /etc/sudoers.tmp
+</span><span class='line'>chmod 0440 /etc/sudoers.tmp
+</span><span class='line'>mv /etc/sudoers.tmp /etc/sudoers
+</span><span class='line'>useradd -m -s /bin/bash -G wheel <span class="s2">&quot;$ADMIN_LOGIN&quot;</span>
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;${ADMIN_LOGIN}:${ADMIN_PASSWORD}&quot;</span> | chpasswd
+</span><span class='line'><span class="nb">export </span><span class="nv">rvm_group_name</span><span class="o">=</span><span class="s2">&quot;$GROUP_NAME&quot;</span>
+</span><span class='line'>aptitude -y install curl bison build-essential zlib1g-dev libssl-dev libreadline5-dev libxml2-dev git-core
+</span><span class='line'>bash &lt; &lt;<span class="o">(</span> curl -L http://bit.ly/rvm-install-system-wide <span class="o">)</span>
+</span><span class='line'>usermod -a -G <span class="s2">&quot;$GROUP_NAME&quot;</span> <span class="s2">&quot;$ADMIN_LOGIN&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[从Capsitrano说起]]></title>
     <link href="http://geekontheway.github.com/blog/2011/12/08/from-ssl-to-ssh/"/>
     <updated>2011-12-08T19:20:00+08:00</updated>
     <id>http://geekontheway.github.com/blog/2011/12/08/from-ssl-to-ssh</id>
-    <content type="html"><![CDATA[<p>起因是昨天要部署公司的一个测试项目Emall到linode服务器，作为新手的我艰难的使用
-<code>cap staging deploy:cold</code>诸如此类的命令,结果一开始就报错，原因很简单，deploy.rb文件和~/config/deploy/staging.rb中的代码有错误，capistrano的机制改天得画出一个流程图来，不然老觉得难理解.错误：</p>
+    <content type="html"><![CDATA[<h1>Capistrano with bundler</h1>
+
+<p>起因是昨天要部署公司的一个测试项目bar到linode服务器,部署代码是之前写的,正好拿来学习了:</p>
+
+<p><code>$ gem list capistrano</code></p>
+
+<blockquote><p><strong><em> LOCAL GEMS </em></strong></p>
+
+<p>capistrano (2.9.0)</p>
+
+<p>capistrano-ext (1.2.1)</p></blockquote>
+
+<figure class='code'><figcaption><span>title: deploy.rb </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="c1"># -*- encoding : utf-8 -*-</span>
+</span><span class='line'><span class="n">set</span> <span class="ss">:stages</span><span class="p">,</span> <span class="sx">%w(production staging)</span>
+</span><span class='line'><span class="n">set</span> <span class="ss">:default_stage</span><span class="p">,</span> <span class="s2">&quot;production&quot;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;capistrano/ext/multistage&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">set</span> <span class="ss">:application</span><span class="p">,</span> <span class="s2">&quot;bar&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">set</span> <span class="ss">:use_sudo</span><span class="p">,</span> <span class="kp">false</span>
+</span><span class='line'><span class="n">set</span> <span class="ss">:scm</span><span class="p">,</span> <span class="ss">:git</span>
+</span><span class='line'><span class="n">set</span> <span class="ss">:deploy_via</span><span class="p">,</span> <span class="ss">:remote_cache</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">default_run_options</span><span class="o">[</span><span class="ss">:pty</span><span class="o">]</span> <span class="o">=</span> <span class="kp">true</span>
+</span><span class='line'><span class="n">ssh_options</span><span class="o">[</span><span class="ss">:forward_agent</span><span class="o">]</span> <span class="o">=</span> <span class="kp">true</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="n">set</span> <span class="ss">:git_shallow_clone</span><span class="p">,</span> <span class="mi">1</span>
+</span><span class='line'><span class="n">set</span> <span class="ss">:git_enable_submodules</span><span class="p">,</span> <span class="mi">1</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>title: deploy/staging.rb </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="c1"># -*- encoding : utf-8 -*-</span>
+</span><span class='line'><span class="n">set</span> <span class="ss">:user</span><span class="p">,</span> <span class="s2">&quot;root&quot;</span>
+</span><span class='line'><span class="n">set</span> <span class="ss">:repository</span><span class="p">,</span> <span class="s2">&quot;git@github.com:foo/bar.git&quot;</span>
+</span><span class='line'><span class="n">set</span> <span class="ss">:branch</span><span class="p">,</span> <span class="s2">&quot;master&quot;</span>
+</span><span class='line'><span class="n">set</span> <span class="ss">:deploy_to</span><span class="p">,</span> <span class="s2">&quot;/home/staging/www/bar&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">role</span> <span class="ss">:web</span><span class="p">,</span> <span class="s2">&quot;foo.bar.com&quot;</span> <span class="c1"># Your HTTP server, Apache/etc</span>
+</span><span class='line'><span class="n">role</span> <span class="ss">:app</span><span class="p">,</span> <span class="s2">&quot;foo.bar.com&quot;</span> <span class="c1"># This may be the same as your `Web` server</span>
+</span><span class='line'><span class="n">role</span> <span class="ss">:db</span><span class="p">,</span> <span class="s2">&quot;foo.bar.com&quot;</span><span class="p">,</span> <span class="ss">:primary</span> <span class="o">=&gt;</span> <span class="kp">true</span> <span class="c1"># This is where Rails migrations will run</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># tasks</span>
+</span><span class='line'><span class="n">namespace</span> <span class="ss">:deploy</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">task</span> <span class="ss">:start</span><span class="p">,</span> <span class="ss">:roles</span> <span class="o">=&gt;</span> <span class="ss">:app</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">run</span> <span class="s2">&quot;touch </span><span class="si">#{</span><span class="n">current_path</span><span class="si">}</span><span class="s2">/tmp/restart.txt&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">task</span> <span class="ss">:stop</span><span class="p">,</span> <span class="ss">:roles</span> <span class="o">=&gt;</span> <span class="ss">:app</span> <span class="k">do</span>
+</span><span class='line'>    <span class="c1"># Do nothing.</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">desc</span> <span class="s2">&quot;Restart Application&quot;</span>
+</span><span class='line'>  <span class="n">task</span> <span class="ss">:restart</span><span class="p">,</span> <span class="ss">:roles</span> <span class="o">=&gt;</span> <span class="ss">:app</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">run</span> <span class="s2">&quot;touch </span><span class="si">#{</span><span class="n">current_path</span><span class="si">}</span><span class="s2">/tmp/restart.txt&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">desc</span> <span class="s2">&quot;Symlink shared resources on each release&quot;</span>
+</span><span class='line'>  <span class="n">task</span> <span class="ss">:symlink_shared</span><span class="p">,</span> <span class="ss">:roles</span> <span class="o">=&gt;</span> <span class="ss">:app</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">run</span> <span class="s2">&quot;ln -nfs </span><span class="si">#{</span><span class="n">shared_path</span><span class="si">}</span><span class="s2">/config/database.yml </span><span class="si">#{</span><span class="n">release_path</span><span class="si">}</span><span class="s2">/config/database.yml&quot;</span>
+</span><span class='line'>    <span class="n">run</span> <span class="s2">&quot;ln -nfs </span><span class="si">#{</span><span class="n">shared_path</span><span class="si">}</span><span class="s2">/config/mailers.yml </span><span class="si">#{</span><span class="n">release_path</span><span class="si">}</span><span class="s2">/config/mailers.yml&quot;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">#run &quot;mkdir #{release_path}/public/stylesheets/compiled&quot;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">run</span> <span class="s2">&quot;ln -nfs </span><span class="si">#{</span><span class="n">shared_path</span><span class="si">}</span><span class="s2">/ckeditor_assets </span><span class="si">#{</span><span class="n">release_path</span><span class="si">}</span><span class="s2">/public/ckeditor_assets&quot;</span>
+</span><span class='line'>    <span class="n">run</span> <span class="s2">&quot;ln -nfs </span><span class="si">#{</span><span class="n">shared_path</span><span class="si">}</span><span class="s2">/system </span><span class="si">#{</span><span class="n">release_path</span><span class="si">}</span><span class="s2">/public/system&quot;</span>
+</span><span class='line'>    <span class="n">run</span> <span class="s2">&quot;chmod 0777 </span><span class="si">#{</span><span class="n">release_path</span><span class="si">}</span><span class="s2">/public/stylesheets/compiled&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">after</span> <span class="s1">&#39;deploy:update_code&#39;</span><span class="p">,</span> <span class="s1">&#39;deploy:symlink_shared&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">namespace</span> <span class="ss">:db</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">desc</span> <span class="s2">&quot;migrate db&quot;</span>
+</span><span class='line'>  <span class="n">task</span> <span class="ss">:migrate</span><span class="p">,</span> <span class="ss">:roles</span> <span class="o">=&gt;</span> <span class="ss">:app</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">run</span> <span class="s2">&quot;cd </span><span class="si">#{</span><span class="n">release_path</span><span class="si">}</span><span class="s2"> &amp;&amp; RAILS_ENV=production rake db:migrate&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>运行部署后报错：</p>
 
 <p> <img src="http://p4.42qu.us/721/820/149300.jpg"></p>
 
@@ -93,15 +937,46 @@
 
 <p>Finally, I have added a third line that tells Capistrano to finish it all up by running the cap deploy:cleanup task, which removes all but the last 5 releases from the releases directory. We do this for good housekeeping reasons so that we are not bloating our server with releases that we don&#8217;t need.</p>
 
+<h1>RVM Issue</h1>
+
 <p>报错提示：
 <img src="http://p4.42qu.us/721/821/149301.jpg"></p>
 
-<p>好像是rvm不能选择ruby版本的问题。[后来发了一个帖子关于Linode上RVM的奇怪问题，每次ssh登陆服务器后，发现rvm并未选择ruby版本，即使上次登陆的时候<code>rvm --default use ree</code>][http://ruby-china.org/topics/386],用了大家给的方法后,没找到合适答案后,折腾开始了:</p>
+<p>好像是rvm不能选择ruby版本的问题。[后来发了一个帖子关于Linode上RVM的奇怪问题，每次ssh登陆服务器后，发现rvm并未选择ruby版本，即使上次登陆的时候rvm的默认ruby选项][http://ruby-china.org/topics/386],用了大家给的方法后,没找到合适答案后,rebuild linode服务器.</p>
+
+<p><code>Update @ 2011-12-9 12:57</code></p>
+
+<p>还是找到了Rvm的解决方案:</p>
+
+<p>When you use capistrano it uses a non-interactive ssh session which doesn&#8217;t run .profile or .bash_rc and it gets you a really bare bones environment. You will have to specify all the variables you need to use. This is especially important with RVM which relies on a lot of variables to work properly.</p>
+
+<p>The following can be added to your capistrano recipe:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>set :default_environment, {
+</span><span class='line'>'PATH' => "/usr/local/sphinx/bin:/usr/local/rvm/gems/ruby-1.9.2-p0/bin:/usr/local/rvm/gems/ruby-1.9.2-p0@global/bin:/usr/local/rvm/rubies/ruby-1.9.2-p0/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+</span><span class='line'>'RUBY_VERSION' => 'ruby-1.9.2-p0',
+</span><span class='line'>'GEM_HOME' => '/usr/local/rvm/gems/ruby-1.9.2-p0',
+</span><span class='line'>'GEM_PATH' => '/usr/local/rvm/gems/ruby-1.9.2-p0:/usr/local/rvm/gems/ruby-1.9.2-p0@global',
+</span><span class='line'>'BUNDLE_PATH' => '/usr/local/rvm/gems/ruby-1.9.2-p0',
+</span><span class='line'>'MY_RUBY_HOME' => '/usr/local/rvm/rubies/ruby-1.9.2-p0',
+</span><span class='line'>:'RAILS_ENV' => 'production'
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You&#8217;ll probably have to tweak this for your particular enviroment, but hopefully this gives you a good starting point to work from.</p>
+
+<h1>Rebuild Linode</h1>
 
 <ul>
-<li><code>rvm uninstall ree</code>,<code>rvm install ree</code>报错了</li>
-<li><code>rm -rf /usr/local/rvm</code>,并取消了rvm有关的环境设置,下载了ree的源码，编译，安装passenger出错,大改是说
-<code>openssl lib installed no longer supports SSLv2</code>,老大注释了源码中sslv2相关的部分，ok了.然而Emall依然部署不上去,所以后来想了想,还是rebuild linode服务器吧。还是犹豫了一下,因为好久以来都是在上面部署的服务，很多服务还是处于一半的状况,没办法从头来吧.</li>
 <li>ssh到服务器，做最基本的配置：</li>
 </ul>
 
@@ -132,43 +1007,128 @@
 </span><span class='line'>Universal Time is now:  Thu Dec  8 02:28:55 UTC 2011.</span></code></pre></td></tr></table></div></figure>
 
 
+<h1>Chef-Cookbooks&amp;Recipe</h1>
+
 <ul>
-<li>因为又要装很多服务，而且也会有很多配置,考虑到效率，选择使用chef。</li>
-<li>ok。今天的折腾就开始了，chef的文档太详细了！丰富到我在众多的流程转向If Else中不知方向&#8230;好吧,最后终于知道怎么新建一个node节点了，可是第一步<code>knife bootstrap host -u root -P passwd</code>就ssh keys出错了,应该是kes不匹配,修改了.ssh/known_hosts后ok了.</li>
+<li>因为又要装很多服务，而且也会有很多配置,考虑到效率，选择使用chef-repo,本地建立chef workstation。</li>
+<li>表示一下,chef的文档太详细了!</li>
+<li>前阵子修改了服务器域名转向,需要修改一下.SSH中的known_hosts,删掉冲突的行就行了.</li>
+<li>chef-repo依然是git版本控制,很强大</li>
 </ul>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[nginx自启动设置]]></title>
-    <link href="http://geekontheway.github.com/blog/2011/12/06/nginxzi-qi-dong-she-zhi/"/>
-    <updated>2011-12-06T19:40:00+08:00</updated>
-    <id>http://geekontheway.github.com/blog/2011/12/06/nginxzi-qi-dong-she-zhi</id>
-    <content type="html"><![CDATA[<p>大二使用ubuntu的时候，了解了一些开机自动运行服务的命令和配置，不过一直没机会也没环境去操作。所以这几天配置服务器时候就麻烦了一些。为什么会麻烦呢？因为不好的习惯，国人喜欢百度，喜欢不加思索复制粘贴，goole上又全是英文，不一定每个人都英语好。其实就是一个很小的问题，百度上是一大堆重复的讲的不清不楚的，没有平台观念，版本观念的[不过确实有例外，CSDN上很多文章还是不错的，程序员的个人博客里的文章也都有思考在里面]，其实说回来，linux自身的版本过多，发行版中的一些设置也一直在变，从技术上讲是好事，可是给普通用户带来了学习的压力。</p>
 
-<p> 言归正传，Ubuntu现在使用sysv-rc-conf,Redhat系[redhat,centos,fedora]使用chkconfig。</p>
+<p>先看个在远程服务器node上安装apache2的sample:</p>
 
-<p> 分享一下ngnix配置自动启动脚本：</p>
+<figure class='code'><figcaption><span>local:workstation </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Zh:chef-repo bill$ knife cookbook site install apache2
+</span><span class='line'>Zh:chef-repo bill$ knife node run_list node name add "recipe[apache2]"
+</span><span class='line'>Zh:chef-repo bill$ ls cookbooks/
+</span><span class='line'>apache2   
+</span><span class='line'>Zh:chef-repo bill$ knife node run_list add "recipe[apache2]"
+</span><span class='line'>Zh:chef-repo bill$ knife cookbook upload apache2
+</span><span class='line'>Uploading apache2             [1.0.2]
+</span><span class='line'>upload complete
+</span><span class='line'>Zh:chef-repo bill$ knife node show log -r
+</span><span class='line'>run_list:  recipe[apache2]</span></code></pre></td></tr></table></div></figure>
 
-<div><script src='https://gist.github.com/.js?file=1436747'></script>
-<noscript><pre><code>&lt;html&gt;&lt;body&gt;You are being &lt;a href=&quot;https://github.com/gist//1436747&quot;&gt;redirected&lt;/a&gt;.&lt;/body&gt;&lt;/html&gt;</code></pre></noscript></div>
 
 
-<blockquote><p>Ubuntu</p></blockquote>
 
-<p>-在/etc/init.d中建立脚本nginx，添加脚本进去，chmod+x
--ubuntu：/usr/sbin/update-rc.d -f nginx defaults
--sysv-rc-conf 设定2345运行nginx</p>
+<figure class='code'><figcaption><span>node:nodename </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>nodename:# sudo chef client</span></code></pre></td></tr></table></div></figure>
 
-<p><code>/etc/init.d/nginx start/stop/restart</code></p>
 
-<blockquote><p>RedHat</p></blockquote>
+<h2>安装workstation配置chef-client</h2>
 
-<p>-在/etc/init.d中建立脚本nginx，添加脚本进去，chmod+x
--/sbin/chkconfig nginx 2345 on</p>
+<ul>
+<li>因为使用的是Hosted-Chef,所以首先你要有一个opscode的账号,免费版的提供五个节点和两个管理员权限.然后创建一个orgnazition，会提示你下载knife配置文件和密钥文件,然后也到Users的界面生成密钥,一起下载下来</li>
+<li>安装依赖:ruby ree +,ruby-dev,libopenssl-ruby,ri,irb,build-essential,wget,ssl-cert,git-core</li>
+<li>安装rubygems:下载源码后解压，cd到该路径,执行<code>sudo ruby setup.rb --no-format-executable</code></li>
+<li>安装chef，创建必须的目录</li>
+</ul>
 
-<p><code>service nginx start/stop/restart</code></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Zh:~ bill$ sudo gem install chef
+</span><span class='line'>Zh:~ bill$ git clone https://github.com/opscode/chef-repo.git
+</span><span class='line'>  
+</span><span class='line'>  # create chef configuration directories:
+</span><span class='line'>Zh:~ bill$ mkdir -p ~/chef-repo/.chef
+</span><span class='line'>  
+</span><span class='line'>  # copy the keys and knife configuration you download into this directory
+</span><span class='line'>Zh:~ bill$ cp USERNAME.pem ~/chef-repo/.chef
+</span><span class='line'>Zh:~ bill$ cp ORGANIZATION-validator.pem ~/Documents/chef-repo/.chef
+</span><span class='line'>Zh:~ bill$ cp knife.rb ~/chef-repo/.chef</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>测试一下knife是否与Hosted Chef API 建立了连接</li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Zh:chef-repo bill$ knife client list
+</span><span class='line'>  ORGNIZATION-validator</span></code></pre></td></tr></table></div></figure>
+
+
+<blockquote><p>workstation就完成了,现在可以下载并上传recipe,以及用knife管理node的配置安装工作了.你可以选择将workstation这台电脑配置成chef-client,或者在一个node上配置chef-client并用workstation管理它.</p></blockquote>
+
+<h3>配置本地的chef client</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Zh:~ bill$ cd chef-repo
+</span><span class='line'>Zh:~ bill$ knife configure client ./client-config
+</span><span class='line'>#After this done,you will have a client-config directory in your local repository:
+</span><span class='line'>
+</span><span class='line'>Zh:~ bill$ sudo mkdir /etc/clef
+</span><span class='line'>Zh:~ bill$ sudo cp -r ~/chef-repo/client-config/* /etc/chef
+</span><span class='line'>
+</span><span class='line'>#You will now need to run chef-client for the first time,so your node is added to the client list.
+</span><span class='line'>Zh:~ bill$ sudo chef-client
+</span><span class='line'>
+</span><span class='line'>#Check if works
+</span><span class='line'>Zh:~ bill$ cd chef-repo
+</span><span class='line'>Zh:chef-repo bill$ knife client list</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>cookbook</h4>
+
+<h4>recipe</h4>
+
+<h3>配置远程的chef client</h3>
 ]]></content>
   </entry>
   
