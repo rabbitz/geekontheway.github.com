@@ -9,8 +9,9 @@
   <meta name="author" content="Bill Zh">
 
   
-  <meta name="description" content="Deploying Rails to Linode &lt;!DOCTYPE html&gt;
-&lt;html&gt; &lt;head&gt; &lt;meta charset='utf-8'&gt; &lt;meta http-equiv=&quot;X-UA-Compatible&quot &hellip;">
+  <meta name="description" content="Deploying Rails to Linode Deploying Rails to Linode
+==================
+Installing Ruby Enterprise Edition, Apache, MySQL, and Passenger for deploying &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -106,544 +107,292 @@
 
   <div class="entry-content"><blockquote><p>Deploying Rails to Linode</p></blockquote>
 
-<div><script src='https://gist.github.com/1441588.js?file='></script>
-<noscript><pre><code>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-  &lt;head&gt;
-    &lt;meta charset='utf-8'&gt;
-    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;chrome=1&quot;&gt;
-        &lt;title&gt;404 - GitHub&lt;/title&gt;
-    &lt;link rel=&quot;search&quot; type=&quot;application/opensearchdescription+xml&quot; href=&quot;/opensearch.xml&quot; title=&quot;GitHub&quot; /&gt;
-    &lt;link rel=&quot;fluid-icon&quot; href=&quot;https://github.com/fluidicon.png&quot; title=&quot;GitHub&quot; /&gt;
+<div><script src='https://gist.github.com/1441585.js?file='></script>
+<noscript><pre><code>Deploying Rails to Linode
+==================
+Installing Ruby Enterprise Edition, Apache, MySQL, and Passenger for deploying Rails 3.0 applications.
+
+Get a Linode, and set it up with Ubuntu 10.04 LTS so that you have till April 2013 to get updates. Once the Linode is formatted, boot it and continue on.
+
+Set up an 'A' record in your DNS, pointing to the IP of your Linode. I'm using `demo.napcs.com` here.
+
+Initial setup
+-------
+Log in with `ssh root@your_ip`
+
+Add a user
+
+    adduser deploy
+
+Add the user to the SUDOERS list with `visudo`
+
+    # User privilege specification
+    root    ALL=(ALL) ALL
+    deploy   ALL=(ALL) ALL
 
     
+Change the default SSH port and disallow root acces. `vim /etc/ssh/sshd_config`
+
+    # What ports, IPs and protocols we listen for
+    Port 16888
     
+    ...
+    PermitRootLogin no
 
+Logout and reboot your linode via the console. Don't attempt to restart SSHD while connected. :)
+
+Test the new settings - Log back in with `ssh deploy@your_ip -p 16888` and log out again
+
+Create your authorized keys file
+
+    mkdir ~/.ssh
+    touch ~/.ssh/authorized_keys
+    chmod 600 ~/.ssh/authorized_keys
+   
+Logout and upload your public key
+
+    cat ~/.ssh/id_rsa.pub | ssh deploy@your_ip -p 16888 'cat &gt;&gt; .ssh/authorized_keys'
+
+That looks a little complex, but we're just printing out the SSH key,
+piping the output to SSH and directing it into the `authorized_keys` on the remote server. 
+You could do this many ways, but this is something you could turn into a script and use this
+  to add multiple keys.
+
+Log back in and you're set with keys.
+
+Installing Ruby
+-----------
+
+We'll use Ruby Enterprise Edition.
+
+    sudo apt-get install build-essential patch zlib1g-dev libssl-dev libreadline5-dev
     
-
-    &lt;link href=&quot;https://a248.e.akamai.net/assets.github.com/stylesheets/bundles/github-74801ded75693533333ef343dece5bacb90ed607.css&quot; media=&quot;screen&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+    mkdir src
+    cd src
+    wget http://rubyenterpriseedition.googlecode.com/files/ruby-enterprise-1.8.7-2011.03.tar.gz
+    tar -xzvf ruby-enterprise-1.8.7-2011.03.tar.gz
+    cd ruby-enterprise-1.8.7-2011.03
+    sudo ./installer
     
+Instructions will guide us through the install process.
 
-    &lt;script src=&quot;https://a248.e.akamai.net/assets.github.com/javascripts/bundles/jquery-6bd7d190e98b26f66e07c297fcfbe5ca057cb2fa.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
-    &lt;script src=&quot;https://a248.e.akamai.net/assets.github.com/javascripts/bundles/github-de3b828ac620f46e9ec91b15b79a31b23f096b2a.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+Now make a symlink to REE and symlinks to the individual
+components so it's not so long to type commands to do installs:
+
+    sudo ln -fs /opt/ruby-enterprise-1.8.7-2011.03/ /opt/ruby
+
+    sudo ln -fs /opt/ruby/bin/ruby /usr/local/bin/ruby
+    sudo ln -fs /opt/ruby/bin/rake /usr/local/bin/rake
+    sudo ln -fs /opt/ruby/bin/irb /usr/local/bin/irb
+    sudo ln -fs /opt/ruby/bin/gem /usr/local/bin/gem
+    sudo ln -fs /opt/ruby/bin/bundle /usr/local/bin/bundle
     
+This also puts them on our path, and in our sudo path.
 
+Installing MySQL for Rails
+---------
+We install MySQL with the package manager:
+
+    sudo apt-get install mysql-server libmysqlclient-dev
+    gem install mysql
+
+Now log into mysql with  `mysql -u root -p` and create a user 
+
+    create user 'rails'@'localhost' identified by 'rails';
+    create databse projects_production;
+    grant all on projects_production.* to 'rails'@'localhost';
+   
+These permissions are not the greatest. They could be hardened. 
+But you have to make sure you don't tighten them too much to the point where
+you can't run migrations. Read a good MySQL book.
     
-  &lt;/head&gt;
+Installing Git and Apache
+------
+    sudo apt-get install apache2 git-core
 
+Now disable the default site.
 
-  &lt;body class=&quot;logged_out   env-production  &quot;&gt;
+    sudo a2dissite default
+    sudo /etc/init.d/apache2 restart
+
+Configuring Apache and Passenger
+------
+    sudo gem install passenger
+    sudo apt-get install libcurl4-openssl-dev apache2-prefork-dev  libapr1-dev  libaprutil1-dev
     
-
-
+    sudo /opt/ruby/bin/passenger-install-apache2-module 
     
-    &lt;div id=&quot;main&quot;&gt;
-      &lt;div id=&quot;header&quot; class=&quot;true&quot;&gt;
-          &lt;a class=&quot;logo&quot; href=&quot;https://github.com&quot;&gt;
-            &lt;img alt=&quot;github&quot; class=&quot;default svg&quot; height=&quot;45&quot; src=&quot;https://a248.e.akamai.net/assets.github.com/images/modules/header/logov6.svg?1315937721&quot; /&gt;
-            &lt;img alt=&quot;github&quot; class=&quot;default png&quot; height=&quot;45&quot; src=&quot;https://a248.e.akamai.net/assets.github.com/images/modules/header/logov6.png?1315937721&quot; /&gt;
-            &lt;!--[if (gt IE 8)|!(IE)]&gt;&lt;!--&gt;
-            &lt;img alt=&quot;github&quot; class=&quot;hover svg&quot; height=&quot;45&quot; src=&quot;https://a248.e.akamai.net/assets.github.com/images/modules/header/logov6-hover.svg?1315937721&quot; /&gt;
-            &lt;img alt=&quot;github&quot; class=&quot;hover png&quot; height=&quot;45&quot; src=&quot;https://a248.e.akamai.net/assets.github.com/images/modules/header/logov6-hover.png?1315937721&quot; /&gt;
-            &lt;!--&lt;![endif]--&gt;
-          &lt;/a&gt;
+Follow the instructions.
 
-        &lt;div class=&quot;topsearch&quot;&gt;
-    &lt;!--
-      make sure to use fully qualified URLs here since this nav
-      is used on error pages on other domains
-    --&gt;
-    &lt;ul class=&quot;nav logged_out&quot;&gt;
-        &lt;li class=&quot;pricing&quot;&gt;&lt;a href=&quot;https://github.com/plans&quot;&gt;Signup and Pricing&lt;/a&gt;&lt;/li&gt;
-        &lt;li class=&quot;explore&quot;&gt;&lt;a href=&quot;https://github.com/explore&quot;&gt;Explore GitHub&lt;/a&gt;&lt;/li&gt;
-      &lt;li class=&quot;features&quot;&gt;&lt;a href=&quot;https://github.com/features&quot;&gt;Features&lt;/a&gt;&lt;/li&gt;
-        &lt;li class=&quot;blog&quot;&gt;&lt;a href=&quot;https://github.com/blog&quot;&gt;Blog&lt;/a&gt;&lt;/li&gt;
-      &lt;li class=&quot;login&quot;&gt;&lt;a href=&quot;https://github.com/login?return_to=%2Fgist%2F1441588%2F&quot;&gt;Login&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-&lt;/div&gt;
+Modify `/etc/apache2.conf` and add this:
 
-      &lt;/div&gt;
+    LoadModule passenger_module /opt/ruby-enterprise-1.8.7-2011.03/lib/ruby/gems/1.8/gems/passenger-3.0.7/ext/apache2/mod_passenger.so
+    PassengerRoot /opt/ruby-enterprise-1.8.7-2011.03/lib/ruby/gems/1.8/gems/passenger-3.0.7
+    PassengerRuby /opt/ruby-enterprise-1.8.7-2011.03/bin/ruby
 
-      
-        &lt;div class=&quot;site&quot;&gt;
-          
+Create a new vhost
 
-&lt;style type=&quot;text/css&quot;&gt;
-    * {
-        margin: 0px;
-        padding: 0px;
-    }
-    #parallax_illustration {
-        display:block;
-        width: 940px;
-        height: 375px;
-        margin: 20px 0 0 20px;
-        position: relative;
-        overflow: hidden;
-    }
-    #parallax_illustration #parallax_error_text {
-        position: absolute;
-        top: 72px;
-        left: 72px;
-        z-index: 10;
-    }
-    #parallax_illustration #parallax_octocat {
-        position: absolute;
-        top: 94px;
-        left: 356px;
-        z-index: 9;
-    }
-    #parallax_illustration #parallax_speeder {
-        position: absolute;
-        top: 150px;
-        left: 432px;
-        z-index: 8;
-    }
-    #parallax_illustration #parallax_octocatshadow {
-        position: absolute;
-        top: 297px;
-        left: 371px;
-        z-index: 7;
-    }
-    #parallax_illustration #parallax_speedershadow {
-        position: absolute;
-        top: 263px;
-        left: 442px;
-        z-index: 6;
-    }
-    #parallax_illustration #parallax_building_1 {
-        position: absolute;
-        top: 73px;
-        left: 467px;
-        z-index: 5;
-    }
-    #parallax_illustration #parallax_building_2 {
-        position: absolute;
-        top: 113px;
-        left: 762px;
-        z-index: 4;
-    }
-    #parallax_illustration #parallax_bg {
-        position: absolute;
-        top: -20px;
-        left: -20px;
-        z-index: 1;
-    }
-&lt;/style&gt;
-
-
-
-&lt;div id=&quot;parallax_illustration&quot;&gt;
-  &lt;img alt=&quot;404 | &amp;ldquo;This is not the web page you are looking for&amp;rdquo;&quot; class=&quot;js-plaxify&quot; data-xrange=&quot;20&quot; data-yrange=&quot;10&quot; height=&quot;249&quot; id=&quot;parallax_error_text&quot; src=&quot;https://a248.e.akamai.net/assets.github.com/images/modules/404/parallax_errortext.png?1315937721&quot; width=&quot;271&quot; /&gt;
-  &lt;img alt=&quot;Octobi Wan Catnobi&quot; class=&quot;js-plaxify&quot; data-xrange=&quot;10&quot; data-yrange=&quot;10&quot; height=&quot;230&quot; id=&quot;parallax_octocat&quot; src=&quot;https://a248.e.akamai.net/assets.github.com/images/modules/404/parallax_octocat.png?1315937721&quot; width=&quot;188&quot; /&gt;
-  &lt;img alt=&quot;land speeder&quot; class=&quot;js-plaxify&quot; data-xrange=&quot;10&quot; data-yrange=&quot;10&quot; height=&quot;156&quot; id=&quot;parallax_speeder&quot; src=&quot;https://a248.e.akamai.net/assets.github.com/images/modules/404/parallax_speeder.png?1315937721&quot; width=&quot;440&quot; /&gt;
-  &lt;img alt=&quot;Octobi Wan Catnobi's shadow&quot; class=&quot;js-plaxify&quot; data-xrange=&quot;10&quot; data-yrange=&quot;10&quot; height=&quot;49&quot; id=&quot;parallax_octocatshadow&quot; src=&quot;https://a248.e.akamai.net/assets.github.com/images/modules/404/parallax_octocatshadow.png?1315937721&quot; width=&quot;166&quot; /&gt;
-  &lt;img alt=&quot;land speeder's shadow&quot; class=&quot;js-plaxify&quot; data-xrange=&quot;10&quot; data-yrange=&quot;10&quot; height=&quot;75&quot; id=&quot;parallax_speedershadow&quot; src=&quot;https://a248.e.akamai.net/assets.github.com/images/modules/404/parallax_speedershadow.png?1315937721&quot; width=&quot;430&quot; /&gt;
-  &lt;img alt=&quot;building&quot; class=&quot;js-plaxify&quot; data-invert=&quot;true&quot; data-xrange=&quot;50&quot; data-yrange=&quot;20&quot; height=&quot;123&quot; id=&quot;parallax_building_1&quot; src=&quot;https://a248.e.akamai.net/assets.github.com/images/modules/404/parallax_building_1.png?1315937721&quot; width=&quot;304&quot; /&gt;
-  &lt;img alt=&quot;building&quot; class=&quot;js-plaxify&quot; data-invert=&quot;true&quot; data-xrange=&quot;75&quot; data-yrange=&quot;30&quot; height=&quot;50&quot; id=&quot;parallax_building_2&quot; src=&quot;https://a248.e.akamai.net/assets.github.com/images/modules/404/parallax_building_2.png?1315937721&quot; width=&quot;116&quot; /&gt;
-  &lt;img alt=&quot;building&quot; class=&quot;js-plaxify&quot; data-invert=&quot;true&quot; data-xrange=&quot;0&quot; data-yrange=&quot;40&quot; height=&quot;415&quot; id=&quot;parallax_bg&quot; src=&quot;https://a248.e.akamai.net/assets.github.com/images/modules/404/parallax_bg.jpg?1315937721&quot; width=&quot;940&quot; /&gt;
-&lt;/div&gt;
-
-&lt;/script&gt;
-
-        &lt;/div&gt;
-    &lt;/div&gt;
-    &lt;!-- footer --&gt;
-    &lt;div id=&quot;footer&quot; &gt;
-      
-  &lt;div class=&quot;upper_footer&quot;&gt;
-     &lt;div class=&quot;site&quot; class=&quot;clearfix&quot;&gt;
-
-       &lt;!--[if IE]&gt;&lt;h4 id=&quot;blacktocat_ie&quot;&gt;GitHub Links&lt;/h4&gt;&lt;![endif]--&gt;
-       &lt;![if !IE]&gt;&lt;h4 id=&quot;blacktocat&quot;&gt;GitHub Links&lt;/h4&gt;&lt;![endif]&gt;
-
-       &lt;ul class=&quot;footer_nav&quot;&gt;
-         &lt;h4&gt;GitHub&lt;/h4&gt;
-         &lt;li&gt;&lt;a href=&quot;https://github.com/about&quot;&gt;About&lt;/a&gt;&lt;/li&gt;
-         &lt;li&gt;&lt;a href=&quot;https://github.com/blog&quot;&gt;Blog&lt;/a&gt;&lt;/li&gt;
-         &lt;li&gt;&lt;a href=&quot;https://github.com/features&quot;&gt;Features&lt;/a&gt;&lt;/li&gt;
-         &lt;li&gt;&lt;a href=&quot;https://github.com/contact&quot;&gt;Contact &amp;amp; Support&lt;/a&gt;&lt;/li&gt;
-         &lt;li&gt;&lt;a href=&quot;https://github.com/training&quot;&gt;Training&lt;/a&gt;&lt;/li&gt;
-         &lt;li&gt;&lt;a href=&quot;http://status.github.com/&quot;&gt;Site Status&lt;/a&gt;&lt;/li&gt;
-       &lt;/ul&gt;
-
-       &lt;ul class=&quot;footer_nav&quot;&gt;
-         &lt;h4&gt;Tools&lt;/h4&gt;
-         &lt;li&gt;&lt;a href=&quot;http://mac.github.com/&quot;&gt;GitHub for Mac&lt;/a&gt;&lt;/li&gt;
-         &lt;li&gt;&lt;a href=&quot;http://mobile.github.com/&quot;&gt;Issues for iPhone&lt;/a&gt;&lt;/li&gt;
-         &lt;li&gt;&lt;a href=&quot;https://gist.github.com&quot;&gt;Gist: Code Snippets&lt;/a&gt;&lt;/li&gt;
-         &lt;li&gt;&lt;a href=&quot;http://enterprise.github.com/&quot;&gt;GitHub Enterprise&lt;/a&gt;&lt;/li&gt;
-         &lt;li&gt;&lt;a href=&quot;http://jobs.github.com/&quot;&gt;Job Board&lt;/a&gt;&lt;/li&gt;
-       &lt;/ul&gt;
-
-       &lt;ul class=&quot;footer_nav&quot;&gt;
-         &lt;h4&gt;Extras&lt;/h4&gt;
-         &lt;li&gt;&lt;a href=&quot;http://shop.github.com/&quot;&gt;GitHub Shop&lt;/a&gt;&lt;/li&gt;
-         &lt;li&gt;&lt;a href=&quot;http://octodex.github.com/&quot;&gt;The Octodex&lt;/a&gt;&lt;/li&gt;
-       &lt;/ul&gt;
-
-       &lt;ul class=&quot;footer_nav&quot;&gt;
-         &lt;h4&gt;Documentation&lt;/h4&gt;
-         &lt;li&gt;&lt;a href=&quot;http://help.github.com/&quot;&gt;GitHub Help&lt;/a&gt;&lt;/li&gt;
-         &lt;li&gt;&lt;a href=&quot;http://developer.github.com/&quot;&gt;Developer API&lt;/a&gt;&lt;/li&gt;
-         &lt;li&gt;&lt;a href=&quot;http://github.github.com/github-flavored-markdown/&quot;&gt;GitHub Flavored Markdown&lt;/a&gt;&lt;/li&gt;
-         &lt;li&gt;&lt;a href=&quot;http://pages.github.com/&quot;&gt;GitHub Pages&lt;/a&gt;&lt;/li&gt;
-       &lt;/ul&gt;
-
-     &lt;/div&gt;&lt;!-- /.site --&gt;
-  &lt;/div&gt;&lt;!-- /.upper_footer --&gt;
-
-&lt;div class=&quot;lower_footer&quot;&gt;
-  &lt;div class=&quot;site&quot; class=&quot;clearfix&quot;&gt;
-    &lt;!--[if IE]&gt;&lt;div id=&quot;legal_ie&quot;&gt;&lt;![endif]--&gt;
-    &lt;![if !IE]&gt;&lt;div id=&quot;legal&quot;&gt;&lt;![endif]&gt;
-      &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;https://github.com/site/terms&quot;&gt;Terms of Service&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;https://github.com/site/privacy&quot;&gt;Privacy&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;https://github.com/security&quot;&gt;Security&lt;/a&gt;&lt;/li&gt;
-      &lt;/ul&gt;
-
-      &lt;p&gt;&amp;copy; 2011 &lt;span id=&quot;_rrt&quot; title=&quot;0.01142s from fe12.rs.github.com&quot;&gt;GitHub&lt;/span&gt; Inc. All rights reserved.&lt;/p&gt;
-    &lt;/div&gt;&lt;!-- /#legal or /#legal_ie--&gt;
-
-      &lt;div class=&quot;sponsor&quot;&gt;
-        &lt;a href=&quot;http://www.rackspace.com&quot; class=&quot;logo&quot;&gt;
-          &lt;img alt=&quot;Dedicated Server&quot; height=&quot;36&quot; src=&quot;https://a248.e.akamai.net/assets.github.com/images/modules/footer/rackspace_logo.png?v2&quot; width=&quot;38&quot; /&gt;
-        &lt;/a&gt;
-        Powered by the &lt;a href=&quot;http://www.rackspace.com &quot;&gt;Dedicated
-        Servers&lt;/a&gt; and&lt;br/&gt; &lt;a href=&quot;http://www.rackspacecloud.com&quot;&gt;Cloud
-        Computing&lt;/a&gt; of Rackspace Hosting&lt;span&gt;&amp;reg;&lt;/span&gt;
-      &lt;/div&gt;
-  &lt;/div&gt;&lt;!-- /.site --&gt;
-&lt;/div&gt;&lt;!-- /.lower_footer --&gt;
-
-    &lt;/div&gt;&lt;!-- /#footer --&gt;
-
+    sudo vim /etc/apache2/sites-available/demo.napcs.com
     
+Put this code in the file:
 
-&lt;div id=&quot;keyboard_shortcuts_pane&quot; class=&quot;instapaper_ignore readability-extra&quot; style=&quot;display:none&quot;&gt;
-  &lt;h2&gt;Keyboard Shortcuts &lt;small&gt;&lt;a href=&quot;#&quot; class=&quot;js-see-all-keyboard-shortcuts&quot;&gt;(see all)&lt;/a&gt;&lt;/small&gt;&lt;/h2&gt;
+    &lt;VirtualHost *:80&gt;
+       ServerName demo.napcs.com
+       DocumentRoot /var/www/demo.napcs.com/current/public  
+       &lt;Directory /var/www/demo.napcs.com/current/public&gt;
+         AllowOverride all          
+         Options -MultiViews       
+       &lt;/Directory&gt;
+    &lt;/VirtualHost&gt;
 
-  &lt;div class=&quot;columns threecols&quot;&gt;
-    &lt;div class=&quot;column first&quot;&gt;
-      &lt;h3&gt;Site wide shortcuts&lt;/h3&gt;
-      &lt;dl class=&quot;keyboard-mappings&quot;&gt;
-        &lt;dt&gt;s&lt;/dt&gt;
-        &lt;dd&gt;Focus site search&lt;/dd&gt;
-      &lt;/dl&gt;
-      &lt;dl class=&quot;keyboard-mappings&quot;&gt;
-        &lt;dt&gt;?&lt;/dt&gt;
-        &lt;dd&gt;Bring up this help dialog&lt;/dd&gt;
-      &lt;/dl&gt;
-    &lt;/div&gt;&lt;!-- /.column.first --&gt;
+Then enable the site
 
-    &lt;div class=&quot;column middle&quot; style='display:none'&gt;
-      &lt;h3&gt;Commit list&lt;/h3&gt;
-      &lt;dl class=&quot;keyboard-mappings&quot;&gt;
-        &lt;dt&gt;j&lt;/dt&gt;
-        &lt;dd&gt;Move selection down&lt;/dd&gt;
-      &lt;/dl&gt;
-      &lt;dl class=&quot;keyboard-mappings&quot;&gt;
-        &lt;dt&gt;k&lt;/dt&gt;
-        &lt;dd&gt;Move selection up&lt;/dd&gt;
-      &lt;/dl&gt;
-      &lt;dl class=&quot;keyboard-mappings&quot;&gt;
-        &lt;dt&gt;c &lt;em&gt;or&lt;/em&gt; o &lt;em&gt;or&lt;/em&gt; enter&lt;/dt&gt;
-        &lt;dd&gt;Open commit&lt;/dd&gt;
-      &lt;/dl&gt;
-      &lt;dl class=&quot;keyboard-mappings&quot;&gt;
-        &lt;dt&gt;y&lt;/dt&gt;
-        &lt;dd&gt;Expand URL to its canonical form&lt;/dd&gt;
-      &lt;/dl&gt;
-    &lt;/div&gt;&lt;!-- /.column.first --&gt;
+    sudo a2ensite demo.napcs.com
+    sudo /etc/init.d/apache2 restart
+  
+And give the `deploy` user permissions to the `/var/www` root folder:
 
-    &lt;div class=&quot;column last&quot; style='display:none'&gt;
-      &lt;h3&gt;Pull request list&lt;/h3&gt;
-      &lt;dl class=&quot;keyboard-mappings&quot;&gt;
-        &lt;dt&gt;j&lt;/dt&gt;
-        &lt;dd&gt;Move selection down&lt;/dd&gt;
-      &lt;/dl&gt;
-      &lt;dl class=&quot;keyboard-mappings&quot;&gt;
-        &lt;dt&gt;k&lt;/dt&gt;
-        &lt;dd&gt;Move selection up&lt;/dd&gt;
-      &lt;/dl&gt;
-      &lt;dl class=&quot;keyboard-mappings&quot;&gt;
-        &lt;dt&gt;o &lt;em&gt;or&lt;/em&gt; enter&lt;/dt&gt;
-        &lt;dd&gt;Open issue&lt;/dd&gt;
-      &lt;/dl&gt;
-    &lt;/div&gt;&lt;!-- /.columns.last --&gt;
+    sudo chown -R deploy:deploy /var/www 
 
-  &lt;/div&gt;&lt;!-- /.columns.equacols --&gt;
+Again, not the best approach, but an acceptable one.
 
-  &lt;div style='display:none'&gt;
-    &lt;div class=&quot;rule&quot;&gt;&lt;/div&gt;
+We're done with server setup!
 
-    &lt;h3&gt;Issues&lt;/h3&gt;
 
-    &lt;div class=&quot;columns threecols&quot;&gt;
-      &lt;div class=&quot;column first&quot;&gt;
-        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
-          &lt;dt&gt;j&lt;/dt&gt;
-          &lt;dd&gt;Move selection down&lt;/dd&gt;
-        &lt;/dl&gt;
-        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
-          &lt;dt&gt;k&lt;/dt&gt;
-          &lt;dd&gt;Move selection up&lt;/dd&gt;
-        &lt;/dl&gt;
-        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
-          &lt;dt&gt;x&lt;/dt&gt;
-          &lt;dd&gt;Toggle selection&lt;/dd&gt;
-        &lt;/dl&gt;
-        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
-          &lt;dt&gt;o &lt;em&gt;or&lt;/em&gt; enter&lt;/dt&gt;
-          &lt;dd&gt;Open issue&lt;/dd&gt;
-        &lt;/dl&gt;
-      &lt;/div&gt;&lt;!-- /.column.first --&gt;
-      &lt;div class=&quot;column middle&quot;&gt;
-        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
-          &lt;dt&gt;I&lt;/dt&gt;
-          &lt;dd&gt;Mark selection as read&lt;/dd&gt;
-        &lt;/dl&gt;
-        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
-          &lt;dt&gt;U&lt;/dt&gt;
-          &lt;dd&gt;Mark selection as unread&lt;/dd&gt;
-        &lt;/dl&gt;
-        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
-          &lt;dt&gt;e&lt;/dt&gt;
-          &lt;dd&gt;Close selection&lt;/dd&gt;
-        &lt;/dl&gt;
-        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
-          &lt;dt&gt;y&lt;/dt&gt;
-          &lt;dd&gt;Remove selection from view&lt;/dd&gt;
-        &lt;/dl&gt;
-      &lt;/div&gt;&lt;!-- /.column.middle --&gt;
-      &lt;div class=&quot;column last&quot;&gt;
-        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
-          &lt;dt&gt;c&lt;/dt&gt;
-          &lt;dd&gt;Create issue&lt;/dd&gt;
-        &lt;/dl&gt;
-        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
-          &lt;dt&gt;l&lt;/dt&gt;
-          &lt;dd&gt;Create label&lt;/dd&gt;
-        &lt;/dl&gt;
-        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
-          &lt;dt&gt;i&lt;/dt&gt;
-          &lt;dd&gt;Back to inbox&lt;/dd&gt;
-        &lt;/dl&gt;
-        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
-          &lt;dt&gt;u&lt;/dt&gt;
-          &lt;dd&gt;Back to issues&lt;/dd&gt;
-        &lt;/dl&gt;
-        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
-          &lt;dt&gt;/&lt;/dt&gt;
-          &lt;dd&gt;Focus issues search&lt;/dd&gt;
-        &lt;/dl&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
+Preparing Your Rails app
+---------
 
-  &lt;div style='display:none'&gt;
-    &lt;div class=&quot;rule&quot;&gt;&lt;/div&gt;
+Create the Rails 3 application. We'll do a simple one with a single table.
 
-    &lt;h3&gt;Issues Dashboard&lt;/h3&gt;
-
-    &lt;div class=&quot;columns threecols&quot;&gt;
-      &lt;div class=&quot;column first&quot;&gt;
-        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
-          &lt;dt&gt;j&lt;/dt&gt;
-          &lt;dd&gt;Move selection down&lt;/dd&gt;
-        &lt;/dl&gt;
-        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
-          &lt;dt&gt;k&lt;/dt&gt;
-          &lt;dd&gt;Move selection up&lt;/dd&gt;
-        &lt;/dl&gt;
-        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
-          &lt;dt&gt;o &lt;em&gt;or&lt;/em&gt; enter&lt;/dt&gt;
-          &lt;dd&gt;Open issue&lt;/dd&gt;
-        &lt;/dl&gt;
-      &lt;/div&gt;&lt;!-- /.column.first --&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-
-  &lt;div style='display:none'&gt;
-    &lt;div class=&quot;rule&quot;&gt;&lt;/div&gt;
-
-    &lt;h3&gt;Network Graph&lt;/h3&gt;
-    &lt;div class=&quot;columns equacols&quot;&gt;
-      &lt;div class=&quot;column first&quot;&gt;
-        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
-          &lt;dt&gt;&lt;span class=&quot;badmono&quot;&gt;←&lt;/span&gt; &lt;em&gt;or&lt;/em&gt; h&lt;/dt&gt;
-          &lt;dd&gt;Scroll left&lt;/dd&gt;
-        &lt;/dl&gt;
-        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
-          &lt;dt&gt;&lt;span class=&quot;badmono&quot;&gt;→&lt;/span&gt; &lt;em&gt;or&lt;/em&gt; l&lt;/dt&gt;
-          &lt;dd&gt;Scroll right&lt;/dd&gt;
-        &lt;/dl&gt;
-        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
-          &lt;dt&gt;&lt;span class=&quot;badmono&quot;&gt;↑&lt;/span&gt; &lt;em&gt;or&lt;/em&gt; k&lt;/dt&gt;
-          &lt;dd&gt;Scroll up&lt;/dd&gt;
-        &lt;/dl&gt;
-        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
-          &lt;dt&gt;&lt;span class=&quot;badmono&quot;&gt;↓&lt;/span&gt; &lt;em&gt;or&lt;/em&gt; j&lt;/dt&gt;
-          &lt;dd&gt;Scroll down&lt;/dd&gt;
-        &lt;/dl&gt;
-        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
-          &lt;dt&gt;t&lt;/dt&gt;
-          &lt;dd&gt;Toggle visibility of head labels&lt;/dd&gt;
-        &lt;/dl&gt;
-      &lt;/div&gt;&lt;!-- /.column.first --&gt;
-      &lt;div class=&quot;column last&quot;&gt;
-        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
-          &lt;dt&gt;shift &lt;span class=&quot;badmono&quot;&gt;←&lt;/span&gt; &lt;em&gt;or&lt;/em&gt; shift h&lt;/dt&gt;
-          &lt;dd&gt;Scroll all the way left&lt;/dd&gt;
-        &lt;/dl&gt;
-        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
-          &lt;dt&gt;shift &lt;span class=&quot;badmono&quot;&gt;→&lt;/span&gt; &lt;em&gt;or&lt;/em&gt; shift l&lt;/dt&gt;
-          &lt;dd&gt;Scroll all the way right&lt;/dd&gt;
-        &lt;/dl&gt;
-        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
-          &lt;dt&gt;shift &lt;span class=&quot;badmono&quot;&gt;↑&lt;/span&gt; &lt;em&gt;or&lt;/em&gt; shift k&lt;/dt&gt;
-          &lt;dd&gt;Scroll all the way up&lt;/dd&gt;
-        &lt;/dl&gt;
-        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
-          &lt;dt&gt;shift &lt;span class=&quot;badmono&quot;&gt;↓&lt;/span&gt; &lt;em&gt;or&lt;/em&gt; shift j&lt;/dt&gt;
-          &lt;dd&gt;Scroll all the way down&lt;/dd&gt;
-        &lt;/dl&gt;
-      &lt;/div&gt;&lt;!-- /.column.last --&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-
-  &lt;div style='display:none'&gt;
-    &lt;div class=&quot;rule&quot;&gt;&lt;/div&gt;
-    &lt;div class=&quot;columns threecols&quot;&gt;
-      &lt;div class=&quot;column first&quot; style='display:none'&gt;
-        &lt;h3&gt;Source Code Browsing&lt;/h3&gt;
-        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
-          &lt;dt&gt;t&lt;/dt&gt;
-          &lt;dd&gt;Activates the file finder&lt;/dd&gt;
-        &lt;/dl&gt;
-        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
-          &lt;dt&gt;l&lt;/dt&gt;
-          &lt;dd&gt;Jump to line&lt;/dd&gt;
-        &lt;/dl&gt;
-        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
-          &lt;dt&gt;w&lt;/dt&gt;
-          &lt;dd&gt;Switch branch/tag&lt;/dd&gt;
-        &lt;/dl&gt;
-        &lt;dl class=&quot;keyboard-mappings&quot;&gt;
-          &lt;dt&gt;y&lt;/dt&gt;
-          &lt;dd&gt;Expand URL to its canonical form&lt;/dd&gt;
-        &lt;/dl&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-    &lt;div id=&quot;markdown-help&quot; class=&quot;instapaper_ignore readability-extra&quot;&gt;
-  &lt;h2&gt;Markdown Cheat Sheet&lt;/h2&gt;
-
-  &lt;div class=&quot;cheatsheet-content&quot;&gt;
-
-  &lt;div class=&quot;mod&quot;&gt;
-    &lt;div class=&quot;col&quot;&gt;
-      &lt;h3&gt;Format Text&lt;/h3&gt;
-      &lt;p&gt;Headers&lt;/p&gt;
-      &lt;pre&gt;
-# This is an &amp;lt;h1&amp;gt; tag
-## This is an &amp;lt;h2&amp;gt; tag
-###### This is an &amp;lt;h6&amp;gt; tag&lt;/pre&gt;
-     &lt;p&gt;Text styles&lt;/p&gt;
-     &lt;pre&gt;
-*This text will be italic*
-_This will also be italic_
-**This text will be bold**
-__This will also be bold__
-
-*You **can** combine them*
-&lt;/pre&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;col&quot;&gt;
-      &lt;h3&gt;Lists&lt;/h3&gt;
-      &lt;p&gt;Unordered&lt;/p&gt;
-      &lt;pre&gt;
-* Item 1
-* Item 2
-  * Item 2a
-  * Item 2b&lt;/pre&gt;
-     &lt;p&gt;Ordered&lt;/p&gt;
-     &lt;pre&gt;
-1. Item 1
-2. Item 2
-3. Item 3
-   * Item 3a
-   * Item 3b&lt;/pre&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;col&quot;&gt;
-      &lt;h3&gt;Miscellaneous&lt;/h3&gt;
-      &lt;p&gt;Images&lt;/p&gt;
-      &lt;pre&gt;
-![GitHub Logo](/images/logo.png)
-Format: ![Alt Text](url)
-&lt;/pre&gt;
-     &lt;p&gt;Links&lt;/p&gt;
-     &lt;pre&gt;
-http://github.com - automatic!
-[GitHub](http://github.com)&lt;/pre&gt;
-&lt;p&gt;Blockquotes&lt;/p&gt;
-     &lt;pre&gt;
-As Kanye West said:
-&gt; We're living the future so
-&gt; the present is our past.
-&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;rule&quot;&gt;&lt;/div&gt;
-
-  &lt;h3&gt;Code Examples in Markdown&lt;/h3&gt;
-  &lt;div class=&quot;col&quot;&gt;
-      &lt;p&gt;Syntax highlighting with &lt;a href=&quot;http://github.github.com/github-flavored-markdown/&quot; title=&quot;GitHub Flavored Markdown&quot; target=&quot;_blank&quot;&gt;GFM&lt;/a&gt;&lt;/p&gt;
-      &lt;pre&gt;
-```javascript
-function fancyAlert(arg) {
-  if(arg) {
-    $.facebox({div:'#foo'})
-  }
-}
-```&lt;/pre&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;col&quot;&gt;
-      &lt;p&gt;Or, indent your code 4 spaces&lt;/p&gt;
-      &lt;pre&gt;
-Here is a Python code example
-without syntax highlighting:
-
-    def foo:
-      if not bar:
-        return true&lt;/pre&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;col&quot;&gt;
-      &lt;p&gt;Inline code for comments&lt;/p&gt;
-      &lt;pre&gt;
-I think you should use an
-`&amp;lt;addr&amp;gt;` element here instead.&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-
-  &lt;/div&gt;
-&lt;/div&gt;
-
-    &lt;div class=&quot;context-overlay&quot;&gt;&lt;/div&gt;
-
-    &lt;div class=&quot;ajax-error-message&quot;&gt;
-      &lt;p&gt;&lt;span class=&quot;icon&quot;&gt;&lt;/span&gt; Something went wrong with that request. Please try again. &lt;a href=&quot;javascript:;&quot; class=&quot;ajax-error-dismiss&quot;&gt;Dismiss&lt;/a&gt;&lt;/p&gt;
-    &lt;/div&gt;
-
+    rails new demo
+    cd demo
+    rails g scaffold projects name:string description:text
+    rake db:migrate
+    rm public/index.html
     
+Add a root route to `config/routes.rb`
+
+    root :to =&gt; &quot;projects#index&quot;
+
+Add the `mysql2` gem to your Gemfile and get the sqlite3 one only in dev mode. Specify the version numbers for the gems or you'll get burned!'
+
+    group :development do                                                                                                                                                                                
+      gem 'sqlite3', '1.3.3'
+    end
+ 
+    group :production do
+      gem 'mysql2', '0.2.7'
+    end
+ 
+Then 
+
+    bundle
     
+Let's deploy!
+
+Capistrano setup
+-----------
+
+Generate the capistrano config file:
+
+    capify .
+   
+Modify the `config/deploy.rb` file with our settings for our server.
+
+    require 'bundler/capistrano'
     
-  &lt;/body&gt;
-&lt;/html&gt;
-</code></pre></noscript></div>
+    set :application, &quot;demo.napcs.com&quot;
+
+    # Deploy from your local Git repo by cloning and uploading a tarball
+    set :scm, :git
+    set :repository,  &quot;.&quot;
+    set :deploy_via, :copy
+    
+    set :user, :deploy
+    set :deploy_to, &quot;/var/www/#{application}&quot;
+    set :use_sudo, false
+
+    role :web, &quot;demo.napcs.com&quot;                          # Your HTTP server, Apache/etc
+    role :app, &quot;demo.napcs.com&quot;                          # This may be the same as your `Web` server
+    role :db,  &quot;demo.napcs.com&quot;, :primary =&gt; true # This is where Rails migrations will run
+
+    namespace :deploy do
+      task :start do ; end
+      task :stop do ; end
+      task :restart, :roles =&gt; :app, :except =&gt; { :no_release =&gt; true } do
+       run &quot;#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}&quot;
+      end
+    end
+
+Pay attention to this part:
+
+    set :scm, :git
+    set :repository,  &quot;.&quot;
+    set :deploy_via, :copy
+
+This lets you from your local Git repo by cloning and uploading a tarball. This means you can
+push code from your computer to your server, rather than having to pull code from your remote
+Git repository to your server. Or if Github is down.
+
+
+Now specify your production database info in `database.yml`:
+
+    production:
+      adapter: mysql2
+      host: localhost
+      database: projects_production
+      username: rails
+      password: rails
+
+Here, we're putting our production db password in our `database.yml` file.
+You probably want to keep this file out of your repository, and instead
+write a custom Capistrano task to build the `database.yml` file during 
+deployment. That's something you can Google on your own.
+
+Now make a Git repo
+    
+    git init
+    git add .
+    git commit -a -m &quot;Initial import&quot;
+
+Finally, set up the app on the server:
+
+    cap deploy:setup
+    
+Deploy the app
+
+    cap deploy:cold
+
+And we're done! At this point, make changes to your code, commit them, redeploy with
+
+    cap deploy
+    
+Bonus: Stream your logfiles!
+--------------------
+Add this to `deploy.rb`
+
+    desc &quot;tail production log files&quot; 
+    task :tail_logs, :roles =&gt; :app do
+      run &quot;tail -f #{shared_path}/log/production.log&quot; do |channel, stream, data|
+        puts  # for an extra line break before the host name
+        puts &quot;#{channel[:host]}: #{data}&quot; 
+        break if stream == :err    
+      end
+    end
+
+Then run it with
+
+    cap tail_logs
+    
+Capistrano isn't just for deploying Rails apps. You can use it to automate anything
+you do with SSH. 
+  
+
+
+
+
+
+    </code></pre></noscript></div>
 
 </div>
   
