@@ -7,4 +7,4 @@ categories: [Linode,Rails]
 ---
 > Deploying Rails to Linode
 
-{% gist 1441588 %}
+{% gist 1441585 %}
