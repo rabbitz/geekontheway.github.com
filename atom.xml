@@ -4,7 +4,7 @@
   <title><![CDATA[Geekontheway]]></title>
   <link href="http://geekontheway.github.com/atom.xml" rel="self"/>
   <link href="http://geekontheway.github.com/"/>
-  <updated>2011-12-13T14:52:10+08:00</updated>
+  <updated>2012-01-14T19:59:48+08:00</updated>
   <id>http://geekontheway.github.com/</id>
   <author>
     <name><![CDATA[Bill Zh]]></name>
@@ -12,6 +12,285 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Rails-Dependencies]]></title>
+    <link href="http://geekontheway.github.com/blog/2011/12/24/rails-dependencies/"/>
+    <updated>2011-12-24T06:10:00+08:00</updated>
+    <id>http://geekontheway.github.com/blog/2011/12/24/rails-dependencies</id>
+    <content type="html"><![CDATA[<p><img src="images/ror.jpg"></p>
+
+<blockquote><p>Mac</p></blockquote>
+
+<p>Xcode,<code>rvm 安装1.9以上版本的ruby需要设置编译器为gcc</code></p>
+
+<blockquote><p>Ubuntu 10.04 LTS</p></blockquote>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>apt-get install wget vim build-essential openssl libssl-dev libreadline6 libreadline6-dev curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libxml2-dev libxslt-dev autoconf automake libtool imagemagick libpcre3-dev libmysqld-dev</span></code></pre></td></tr></table></div></figure>
+
+
+<blockquote><p>CentOS 5</p></blockquote>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>yum groupinstall "Development Tools"
+</span><span class='line'>yum install zlib-devel wget openssl-devel pcre pcre-devel make gcc gcc-c++ curl-devel mysql-devel
+</span><span class='line'>
+</span><span class='line'># gem install mysql --no-rdoc --no-ri -- --with-mysql-dir=/usr/bin --with-mysql-lib=/usr/lib/mysql --with-mysql-include=/usr/include/mysql</span></code></pre></td></tr></table></div></figure>
+
+
+<p>更多阅读</p>
+
+<p><a href="http://packages.ubunut.com/" title="Ubuntu Packages Search">Ubuntu Packages Search</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Install-Mysql-Server-In-Unix-Like-Operating-System]]></title>
+    <link href="http://geekontheway.github.com/blog/2011/12/24/install-mysql-server-in-unix-like-operating-system/"/>
+    <updated>2011-12-24T06:08:00+08:00</updated>
+    <id>http://geekontheway.github.com/blog/2011/12/24/install-mysql-server-in-unix-like-operating-system</id>
+    <content type="html"><![CDATA[<p><img src="images/mysql.jpg"></p>
+
+<blockquote><p>CentOS 5</p></blockquote>
+
+<ul>
+<li>Installing MySQL</li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>yum install mysql-server
+</span><span class='line'>/sbin/chkconfig --levels 235 mysqld on</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The MySQL server package will be installed on your server, <strong>along with dependencies and client libraries.</strong> Start MySQL by running the following command:</p>
+
+<p><code>service mysqld start</code></p>
+
+<ul>
+<li>Configuring MySQL</li>
+</ul>
+
+
+<p>After installing MySQL, it&#8217;s recommended that you run <strong>mysql_secure_installation</strong>, a program that helps secure MySQL. While running mysql_secure_installation, <strong>you will be presented with the opportunity to change the MySQL root password, remove anonymous user accounts, disable root logins outside of localhost, and remove test databases.</strong> It is recommended that you answer yes to these options. If you are prompted to reload the privilege tables, select yes.</p>
+
+<p>By default, MySQL makes some assumptions about your server environment with respect to memory. To configure MySQL more conservatively, you&#8217;ll need to edit some settings in its configuration file. Your file should resemble the following:</p>
+
+<p><code>File:/etc/my.cnf</code></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[mysqld]
+</span><span class='line'>datadir=/var/lib/mysql
+</span><span class='line'>socket=/var/lib/mysql/mysql.sock
+</span><span class='line'>user=mysql
+</span><span class='line'># Default to using old password format for compatibility with mysql 3.x
+</span><span class='line'># clients (those using the mysqlclient10 compatibility package).
+</span><span class='line'>old_passwords=1
+</span><span class='line'>
+</span><span class='line'># Disabling symbolic-links is recommended to prevent assorted security risks;
+</span><span class='line'># to do so, uncomment this line:
+</span><span class='line'># symbolic-links=0
+</span><span class='line'>
+</span><span class='line'>key_buffer = 16K
+</span><span class='line'>max_allowed_packet = 1M
+</span><span class='line'>thread_stack = 64K
+</span><span class='line'>table_cache = 4
+</span><span class='line'>sort_buffer = 64K
+</span><span class='line'>net_buffer_length = 2K
+</span><span class='line'>bind-address = 127.0.0.1
+</span><span class='line'>
+</span><span class='line'>[mysqld_safe]
+</span><span class='line'>log-error=/var/log/mysqld.log
+</span><span class='line'>pid-file=/var/run/mysqld/mysqld.pid
+</span><span class='line'>These settings are only suggested values for a low memory environment; please feel free to tune them to appropriate values for your server. Consult the "More Information" section at the end of this tutorial for additional resources for this topic.</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If you made any changes to MySQL&#8217;s configuration, issue the following command to restart it:</p>
+
+<p><code>service mysqld restart</code></p>
+
+<p>MySQL will bind to localhost (127.0.0.1) by default. Please reference our secure MySQL remote access guide for information on connecting to your databases with local clients.</p>
+
+<p>Allowing unrestricted access to MySQL on a public IP not advised, but you may change the address it listens on by modifying the bind-address parameter. If you decide to bind MySQL to your public IP, <strong>you should implement firewall rules that only allow connections from specific IP addresses.
+</strong></p>
+
+<ul>
+<li>Using MySQL</li>
+</ul>
+
+
+<p>To generate a list of commands for the MySQL prompt type \h:</p>
+
+<p><code>Note that all text commands must be first on line and end with ';'</code></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>?         (\?) Synonym for `help'.
+</span><span class='line'>clear     (\c) Clear command.
+</span><span class='line'>connect   (\r) Reconnect to the server. Optional arguments are db and host.
+</span><span class='line'>delimiter (\d) Set statement delimiter. NOTE: Takes the rest of the line as new delimiter.
+</span><span class='line'>edit      (\e) Edit command with $EDITOR.
+</span><span class='line'>ego       (\G) Send command to mysql server, display result vertically.
+</span><span class='line'>exit      (\q) Exit mysql. Same as quit.
+</span><span class='line'>go        (\g) Send command to mysql server.
+</span><span class='line'>help      (\h) Display this help.
+</span><span class='line'>nopager   (\n) Disable pager, print to stdout.
+</span><span class='line'>notee     (\t) Don't write into outfile.
+</span><span class='line'>pager     (\P) Set PAGER [to_pager]. Print the query results via PAGER.
+</span><span class='line'>print     (\p) Print current command.
+</span><span class='line'>prompt    (\R) Change your mysql prompt.
+</span><span class='line'>quit      (\q) Quit mysql.
+</span><span class='line'>rehash    (\#) Rebuild completion hash.
+</span><span class='line'>source    (\.) Execute an SQL script file. Takes a file name as an argument.
+</span><span class='line'>status    (\s) Get status information from the server.
+</span><span class='line'>system    (\!) Execute a system shell command.
+</span><span class='line'>tee       (\T) Set outfile [to_outfile]. Append everything into given outfile.
+</span><span class='line'>use       (\u) Use another database. Takes database name as argument.
+</span><span class='line'>charset   (\C) Switch to another charset. Might be needed for processing binlog with multi-byte charsets.
+</span><span class='line'>warnings  (\W) Show warnings after every statement.
+</span><span class='line'>nowarning (\w) Don't show warnings after every statement.</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>Resetting the MySQL Root Password
+If you&#8217;ve forgotten your root MySQL password, you may recover it by issuing the following commands:</li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>/etc/init.d/mysqld stop
+</span><span class='line'>mysqld_safe --skip-grant-tables &
+</span><span class='line'>mysql -u root</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The following part of the password reset will now be done within the MySQL client program:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>USE mysql;
+</span><span class='line'>UPDATE user SET PASSWORD=PASSWORD("CHANGEME") WHERE USER='root';
+</span><span class='line'>FLUSH PRIVILEGES;
+</span><span class='line'>exit</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Last, restart MySQL by issuing:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>service mysqld restart</span></code></pre></td></tr></table></div></figure>
+
+
+<blockquote><p>Ubuntu 10.04 LTS (Lucid)</p></blockquote>
+
+<ul>
+<li>Installing MySQL</li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>apt-get install mysql-server
+</span><span class='line'>update-rc.d mysql defaults #Or,sysv-rc-conf</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>Configuring MySQL</li>
+</ul>
+
+
+<p><code>/etc/mysql/my.cnf</code></p>
+
+<p>If you made any changes to MySQL&#8217;s configuration, restart it by issuing the following command:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>/etc/init.d/mysqld restart</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>Resetting the MySQL Root Password</li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>dpkg-reconfigure mysql-server-5.1</span></code></pre></td></tr></table></div></figure>
+
+
+<blockquote><p>OS X</p></blockquote>
+
+<p>Hombrew方式</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>brew install mysql
+</span><span class='line'>mysql_install_db
+</span><span class='line'>mysql.server start</span></code></pre></td></tr></table></div></figure>
+
+
+<p>二进制安装包方式</p>
+
+<p>更多阅读</p>
+
+<p><a href="http://www.2cto.com/database/201006/50201.html" title="更改MySQL数据库root密码的具体方法">更改MySQL数据库root密码的具体方法</a></p>
+
+<p><a href="http://kenwublog.com/mac-os-launchd-tuning" title="Mac OS启动服务优化高级篇（launchd tuning）">Mac OS启动服务优化高级篇（launchd tuning）</a></p>
+
+<p><a href="http://lingon.macgood.com/" title="Lingon Launchd 后台服务管理器 For Mac">Lingon Launchd 后台服务管理器 For Mac</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Ruby语言入门by园田裕贵]]></title>
@@ -1263,7 +1542,7 @@ var arr2 = new Array(element0, element1, ..., elementN);
 </ul>
 
 
-<blockquote><p>特别的，如果你克隆了博客，记得在<code>git checkout source</code>，然后<code>rake setup_gh_pages</code>执行初始化，当然，你可能也需要<code>bundle install</code></p>
+<blockquote><p>特别的，如果你克隆了博客，记得在<code>git checkout source</code>，然后<code>rake setup_github_pages</code>执行初始化，当然，在那之前也需要<code>bundle install</code>，然后rake generate就生成页面了.</p>
 
 <p>如果是新建的Repo ，记得</p></blockquote>
 

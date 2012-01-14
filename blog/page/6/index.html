@@ -9,7 +9,28 @@
   <meta name="author" content="Bill Zh">
 
   
-  <meta name="description" content="大二使用ubuntu的时候，了解了一些开机自动运行服务的命令和配置，不过一直没机会也没环境去操作。所以这几天配置服务器时候就麻烦了一些。为什么会麻烦呢？因为不好的习惯，国人喜欢百度，喜欢不加思索复制粘贴，goole上又全是英文，不一定每个人都英语好。其实就是一个很小的问题， &hellip;">
+  <meta name="description" content="Includes: StackScript Bash Library 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+#!/bin/bash
+# &lt;udf name=&quot;admin_login&quot; label=&quot &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,7 +101,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2011/12/06/nginx-autorun-with-init-scripts/">Nginx自启动设置</a></h1>
+      <h1 class="entry-title"><a href="/blog/2011/12/09/rvm-system-wide-install-script/">分享一个全局RVM的安装脚本 Ubuntu 10.04</a></h1>
     
     
       <p class="meta">
@@ -96,154 +117,58 @@
   
 
 
-<time datetime="2011-12-06T19:40:00+08:00" pubdate data-updated="true">Dec 6<span>th</span>, 2011</time>
+<time datetime="2011-12-09T15:27:00+08:00" pubdate data-updated="true">Dec 9<span>th</span>, 2011</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>大二使用ubuntu的时候，了解了一些开机自动运行服务的命令和配置，不过一直没机会也没环境去操作。所以这几天配置服务器时候就麻烦了一些。为什么会麻烦呢？因为不好的习惯，国人喜欢百度，喜欢不加思索复制粘贴，goole上又全是英文，不一定每个人都英语好。其实就是一个很小的问题，百度上是一大堆重复的讲的不清不楚的，没有平台观念，版本观念的[不过确实有例外，CSDN上很多文章还是不错的，程序员的个人博客里的文章也都有思考在里面]，其实说回来，linux自身的版本过多，发行版中的一些设置也一直在变，从技术上讲是好事，可是给普通用户带来了学习的压力。</p>
+  <div class="entry-content">
 
-<blockquote><p>假定你：</p></blockquote>
-
-<ul>
-<li>熟悉linux的运行级别[runlevel]</li>
-</ul>
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>Includes: StackScript Bash Library </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>0    关闭（或终止）系统
-</span><span class='line'> 1    单用户模式：通常又称为 s 或 S
-</span><span class='line'> 6    重启系统
-</span><span class='line'> 2    没有网络的多用户模式
-</span><span class='line'> 3    有网络的多用户模式
-</span><span class='line'> 5    有网络和 X Window System的多用户模式</span></code></pre></td></tr></table></div></figure>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/bash</span>
+</span><span class='line'><span class="c"># &lt;udf name=&quot;admin_login&quot; label=&quot;Admin Login&quot; /&gt;</span>
+</span><span class='line'><span class="c"># &lt;udf name=&quot;admin_password&quot; label=&quot;Admin Password&quot; /&gt;</span>
+</span><span class='line'><span class="c"># &lt;udf name=&quot;group_name&quot; label=&quot;RVM Group name&quot; default=&quot;rvm&quot; /&gt;</span>
+</span><span class='line'><span class="nb">source</span> &lt;ssinclude <span class="nv">StackScriptID</span><span class="o">=</span><span class="s2">&quot;1&quot;</span>&gt;
+</span><span class='line'>system_update
+</span><span class='line'>hostname <span class="sb">`</span>get_rdns_primary_ip<span class="sb">`</span>
+</span><span class='line'>aptitude -y install sudo
+</span><span class='line'>groupadd wheel
+</span><span class='line'>cp /etc/sudoers /etc/sudoers.tmp
+</span><span class='line'>chmod 0640 /etc/sudoers.tmp
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;%wheel ALL = (ALL) ALL&quot;</span> &gt;&gt; /etc/sudoers.tmp
+</span><span class='line'>chmod 0440 /etc/sudoers.tmp
+</span><span class='line'>mv /etc/sudoers.tmp /etc/sudoers
+</span><span class='line'>useradd -m -s /bin/bash -G wheel <span class="s2">&quot;$ADMIN_LOGIN&quot;</span>
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;${ADMIN_LOGIN}:${ADMIN_PASSWORD}&quot;</span> | chpasswd
+</span><span class='line'><span class="nb">export </span><span class="nv">rvm_group_name</span><span class="o">=</span><span class="s2">&quot;$GROUP_NAME&quot;</span>
+</span><span class='line'>aptitude -y install curl bison build-essential zlib1g-dev libssl-dev libreadline5-dev libxml2-dev git-core
+</span><span class='line'>bash &lt; &lt;<span class="o">(</span> curl -L http://bit.ly/rvm-install-system-wide <span class="o">)</span>
+</span><span class='line'>usermod -a -G <span class="s2">&quot;$GROUP_NAME&quot;</span> <span class="s2">&quot;$ADMIN_LOGIN&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
 
-
-<p> 分享一下ngnix配置自动启动脚本：</p>
-
-<div><script src='https://gist.github.com/1436747.js?file='></script>
-<noscript><pre><code>[root@xjeevps opt]# cat /etc/init.d/nginx
-#!/bin/bash 
-# nginx Startup script for the Nginx HTTP Server 
-# it is v.0.0.2 version. 
-# chkconfig: - 85 15 
-# description: Nginx is a high-performance web and proxy server. 
-#              It has a lot of features, but it's not for everyone. 
-# processname: nginx 
-# pidfile: /var/run/nginx.pid 
-# config: /usr/local/nginx/conf/nginx.conf 
-nginxd=/usr/local/nginx/sbin/nginx 
-nginx_config=/usr/local/nginx/conf/nginx.conf 
-nginx_pid=/var/run/nginx.pid 
-RETVAL=0 
-prog=&quot;nginx&quot; 
-# Source function library. 
-. /etc/rc.d/init.d/functions 
-# Source networking configuration. 
-. /etc/sysconfig/network 
-# Check that networking is up. 
-[ ${NETWORKING} = &quot;no&quot; ] &amp;&amp; exit 0 
-[ -x $nginxd ] || exit 0 
-# Start nginx daemons functions. 
-start() { 
-if [ -e $nginx_pid ];then 
-   echo &quot;nginx already running....&quot; 
-   exit 1 
-fi 
-   echo -n $&quot;Starting $prog: &quot; 
-   daemon $nginxd -c ${nginx_config} 
-   RETVAL=$? 
-   echo 
-   [ $RETVAL = 0 ] &amp;&amp; touch /var/lock/subsys/nginx 
-   return $RETVAL 
-} 
-# Stop nginx daemons functions. 
-stop() { 
-        echo -n $&quot;Stopping $prog: &quot; 
-        killproc $nginxd 
-        RETVAL=$? 
-        echo 
-        [ $RETVAL = 0 ] &amp;&amp; rm -f /var/lock/subsys/nginx /var/run/nginx.pid 
-} 
-# reload nginx service functions. 
-reload() { 
-    echo -n $&quot;Reloading $prog: &quot; 
-    #kill -HUP `cat ${nginx_pid}` 
-    killproc $nginxd -HUP 
-    RETVAL=$? 
-    echo 
-} 
-# See how we were called. 
-case &quot;$1&quot; in 
-start) 
-        start 
-        ;; 
-stop) 
-        stop 
-        ;; 
-reload) 
-        reload 
-        ;; 
-restart) 
-        stop 
-        start 
-        ;; 
-status) 
-        status $prog 
-        RETVAL=$? 
-        ;; 
-*) 
-        echo $&quot;Usage: $prog {start|stop|restart|reload|status|help}&quot; 
-        exit 1 
-esac 
-exit $RETVAL
-</code></pre></noscript></div>
-
-
-<blockquote><p>Ubuntu natty</p></blockquote>
-
-<ul>
-<li>在/etc/init.d中建立脚本nginx，添加脚本进去，chmod+x</li>
-<li>/usr/sbin/update-rc.d -f nginx defaults</li>
-</ul>
-
-
-<blockquote><p>or</p></blockquote>
-
-<ul>
-<li>sysv-rc-conf 设定2345运行nginx</li>
-</ul>
-
-
-<p>要启动或者停止,重启</p>
-
-<p><code>/etc/init.d/nginx start/stop/restart</code></p>
-
-<blockquote><p>CentOS5</p></blockquote>
-
-<ul>
-<li>在/etc/init.d中建立脚本nginx，添加脚本进去，chmod+x</li>
-<li>/usr/sbin/update-rc.d -f nginx defaults</li>
-</ul>
-
-
-<blockquote><p>or</p></blockquote>
-
-<ul>
-<li>/sbin/chkconfig nginx 2345 on</li>
-</ul>
-
-
-<p>要启动或者停止,重启</p>
-
-<p><code>service nginx start/stop/restart</code></p>
 </div>
   
   
@@ -266,6 +191,14 @@ exit $RETVAL
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2011/12/24/rails-dependencies/">Rails-Dependencies</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/12/24/install-mysql-server-in-unix-like-operating-system/">Install-Mysql-Server-In-Unix-Like-Operating-System</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2011/12/10/learning-ruby/">Ruby语言入门by园田裕贵</a>
@@ -297,14 +230,6 @@ exit $RETVAL
     
       <li class="post">
         <a href="/blog/2011/12/03/octopress-codeblock/">Octopress: Codeblock</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2011/12/03/octopress-for-freshman/">Octopress: 新手教程</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2011/12/03/octopress-image-tag/">Octopress: Image tag</a>
       </li>
     
   </ul>
@@ -375,7 +300,7 @@ exit $RETVAL
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2011 - Bill Zh -
+  Copyright &copy; 2012 - Bill Zh -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

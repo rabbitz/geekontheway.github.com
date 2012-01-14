@@ -9,7 +9,7 @@
   <meta name="author" content="Bill Zh">
 
   
-  <meta name="description" content="Capistrano with bundler 起因是昨天要部署公司的一个测试项目bar到linode服务器,部署代码是之前写的,正好拿来学习了: $ gem list capistrano LOCAL GEMS capistrano (2.9.0) capistrano-ext (1.2.1) &hellip;">
+  <meta name="description" content="上一篇博客从capistrano说起谈到了capistrano,刚接触有很多地方不懂，就拿出这篇博客做一个记录,有什么新的发现和问题，都会放上来. capistrano-ex 注意到安装capistrano的时候还要安装capistrano-ex这个gem包,官方的介绍是 capistrano- &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,7 +80,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2011/12/08/from-ssl-to-ssh/">从Capsitrano说起</a></h1>
+      <h1 class="entry-title"><a href="/blog/2011/12/09/starting-capistrano/">初学capistrano</a></h1>
     
     
       <p class="meta">
@@ -96,66 +96,44 @@
   
 
 
-<time datetime="2011-12-08T19:20:00+08:00" pubdate data-updated="true">Dec 8<span>th</span>, 2011</time>
+<time datetime="2011-12-09T15:56:00+08:00" pubdate data-updated="true">Dec 9<span>th</span>, 2011</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><h1>Capistrano with bundler</h1>
+  <div class="entry-content"><p>上一篇博客<a href="http://geekontheway.github.com/blog/2011/12/08/from-ssl-to-ssh/">从capistrano说起</a>谈到了capistrano,刚接触有很多地方不懂，就拿出这篇博客做一个记录,有什么新的发现和问题，都会放上来.</p>
 
-<p>起因是昨天要部署公司的一个测试项目bar到linode服务器,部署代码是之前写的,正好拿来学习了:</p>
+<h2>capistrano-ex</h2>
 
-<p><code>$ gem list capistrano</code></p>
+<p>注意到安装<code>capistrano</code>的时候还要安装<code>capistrano-ex</code>这个gem包,官方的介绍是 <code>capistrano-ex allows you to setup multiple deploy environments</code>.</p>
 
-<blockquote><p><strong><em> LOCAL GEMS </em></strong></p>
+<p>使用方法：</p>
 
-<p>capistrano (2.9.0)</p>
+<ul>
+<li>定义stage:</li>
+</ul>
 
-<p>capistrano-ext (1.2.1)</p></blockquote>
 
-<figure class='code'><figcaption><span>title: deploy.rb </span></figcaption>
+<figure class='code'><figcaption><span>config/deploy.rb </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="c1"># -*- encoding : utf-8 -*-</span>
-</span><span class='line'><span class="n">set</span> <span class="ss">:stages</span><span class="p">,</span> <span class="sx">%w(production staging)</span>
-</span><span class='line'><span class="n">set</span> <span class="ss">:default_stage</span><span class="p">,</span> <span class="s2">&quot;production&quot;</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">set</span> <span class="ss">:stages</span><span class="p">,</span> <span class="sx">%w(production development)</span>
+</span><span class='line'><span class="n">set</span> <span class="ss">:default_stage</span><span class="p">,</span> <span class="s2">&quot;development&quot;</span>
 </span><span class='line'><span class="nb">require</span> <span class="s1">&#39;capistrano/ext/multistage&#39;</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">set</span> <span class="ss">:application</span><span class="p">,</span> <span class="s2">&quot;bar&quot;</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">set</span> <span class="ss">:use_sudo</span><span class="p">,</span> <span class="kp">false</span>
-</span><span class='line'><span class="n">set</span> <span class="ss">:scm</span><span class="p">,</span> <span class="ss">:git</span>
-</span><span class='line'><span class="n">set</span> <span class="ss">:deploy_via</span><span class="p">,</span> <span class="ss">:remote_cache</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">default_run_options</span><span class="o">[</span><span class="ss">:pty</span><span class="o">]</span> <span class="o">=</span> <span class="kp">true</span>
-</span><span class='line'><span class="n">ssh_options</span><span class="o">[</span><span class="ss">:forward_agent</span><span class="o">]</span> <span class="o">=</span> <span class="kp">true</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="n">set</span> <span class="ss">:git_shallow_clone</span><span class="p">,</span> <span class="mi">1</span>
-</span><span class='line'><span class="n">set</span> <span class="ss">:git_enable_submodules</span><span class="p">,</span> <span class="mi">1</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
+<ul>
+<li>设置stage</li>
+</ul>
 
 
-<figure class='code'><figcaption><span>title: deploy/staging.rb </span></figcaption>
+<p>在config目录下创建deploy目录，并在其中修改各stage的配置.</p>
+
+<figure class='code'><figcaption><span>config/ </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -169,354 +147,28 @@
 <span class='line-number'>11</span>
 <span class='line-number'>12</span>
 <span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="c1"># -*- encoding : utf-8 -*-</span>
-</span><span class='line'><span class="n">set</span> <span class="ss">:user</span><span class="p">,</span> <span class="s2">&quot;root&quot;</span>
-</span><span class='line'><span class="n">set</span> <span class="ss">:repository</span><span class="p">,</span> <span class="s2">&quot;git@github.com:foo/bar.git&quot;</span>
-</span><span class='line'><span class="n">set</span> <span class="ss">:branch</span><span class="p">,</span> <span class="s2">&quot;master&quot;</span>
-</span><span class='line'><span class="n">set</span> <span class="ss">:deploy_to</span><span class="p">,</span> <span class="s2">&quot;/home/staging/www/bar&quot;</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="err">$</span> <span class="n">cat</span> <span class="n">production</span><span class="o">.</span><span class="n">rb</span>
 </span><span class='line'>
-</span><span class='line'><span class="n">role</span> <span class="ss">:web</span><span class="p">,</span> <span class="s2">&quot;foo.bar.com&quot;</span> <span class="c1"># Your HTTP server, Apache/etc</span>
-</span><span class='line'><span class="n">role</span> <span class="ss">:app</span><span class="p">,</span> <span class="s2">&quot;foo.bar.com&quot;</span> <span class="c1"># This may be the same as your `Web` server</span>
-</span><span class='line'><span class="n">role</span> <span class="ss">:db</span><span class="p">,</span> <span class="s2">&quot;foo.bar.com&quot;</span><span class="p">,</span> <span class="ss">:primary</span> <span class="o">=&gt;</span> <span class="kp">true</span> <span class="c1"># This is where Rails migrations will run</span>
+</span><span class='line'><span class="n">set</span> <span class="ss">:rails_env</span><span class="p">,</span> <span class="s2">&quot;production&quot;</span>
+</span><span class='line'><span class="n">role</span> <span class="ss">:web</span><span class="p">,</span> <span class="s2">&quot;productionserver.com&quot;</span>
+</span><span class='line'><span class="n">role</span> <span class="ss">:app</span><span class="p">,</span> <span class="s2">&quot;productionserver.com&quot;</span>
+</span><span class='line'><span class="n">role</span> <span class="ss">:db</span><span class="p">,</span>  <span class="s2">&quot;productionserver.com&quot;</span><span class="p">,</span> <span class="ss">:primary</span> <span class="o">=&gt;</span> <span class="kp">true</span>
 </span><span class='line'>
-</span><span class='line'><span class="c1"># tasks</span>
-</span><span class='line'><span class="n">namespace</span> <span class="ss">:deploy</span> <span class="k">do</span>
-</span><span class='line'>  <span class="n">task</span> <span class="ss">:start</span><span class="p">,</span> <span class="ss">:roles</span> <span class="o">=&gt;</span> <span class="ss">:app</span> <span class="k">do</span>
-</span><span class='line'>    <span class="n">run</span> <span class="s2">&quot;touch </span><span class="si">#{</span><span class="n">current_path</span><span class="si">}</span><span class="s2">/tmp/restart.txt&quot;</span>
-</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="err">$</span> <span class="n">cat</span> <span class="n">development</span><span class="o">.</span><span class="n">rb</span>
 </span><span class='line'>
-</span><span class='line'>  <span class="n">task</span> <span class="ss">:stop</span><span class="p">,</span> <span class="ss">:roles</span> <span class="o">=&gt;</span> <span class="ss">:app</span> <span class="k">do</span>
-</span><span class='line'>    <span class="c1"># Do nothing.</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="n">desc</span> <span class="s2">&quot;Restart Application&quot;</span>
-</span><span class='line'>  <span class="n">task</span> <span class="ss">:restart</span><span class="p">,</span> <span class="ss">:roles</span> <span class="o">=&gt;</span> <span class="ss">:app</span> <span class="k">do</span>
-</span><span class='line'>    <span class="n">run</span> <span class="s2">&quot;touch </span><span class="si">#{</span><span class="n">current_path</span><span class="si">}</span><span class="s2">/tmp/restart.txt&quot;</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="n">desc</span> <span class="s2">&quot;Symlink shared resources on each release&quot;</span>
-</span><span class='line'>  <span class="n">task</span> <span class="ss">:symlink_shared</span><span class="p">,</span> <span class="ss">:roles</span> <span class="o">=&gt;</span> <span class="ss">:app</span> <span class="k">do</span>
-</span><span class='line'>    <span class="n">run</span> <span class="s2">&quot;ln -nfs </span><span class="si">#{</span><span class="n">shared_path</span><span class="si">}</span><span class="s2">/config/database.yml </span><span class="si">#{</span><span class="n">release_path</span><span class="si">}</span><span class="s2">/config/database.yml&quot;</span>
-</span><span class='line'>    <span class="n">run</span> <span class="s2">&quot;ln -nfs </span><span class="si">#{</span><span class="n">shared_path</span><span class="si">}</span><span class="s2">/config/mailers.yml </span><span class="si">#{</span><span class="n">release_path</span><span class="si">}</span><span class="s2">/config/mailers.yml&quot;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c1">#run &quot;mkdir #{release_path}/public/stylesheets/compiled&quot;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="n">run</span> <span class="s2">&quot;ln -nfs </span><span class="si">#{</span><span class="n">shared_path</span><span class="si">}</span><span class="s2">/ckeditor_assets </span><span class="si">#{</span><span class="n">release_path</span><span class="si">}</span><span class="s2">/public/ckeditor_assets&quot;</span>
-</span><span class='line'>    <span class="n">run</span> <span class="s2">&quot;ln -nfs </span><span class="si">#{</span><span class="n">shared_path</span><span class="si">}</span><span class="s2">/system </span><span class="si">#{</span><span class="n">release_path</span><span class="si">}</span><span class="s2">/public/system&quot;</span>
-</span><span class='line'>    <span class="n">run</span> <span class="s2">&quot;chmod 0777 </span><span class="si">#{</span><span class="n">release_path</span><span class="si">}</span><span class="s2">/public/stylesheets/compiled&quot;</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">after</span> <span class="s1">&#39;deploy:update_code&#39;</span><span class="p">,</span> <span class="s1">&#39;deploy:symlink_shared&#39;</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">namespace</span> <span class="ss">:db</span> <span class="k">do</span>
-</span><span class='line'>  <span class="n">desc</span> <span class="s2">&quot;migrate db&quot;</span>
-</span><span class='line'>  <span class="n">task</span> <span class="ss">:migrate</span><span class="p">,</span> <span class="ss">:roles</span> <span class="o">=&gt;</span> <span class="ss">:app</span> <span class="k">do</span>
-</span><span class='line'>    <span class="n">run</span> <span class="s2">&quot;cd </span><span class="si">#{</span><span class="n">release_path</span><span class="si">}</span><span class="s2"> &amp;&amp; RAILS_ENV=production rake db:migrate&quot;</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="n">set</span> <span class="ss">:rails_env</span><span class="p">,</span> <span class="s2">&quot;development&quot;</span>
+</span><span class='line'><span class="n">role</span> <span class="ss">:web</span><span class="p">,</span> <span class="s2">&quot;developmentserver.com&quot;</span>
+</span><span class='line'><span class="n">role</span> <span class="ss">:app</span><span class="p">,</span> <span class="s2">&quot;developmentserver.com&quot;</span>
+</span><span class='line'><span class="n">role</span> <span class="ss">:db</span><span class="p">,</span>  <span class="s2">&quot;developmentserver.com&quot;</span><span class="p">,</span> <span class="ss">:primary</span> <span class="o">=&gt;</span> <span class="kp">true</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>运行部署后报错：</p>
-
-<p> <img src="http://p4.42qu.us/721/820/149300.jpg"></p>
-
-<p> 查了下原因，官方这么描述：</p>
-
-<blockquote><p>Before deploying an app that uses Bundler, Add your Gemfile and Gemfile.lock to source control, but ignore the .bundle folder, which is specific to each machine.</p></blockquote>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ echo ".bundle\n" >> .gitignore
-</span><span class='line'>$ git add Gemfile Gemfile.lock .gitignore
-</span><span class='line'>$ git commit -m "Add Bundler support"</span></code></pre></td></tr></table></div></figure>
-
-
-<p>然后在deploy.rb中加入<code>require "bundler/capistrano"</code>
- <img src="http://p4.42qu.us/721/819/149299.jpg"></p>
-
-<p>数据没部署上去,应该是链接没做好,部署脚本是之前同事写的,关于Symlink这部分,我又谷歌了一下:</p>
-
-<p><code>Update @ 2011-12-9 11:17</code></p>
-
 <ul>
-<li><p>The <code>current</code>directory is where the most current version of your Rails application is located. Each time you deploy your application, the contents of this directory are overwritten with your new changes.</p></li>
-<li><p>The <code>releases</code> directory stores previous releases of your application, which allow Capistrano to &#8220;roll back&#8221; changes in the event that something goes wrong. Each time you deploy your application, the contents of the current directory are moved to the releases before the new version is copied to the current directory. You will want to limit the number of previous releases that are stored to preserve disk space. This can be done by running cap deploy:cleanup.</p></li>
-<li><p>The <code>shared</code> directory contains assets that are independent of the version of your application. In other words, the shared directory is left alone during a deployment, which makes it a perfect place to hold uploaded files and documents that you want to preserve between migrations.This is a great time to mention that that config/database.yml file is a wonderful candidate for storing in the shared directory and symlinking to it. By doing this, you can avoid having to publish your development and testing passwords, and multiple developers can easily collaborate on the same project.</p></li>
+<li>运行特定stage的deploy</li>
 </ul>
 
 
-<p>Rather than having to manually create our symlinks,  Luckily, we can create a Capistrano deployment recipe that automates this task.Since our application is already up and running, we will only be adding some things to the end of the recipe that is currently in place for your web host. In this example we create a namespace called &#8220;customs&#8221; for our new tasks:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>namespace(:customs) do
-</span><span class='line'>  task :config, :roles => :app do
-</span><span class='line'>    run &lt;&lt;-CMD
-</span><span class='line'>      ln -nfs #{shared_path}/system/database.yml #{release_path}/config/database.yml
-</span><span class='line'>    CMD
-</span><span class='line'>  end
-</span><span class='line'>  task :symlink, :roles => :app do
-</span><span class='line'>    run &lt;&lt;-CMD
-</span><span class='line'>      ln -nfs #{shared_path}/system/uploads #{release_path}/public/uploads
-</span><span class='line'>    CMD
-</span><span class='line'>  end
-</span><span class='line'>end</span></code></pre></td></tr></table></div></figure>
-
-
-<p>In order to get Capistrano to perform these tasks each time we deploy our application, we need to set some hooks by placing the following code at the bottom of our deploy.rb file:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>after "deploy:update_code", "customs:config"
-</span><span class='line'>after "deploy:symlink","customs:symlink"
-</span><span class='line'>after "deploy", "deploy:cleanup"</span></code></pre></td></tr></table></div></figure>
-
-
-<p>The first line tells Capistrano that after it has performed the update_code methods, which updates the Rails application, that it should symlink to our shared database.yml file so that Rails has the production database configuration settings.</p>
-
-<p>The next line tells Capistrano that once it has finished symlinking the application (a normal deploy involves symlinking to the current directory), it should then create the symlink for our uploads directory.</p>
-
-<p>Finally, I have added a third line that tells Capistrano to finish it all up by running the cap deploy:cleanup task, which removes all but the last 5 releases from the releases directory. We do this for good housekeeping reasons so that we are not bloating our server with releases that we don&#8217;t need.</p>
-
-<h1>RVM Issue</h1>
-
-<p>报错提示：
-<img src="http://p4.42qu.us/721/821/149301.jpg"></p>
-
-<p>好像是rvm不能选择ruby版本的问题。[后来发了一个帖子关于Linode上RVM的奇怪问题，每次ssh登陆服务器后，发现rvm并未选择ruby版本，即使上次登陆的时候rvm的默认ruby选项][http://ruby-china.org/topics/386],用了大家给的方法后,没找到合适答案后,rebuild linode服务器.</p>
-
-<p><code>Update @ 2011-12-9 12:57</code></p>
-
-<p>还是找到了Rvm的解决方案:</p>
-
-<p>When you use capistrano it uses a non-interactive ssh session which doesn&#8217;t run .profile or .bash_rc and it gets you a really bare bones environment. You will have to specify all the variables you need to use. This is especially important with RVM which relies on a lot of variables to work properly.</p>
-
-<p>The following can be added to your capistrano recipe:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>set :default_environment, {
-</span><span class='line'>'PATH' => "/usr/local/sphinx/bin:/usr/local/rvm/gems/ruby-1.9.2-p0/bin:/usr/local/rvm/gems/ruby-1.9.2-p0@global/bin:/usr/local/rvm/rubies/ruby-1.9.2-p0/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
-</span><span class='line'>'RUBY_VERSION' => 'ruby-1.9.2-p0',
-</span><span class='line'>'GEM_HOME' => '/usr/local/rvm/gems/ruby-1.9.2-p0',
-</span><span class='line'>'GEM_PATH' => '/usr/local/rvm/gems/ruby-1.9.2-p0:/usr/local/rvm/gems/ruby-1.9.2-p0@global',
-</span><span class='line'>'BUNDLE_PATH' => '/usr/local/rvm/gems/ruby-1.9.2-p0',
-</span><span class='line'>'MY_RUBY_HOME' => '/usr/local/rvm/rubies/ruby-1.9.2-p0',
-</span><span class='line'>:'RAILS_ENV' => 'production'
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
-
-
-<p>You&#8217;ll probably have to tweak this for your particular enviroment, but hopefully this gives you a good starting point to work from.</p>
-
-<h1>Rebuild Linode</h1>
-
-<ul>
-<li>ssh到服务器，做最基本的配置：</li>
-</ul>
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>Welcome to Ubuntu!
-</span><span class='line'> * Documentation:  https://help.ubuntu.com/
-</span><span class='line'>Last login: Wed Dec  7 21:24:41 2011 from 182.18.65.14
-</span><span class='line'>
-</span><span class='line'>root@li389-178:~# echo "log.networking.io" > /etc/hostname
-</span><span class='line'>root@li389-178:~# hostname -F /etc/hostname
-</span><span class='line'>
-</span><span class='line'>root@log:~# sudo dpkg-reconfigure tzdata
-</span><span class='line'>
-</span><span class='line'>Current default time zone: 'Asia/Chongqing'
-</span><span class='line'>Local time is now:      Thu Dec  8 10:28:55 CST 2011.
-</span><span class='line'>Universal Time is now:  Thu Dec  8 02:28:55 UTC 2011.</span></code></pre></td></tr></table></div></figure>
-
-
-<h1>Chef-Cookbooks&amp;Recipe</h1>
-
-<ul>
-<li>因为又要装很多服务，而且也会有很多配置,考虑到效率，选择使用chef-repo,本地建立chef workstation。</li>
-<li>表示一下,chef的文档太详细了!</li>
-<li>前阵子修改了服务器域名转向,需要修改一下.SSH中的known_hosts,删掉冲突的行就行了.</li>
-<li>chef-repo依然是git版本控制,很强大</li>
-</ul>
-
-
-<p>先看个在远程服务器node上安装apache2的sample:</p>
-
-<figure class='code'><figcaption><span>local:workstation </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>Zh:chef-repo bill$ knife cookbook site install apache2
-</span><span class='line'>Zh:chef-repo bill$ knife node run_list node name add "recipe[apache2]"
-</span><span class='line'>Zh:chef-repo bill$ ls cookbooks/
-</span><span class='line'>apache2   
-</span><span class='line'>Zh:chef-repo bill$ knife node run_list add "recipe[apache2]"
-</span><span class='line'>Zh:chef-repo bill$ knife cookbook upload apache2
-</span><span class='line'>Uploading apache2             [1.0.2]
-</span><span class='line'>upload complete
-</span><span class='line'>Zh:chef-repo bill$ knife node show log -r
-</span><span class='line'>run_list:  recipe[apache2]</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>node:nodename </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>nodename:# sudo chef client</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>安装workstation配置chef-client</h2>
-
-<ul>
-<li>因为使用的是Hosted-Chef,所以首先你要有一个opscode的账号,免费版的提供五个节点和两个管理员权限.然后创建一个orgnazition，会提示你下载knife配置文件和密钥文件,然后也到Users的界面生成密钥,一起下载下来</li>
-<li>安装依赖:ruby ree +,ruby-dev,libopenssl-ruby,ri,irb,build-essential,wget,ssl-cert,git-core</li>
-<li>安装rubygems:下载源码后解压，cd到该路径,执行<code>sudo ruby setup.rb --no-format-executable</code></li>
-<li>安装chef，创建必须的目录</li>
-</ul>
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>Zh:~ bill$ sudo gem install chef
-</span><span class='line'>Zh:~ bill$ git clone https://github.com/opscode/chef-repo.git
-</span><span class='line'>  
-</span><span class='line'>  # create chef configuration directories:
-</span><span class='line'>Zh:~ bill$ mkdir -p ~/chef-repo/.chef
-</span><span class='line'>  
-</span><span class='line'>  # copy the keys and knife configuration you download into this directory
-</span><span class='line'>Zh:~ bill$ cp USERNAME.pem ~/chef-repo/.chef
-</span><span class='line'>Zh:~ bill$ cp ORGANIZATION-validator.pem ~/Documents/chef-repo/.chef
-</span><span class='line'>Zh:~ bill$ cp knife.rb ~/chef-repo/.chef</span></code></pre></td></tr></table></div></figure>
-
-
-<ul>
-<li>测试一下knife是否与Hosted Chef API 建立了连接</li>
-</ul>
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>Zh:chef-repo bill$ knife client list
-</span><span class='line'>  ORGNIZATION-validator</span></code></pre></td></tr></table></div></figure>
-
-
-<blockquote><p>workstation就完成了,现在可以下载并上传recipe,以及用knife管理node的配置安装工作了.你可以选择将workstation这台电脑配置成chef-client,或者在一个node上配置chef-client并用workstation管理它.</p></blockquote>
-
-<h3>配置本地的chef client</h3>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>Zh:~ bill$ cd chef-repo
-</span><span class='line'>Zh:~ bill$ knife configure client ./client-config
-</span><span class='line'>#After this done,you will have a client-config directory in your local repository:
-</span><span class='line'>
-</span><span class='line'>Zh:~ bill$ sudo mkdir /etc/clef
-</span><span class='line'>Zh:~ bill$ sudo cp -r ~/chef-repo/client-config/* /etc/chef
-</span><span class='line'>
-</span><span class='line'>#You will now need to run chef-client for the first time,so your node is added to the client list.
-</span><span class='line'>Zh:~ bill$ sudo chef-client
-</span><span class='line'>
-</span><span class='line'>#Check if works
-</span><span class='line'>Zh:~ bill$ cd chef-repo
-</span><span class='line'>Zh:chef-repo bill$ knife client list</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>cookbook</h4>
-
-<h4>recipe</h4>
-
-<h3>配置远程的chef client</h3>
+<p><code>cap stagename deploy</code></p>
 </div>
   
   
@@ -539,6 +191,14 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2011/12/24/rails-dependencies/">Rails-Dependencies</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/12/24/install-mysql-server-in-unix-like-operating-system/">Install-Mysql-Server-In-Unix-Like-Operating-System</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2011/12/10/learning-ruby/">Ruby语言入门by园田裕贵</a>
@@ -570,14 +230,6 @@
     
       <li class="post">
         <a href="/blog/2011/12/03/octopress-codeblock/">Octopress: Codeblock</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2011/12/03/octopress-for-freshman/">Octopress: 新手教程</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2011/12/03/octopress-image-tag/">Octopress: Image tag</a>
       </li>
     
   </ul>
@@ -648,7 +300,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2011 - Bill Zh -
+  Copyright &copy; 2012 - Bill Zh -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

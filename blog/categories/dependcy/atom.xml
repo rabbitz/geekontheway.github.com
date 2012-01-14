@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: dependcy | Geekontheway]]></title>
+  <link href="http://geekontheway.github.com/blog/categories/dependcy/atom.xml" rel="self"/>
+  <link href="http://geekontheway.github.com/"/>
+  <updated>2012-01-14T19:59:48+08:00</updated>
+  <id>http://geekontheway.github.com/</id>
+  <author>
+    <name><![CDATA[Bill Zh]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Rails-Dependencies]]></title>
+    <link href="http://geekontheway.github.com/blog/2011/12/24/rails-dependencies/"/>
+    <updated>2011-12-24T06:10:00+08:00</updated>
+    <id>http://geekontheway.github.com/blog/2011/12/24/rails-dependencies</id>
+    <content type="html"><![CDATA[<p><img src="images/ror.jpg"></p>
+
+<blockquote><p>Mac</p></blockquote>
+
+<p>Xcode,<code>rvm 安装1.9以上版本的ruby需要设置编译器为gcc</code></p>
+
+<blockquote><p>Ubuntu 10.04 LTS</p></blockquote>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>apt-get install wget vim build-essential openssl libssl-dev libreadline6 libreadline6-dev curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libxml2-dev libxslt-dev autoconf automake libtool imagemagick libpcre3-dev libmysqld-dev&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<blockquote><p>CentOS 5</p></blockquote>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>yum groupinstall "Development Tools"
+</span><span class='line'>yum install zlib-devel wget openssl-devel pcre pcre-devel make gcc gcc-c++ curl-devel mysql-devel&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>gem install mysql --no-rdoc --no-ri -- --with-mysql-dir=/usr/bin --with-mysql-lib=/usr/lib/mysql --with-mysql-include=/usr/include/mysql&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>更多阅读</p>
+
+<p><a href="http://packages.ubunut.com/" title="Ubuntu Packages Search">Ubuntu Packages Search</a></p>
+]]></content>
+  </entry>
+  
+</feed>

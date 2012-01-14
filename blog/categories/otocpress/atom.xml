@@ -4,7 +4,7 @@
   <title><![CDATA[Category: otocpress | Geekontheway]]></title>
   <link href="http://geekontheway.github.com/blog/categories/otocpress/atom.xml" rel="self"/>
   <link href="http://geekontheway.github.com/"/>
-  <updated>2011-12-13T14:52:10+08:00</updated>
+  <updated>2012-01-14T19:59:48+08:00</updated>
   <id>http://geekontheway.github.com/</id>
   <author>
     <name><![CDATA[Bill Zh]]></name>
@@ -164,7 +164,7 @@
 </ul>
 
 
-<blockquote><p>特别的，如果你克隆了博客，记得在<code>git checkout source</code>，然后<code>rake setup_gh_pages</code>执行初始化，当然，你可能也需要<code>bundle install</code></p>
+<blockquote><p>特别的，如果你克隆了博客，记得在<code>git checkout source</code>，然后<code>rake setup_github_pages</code>执行初始化，当然，在那之前也需要<code>bundle install</code>，然后rake generate就生成页面了.</p>
 
 <p>如果是新建的Repo ，记得</p></blockquote>
 

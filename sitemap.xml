@@ -14,7 +14,7 @@
     </url>
     <url>
         <loc>http://geekontheway.github.com/blog/2011/12/03/octopress-for-freshman/</loc>
-        <lastmod>2011-12-04T16:51:37+08:00</lastmod>
+        <lastmod>2011-12-17T09:51:37+08:00</lastmod>
     </url>
     <url>
         <loc>http://geekontheway.github.com/blog/2011/12/03/octopress-codeblock/</loc>
@@ -49,11 +49,21 @@
         <lastmod>2011-12-10T12:11:28+08:00</lastmod>
     </url>
     <url>
+        <loc>
+            http://geekontheway.github.com/blog/2011/12/24/install-mysql-server-in-unix-like-operating-system/
+        </loc>
+        <lastmod>2012-01-14T19:44:47+08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://geekontheway.github.com/blog/2011/12/24/rails-dependencies/</loc>
+        <lastmod>2012-01-14T19:44:47+08:00</lastmod>
+    </url>
+    <url>
         <loc>http://geekontheway.github.com/blog/archives/</loc>
-        <lastmod>2011-12-13T14:51:35+08:00</lastmod>
+        <lastmod>2012-01-14T19:44:47+08:00</lastmod>
     </url>
     <url>
         <loc>http://geekontheway.github.com/</loc>
-        <lastmod>2011-12-13T14:51:35+08:00</lastmod>
+        <lastmod>2012-01-14T19:44:47+08:00</lastmod>
     </url>
 </urlset>

@@ -9,8 +9,8 @@
   <meta name="author" content="Bill Zh">
 
   
-  <meta name="description" content="最近在读这本书, 源码在此 1
-001: 他言語プログラマのためのRuby入門書『初めてのRuby』のサポートページです. 有两个想法： 1.有时间了学学日语 2.如何替换掉文本文件中每行首/行尾的行号,空格&#8230;eg.?分别使用awk+sed,vim,textmate,Sh拿出解决方案 &hellip;">
+  <meta name="description" content="Mac Xcode,rvm 安装1.9以上版本的ruby需要设置编译器为gcc Ubuntu 10.04 LTS 1
+apt-get install wget vim build-essential openssl libssl-dev libreadline6 libreadline6-dev &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -81,7 +81,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2011/12/10/learning-ruby/">Ruby语言入门by园田裕贵</a></h1>
+      <h1 class="entry-title"><a href="/blog/2011/12/24/rails-dependencies/">Rails-Dependencies</a></h1>
     
     
       <p class="meta">
@@ -97,26 +97,40 @@
   
 
 
-<time datetime="2011-12-10T11:39:00+08:00" pubdate data-updated="true">Dec 10<span>th</span>, 2011</time>
+<time datetime="2011-12-24T06:10:00+08:00" pubdate data-updated="true">Dec 24<span>th</span>, 2011</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p><img src="images/learningruby.jpeg"></p>
+  <div class="entry-content"><p><img src="images/ror.jpg"></p>
 
-<p>最近在读这本书,   <a href="http://yugui.jp/files/learning-ruby-examples.20080616-143903.zip">源码在此</a></p>
+<blockquote><p>Mac</p></blockquote>
+
+<p>Xcode,<code>rvm 安装1.9以上版本的ruby需要设置编译器为gcc</code></p>
+
+<blockquote><p>Ubuntu 10.04 LTS</p></blockquote>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>001: 他言語プログラマのためのRuby入門書『初めてのRuby』のサポートページです.</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>apt-get install wget vim build-essential openssl libssl-dev libreadline6 libreadline6-dev curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libxml2-dev libxslt-dev autoconf automake libtool imagemagick libpcre3-dev libmysqld-dev</span></code></pre></td></tr></table></div></figure>
 
 
-<p>有两个想法：</p>
+<blockquote><p>CentOS 5</p></blockquote>
 
-<blockquote><p>1.有时间了学学日语</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>yum groupinstall "Development Tools"
+</span><span class='line'>yum install zlib-devel wget openssl-devel pcre pcre-devel make gcc gcc-c++ curl-devel mysql-devel
+</span><span class='line'>
+</span><span class='line'># gem install mysql --no-rdoc --no-ri -- --with-mysql-dir=/usr/bin --with-mysql-lib=/usr/lib/mysql --with-mysql-include=/usr/include/mysql</span></code></pre></td></tr></table></div></figure>
 
-<p>2.如何替换掉文本文件中每行首/行尾的行号,空格&#8230;eg.?分别使用awk+sed,vim,textmate,Sh拿出解决方案.</p></blockquote>
+
+<p>更多阅读</p>
+
+<p><a href="http://packages.ubunut.com/" title="Ubuntu Packages Search">Ubuntu Packages Search</a></p>
 </div>
   
   
@@ -137,6 +151,14 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2011/12/24/rails-dependencies/">Rails-Dependencies</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/12/24/install-mysql-server-in-unix-like-operating-system/">Install-Mysql-Server-In-Unix-Like-Operating-System</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2011/12/10/learning-ruby/">Ruby语言入门by园田裕贵</a>
@@ -168,14 +190,6 @@
     
       <li class="post">
         <a href="/blog/2011/12/03/octopress-codeblock/">Octopress: Codeblock</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2011/12/03/octopress-for-freshman/">Octopress: 新手教程</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2011/12/03/octopress-image-tag/">Octopress: Image tag</a>
       </li>
     
   </ul>
@@ -246,7 +260,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2011 - Bill Zh -
+  Copyright &copy; 2012 - Bill Zh -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 
