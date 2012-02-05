@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | Geekontheway]]></title>
   <link href="http://geekontheway.github.com/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://geekontheway.github.com/"/>
-  <updated>2012-01-14T19:59:48+08:00</updated>
+  <updated>2012-02-05T22:42:27+08:00</updated>
   <id>http://geekontheway.github.com/</id>
   <author>
     <name><![CDATA[Bill Zh]]></name>
@@ -18,9 +18,7 @@
     <link href="http://geekontheway.github.com/blog/2011/12/10/learning-ruby/"/>
     <updated>2011-12-10T11:39:00+08:00</updated>
     <id>http://geekontheway.github.com/blog/2011/12/10/learning-ruby</id>
-    <content type="html"><![CDATA[<p><img src="images/learningruby.jpeg"></p>
-
-<p>最近在读这本书,   <a href="http://yugui.jp/files/learning-ruby-examples.20080616-143903.zip">源码在此</a></p>
+    <content type="html"><![CDATA[<p>最近在读这本书,   <a href="http://yugui.jp/files/learning-ruby-examples.20080616-143903.zip">源码在此</a></p>
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>

@@ -4,7 +4,7 @@
   <title><![CDATA[Geekontheway]]></title>
   <link href="http://geekontheway.github.com/atom.xml" rel="self"/>
   <link href="http://geekontheway.github.com/"/>
-  <updated>2012-01-14T19:59:48+08:00</updated>
+  <updated>2012-02-05T22:42:27+08:00</updated>
   <id>http://geekontheway.github.com/</id>
   <author>
     <name><![CDATA[Bill Zh]]></name>
@@ -18,9 +18,7 @@
     <link href="http://geekontheway.github.com/blog/2011/12/24/rails-dependencies/"/>
     <updated>2011-12-24T06:10:00+08:00</updated>
     <id>http://geekontheway.github.com/blog/2011/12/24/rails-dependencies</id>
-    <content type="html"><![CDATA[<p><img src="images/ror.jpg"></p>
-
-<blockquote><p>Mac</p></blockquote>
+    <content type="html"><![CDATA[<blockquote><p>Mac</p></blockquote>
 
 <p>Xcode,<code>rvm 安装1.9以上版本的ruby需要设置编译器为gcc</code></p>
 
@@ -53,9 +51,7 @@
     <link href="http://geekontheway.github.com/blog/2011/12/24/install-mysql-server-in-unix-like-operating-system/"/>
     <updated>2011-12-24T06:08:00+08:00</updated>
     <id>http://geekontheway.github.com/blog/2011/12/24/install-mysql-server-in-unix-like-operating-system</id>
-    <content type="html"><![CDATA[<p><img src="images/mysql.jpg"></p>
-
-<blockquote><p>CentOS 5</p></blockquote>
+    <content type="html"><![CDATA[<blockquote><p>CentOS 5</p></blockquote>
 
 <ul>
 <li>Installing MySQL</li>
@@ -297,9 +293,7 @@ If you&#8217;ve forgotten your root MySQL password, you may recover it by issuin
     <link href="http://geekontheway.github.com/blog/2011/12/10/learning-ruby/"/>
     <updated>2011-12-10T11:39:00+08:00</updated>
     <id>http://geekontheway.github.com/blog/2011/12/10/learning-ruby</id>
-    <content type="html"><![CDATA[<p><img src="images/learningruby.jpeg"></p>
-
-<p>最近在读这本书,   <a href="http://yugui.jp/files/learning-ruby-examples.20080616-143903.zip">源码在此</a></p>
+    <content type="html"><![CDATA[<p>最近在读这本书,   <a href="http://yugui.jp/files/learning-ruby-examples.20080616-143903.zip">源码在此</a></p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>001: 他言語プログラマのためのRuby入門書『初めてのRuby』のサポートページです.</span></code></pre></td></tr></table></div></figure>
