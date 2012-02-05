@@ -1,26 +1,37 @@
 
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
-    <meta charset="utf-8">
-    <title>Linode上相关安装和设置 - Bill Zh</title>
-    <meta name="author" content="Bill Zh">
+  <meta charset="utf-8">
+  <title>Linode上相关安装和设置 - Geekontheway</title>
+  <meta name="author" content="Bill Zh">
 
-    
-    <meta name="description" content="Linode上相关安装和设置 Deploying Rails to Linode Deploying Rails to Linode
+  
+  <meta name="description" content="Deploying Rails to Linode Deploying Rails to Linode
 ==================
-Installing Ruby Enterprise Edition, Apache, MySQL, and &hellip;">
-    
-    <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1">
+Installing Ruby Enterprise Edition, Apache, MySQL, and Passenger for deploying &hellip;">
+  
 
-    <link href="/atom.xml" rel="alternate" title="Bill Zh" type="application/atom+xml">
-    <link rel="canonical" href="">
-    <link href="/favicon.png" rel="shortcut icon">
-    <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-    <!--[if lt IE 9]><script src="/javascripts/html5.js"></script><![endif]-->
-    <script src="/javascripts/jquery.min.js"></script>
-    
-    
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://geekontheway.github.com/blog/2011/12/09/linode-assets">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Geekontheway" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
   <script type="text/javascript">
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-27438087-1']);
@@ -36,35 +47,62 @@ Installing Ruby Enterprise Edition, Apache, MySQL, and &hellip;">
 
 </head>
 
-<body>
-	<header class="inner"><h1 class="left"><a href="/">Bill Zh</a></h1>
-<nav class="menu left"><ul class="main">
-	<li><a href="/">Blog</a></li>
-	<li><a href="/blog/archives">Archives</a></li>
-</ul>
-</nav>
-<div class="right">
-	<form class="search right" action="http://google.com/search" method="get">
-		<input class="left" type="text" name="q" results="0">
-		<input type="hidden" name="q" value="site:geekontheway.github.com">
-	</form>
-	<div class="social right">
-		
-		
-		<a class="google" href="https://plus.google.com/xiaoliang@networking.io" title="Google+">Google+</a>
-		
-		
-		<a class="twitter" href="http://twitter.com/geekzh" title="Twitter">Twitter</a>
-		
-		
-		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
-		
-	</div>
-</div>
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Geekontheway</a></h1>
+  
+    <h2>Stay hungry Stay foolish</h2>
+  
+</hgroup>
+
 </header>
-	<div id="content" class="inner"><article class="post">
-    <h1 class="title">Linode上相关安装和设置</h1>
-    <div class="entry"><blockquote><p>Deploying Rails to Linode</p></blockquote>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:geekontheway.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+<ul class="main-navigation">
+  <li><a href="/">首页</a></li>
+  <li><a href="/blog/archives">目录</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Linode上相关安装和设置</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-12-09T16:34:00+08:00" pubdate data-updated="true">Dec 9<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><blockquote><p>Deploying Rails to Linode</p></blockquote>
 
 <div><script src='https://gist.github.com/1441585.js?file='></script>
 <noscript><pre><code>Deploying Rails to Linode
@@ -354,8 +392,16 @@ you do with SSH.
     </code></pre></noscript></div>
 
 </div>
-    <div class="meta">
-        <div class="date">
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Bill Zh</span></span>
+
+      
 
 
 
@@ -367,44 +413,169 @@ you do with SSH.
   
 
 
-<time datetime="2011-12-09T16:34:00+08:00" pubdate data-updated="true">Dec 9<span>th</span>, 2011</time></div>
-        <div class="tags">
+<time datetime="2011-12-09T16:34:00+08:00" pubdate data-updated="true">Dec 9<span>th</span>, 2011</time>
+      
 
-<div class="cat">
+<span class="categories">
   
     <a class='category' href='/blog/categories/linode/'>Linode</a>, <a class='category' href='/blog/categories/rails/'>Rails</a>
   
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://geekontheway.github.com/blog/2011/12/09/linode-assets/" data-via="geekzh" data-counturl="http://geekontheway.github.com/blog/2011/12/09/linode-assets/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
 </div>
 
-</div>
-        
-    </div>
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2011/12/09/starting-capistrano/" title="Previous Post: 初学capistrano">&laquo; 初学capistrano</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2011/12/10/learning-ruby/" title="next Post: Ruby语言入门by园田裕贵">Ruby语言入门by园田裕贵 &raquo;</a>
+      
+    </p>
+  </footer>
 </article>
-<div class="share">
-	<div class="addthis_toolbox addthis_default_style ">
-	
-	
-	<a class="addthis_button_tweet"></a>
-	
-	
-	<a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
-	
-	<a class="addthis_counter addthis_pill_style"></a>
-	</div>
-	<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4eb4a0c47196e907"></script>
-</div>
 
-<section id="comment">
-    <h1 class="title">Comments</h1>
+  <section>
+    <h1>Comments</h1>
     <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
-</section>
-</div>
-	<footer class="inner">Copyright &copy; 2012 Bill Zh</footer>
-	<script src="/javascripts/jquery.easing.1.3.js"></script>
-<script src="/javascripts/jquery.fancybox.pack.js"></script>
-<script src="/javascripts/slash.js"></script>
+  </section>
 
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2011/12/24/rails-dependencies/">Rails-Dependencies</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/12/24/install-mysql-server-in-unix-like-operating-system/">Install-Mysql-Server-In-Unix-Like-Operating-System</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/12/10/learning-ruby/">Ruby语言入门by园田裕贵</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/12/09/linode-assets/">Linode上相关安装和设置</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/12/09/starting-capistrano/">初学capistrano</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/12/09/rvm-system-wide-install-script/">分享一个全局RVM的安装脚本 Ubuntu 10.04 </a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/12/08/from-ssl-to-ssh/">从Capsitrano说起</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/12/06/nginx-autorun-with-init-scripts/">nginx自启动设置</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/12/03/octopress-blockquote/">Octopress: Blockquote</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/12/03/octopress-codeblock/">Octopress: Codeblock</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>Github Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/geekontheway">@geekontheway</a> on Github
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'geekontheway',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("geekzh", 4, true);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/geekzh" class="twitter-follow-button" data-width="208px" data-show-count="false">Follow @geekzh</a>
+  
+</section>
+
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/xiaoliang@networking.io?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Bill Zh -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
 
 <script type="text/javascript">
       var disqus_shortname = 'geekzh';
@@ -421,6 +592,32 @@ you do with SSH.
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
 </script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
 
 
 

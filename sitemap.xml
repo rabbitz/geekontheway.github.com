@@ -2,68 +2,68 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://geekontheway.github.com/blog/2011/12/01/octopress-the-first-day/</loc>
-        <lastmod>2012-02-05T23:01:15+08:00</lastmod>
+        <lastmod>2012-02-05T23:30:53+08:00</lastmod>
     </url>
     <url>
         <loc>http://geekontheway.github.com/blog/2011/12/02/octopress-configuration-files/</loc>
-        <lastmod>2012-02-05T23:01:15+08:00</lastmod>
+        <lastmod>2012-02-05T23:30:53+08:00</lastmod>
     </url>
     <url>
         <loc>http://geekontheway.github.com/blog/2011/12/03/octopress-image-tag/</loc>
-        <lastmod>2012-02-05T23:01:15+08:00</lastmod>
+        <lastmod>2012-02-05T23:30:53+08:00</lastmod>
     </url>
     <url>
         <loc>http://geekontheway.github.com/blog/2011/12/03/octopress-for-freshman/</loc>
-        <lastmod>2012-02-05T23:01:15+08:00</lastmod>
+        <lastmod>2012-02-05T23:30:53+08:00</lastmod>
     </url>
     <url>
         <loc>http://geekontheway.github.com/blog/2011/12/03/octopress-codeblock/</loc>
-        <lastmod>2012-02-05T23:01:15+08:00</lastmod>
+        <lastmod>2012-02-05T23:30:53+08:00</lastmod>
     </url>
     <url>
         <loc>http://geekontheway.github.com/blog/2011/12/03/octopress-blockquote/</loc>
-        <lastmod>2012-02-05T23:01:15+08:00</lastmod>
+        <lastmod>2012-02-05T23:30:53+08:00</lastmod>
     </url>
     <url>
         <loc>http://geekontheway.github.com/blog/2011/12/06/nginx-autorun-with-init-scripts/</loc>
-        <lastmod>2012-02-05T23:01:15+08:00</lastmod>
+        <lastmod>2012-02-05T23:30:53+08:00</lastmod>
     </url>
     <url>
         <loc>http://geekontheway.github.com/blog/2011/12/08/from-ssl-to-ssh/</loc>
-        <lastmod>2012-02-05T23:01:15+08:00</lastmod>
+        <lastmod>2012-02-05T23:30:53+08:00</lastmod>
     </url>
     <url>
         <loc>http://geekontheway.github.com/blog/2011/12/09/rvm-system-wide-install-script/</loc>
-        <lastmod>2012-02-05T23:01:15+08:00</lastmod>
+        <lastmod>2012-02-05T23:30:53+08:00</lastmod>
     </url>
     <url>
         <loc>http://geekontheway.github.com/blog/2011/12/09/starting-capistrano/</loc>
-        <lastmod>2012-02-05T23:01:15+08:00</lastmod>
+        <lastmod>2012-02-05T23:30:53+08:00</lastmod>
     </url>
     <url>
         <loc>http://geekontheway.github.com/blog/2011/12/09/linode-assets/</loc>
-        <lastmod>2012-02-05T23:01:15+08:00</lastmod>
+        <lastmod>2012-02-05T23:30:53+08:00</lastmod>
     </url>
     <url>
         <loc>http://geekontheway.github.com/blog/2011/12/10/learning-ruby/</loc>
-        <lastmod>2012-02-05T23:01:15+08:00</lastmod>
+        <lastmod>2012-02-05T23:38:26+08:00</lastmod>
     </url>
     <url>
         <loc>
             http://geekontheway.github.com/blog/2011/12/24/install-mysql-server-in-unix-like-operating-system/
         </loc>
-        <lastmod>2012-02-05T23:01:15+08:00</lastmod>
+        <lastmod>2012-02-05T23:38:26+08:00</lastmod>
     </url>
     <url>
         <loc>http://geekontheway.github.com/blog/2011/12/24/rails-dependencies/</loc>
-        <lastmod>2012-02-05T23:01:15+08:00</lastmod>
+        <lastmod>2012-02-05T23:38:26+08:00</lastmod>
     </url>
     <url>
         <loc>http://geekontheway.github.com/blog/archives/</loc>
-        <lastmod>2012-02-05T23:01:15+08:00</lastmod>
+        <lastmod>2012-02-05T23:38:26+08:00</lastmod>
     </url>
     <url>
         <loc>http://geekontheway.github.com/</loc>
-        <lastmod>2012-02-05T23:01:15+08:00</lastmod>
+        <lastmod>2012-02-05T23:38:26+08:00</lastmod>
     </url>
 </urlset>
